@@ -1,0 +1,21 @@
+.padding-base {
+  padding: var(--padding-base);
+}
+.padding-xsm {
+  padding: calc(var(--padding-base) * $mult-xsm);
+}
+.padding-sm {
+  padding: calc(var(--padding-base) * $mult-sm);
+}
+.padding-md {
+  padding: calc(var(--padding-base) * $mult-md);
+}
+.padding-lg {
+  padding: calc(var(--padding-base) * $mult-lg);
+}
+.padding-xl {
+  padding: calc(var(--padding-base) * $mult-xl);
+}
+.padding-xxl {
+  padding: calc(var(--padding-base) * $mult-xxl);
+}

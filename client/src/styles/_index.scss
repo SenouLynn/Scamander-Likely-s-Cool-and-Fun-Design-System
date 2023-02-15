@@ -1,0 +1,32 @@
+$wintergreen-dream: rgba(107, 144, 128, 1);
+$cambridge-blue: rgba(164, 195, 178, 1);
+$light-cyan: rgba(204, 227, 222, 1);
+$azure-x-11-web-color: rgba(234, 244, 244, 1);
+$mint-cream: rgba(246, 255, 248, 1);
+
+:root {
+  --primary-color: rgba(107, 144, 128, 1);
+  --secondary-color: rgba(234, 244, 244, 1);
+
+  --success: #4caf50;
+  --info: #2196f3;
+  --warning: #ff9800;
+  --danger: #f44336;
+  --light: #f1f1f1;
+  --dark: #212121;
+  --white: #fff;
+  --black: #000;
+  --transparent: transparent;
+
+  --border-radius: 5px;
+
+  --padding-base: 1rem;
+  --margin-base: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}

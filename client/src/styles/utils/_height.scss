@@ -1,0 +1,10 @@
+@each $baseSize in $generic-iterator {
+  .h-#{$baseSize}rem {
+    height: #{$baseSize}rem;
+  }
+  @each $addonSize in $generic-iterator {
+    .h-#{$baseSize}#{$addonSize}rem {
+      height: #{$baseSize}#{$addonSize}rem;
+    }
+  }
+}

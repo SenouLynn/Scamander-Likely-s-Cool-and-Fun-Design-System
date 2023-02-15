@@ -1,0 +1,89 @@
+//Color Variants
+$button-primary-color: #274279;
+$button-secondary-color: #e7ebe9;
+// | "success"
+// | "danger"
+// | "warning"
+// | "info"
+// | "light";
+
+//Utils
+$button-border-radius: 5px;
+$button-padding: 0.375rem 0.75rem;
+
+@mixin variantButtonStyle($label, $color, $background-color) {
+  &.#{$label} {
+    color: $color;
+    background-color: $background-color;
+    border: 1px solid $background-color;
+    @include variantOutlineStyle($background-color, $color);
+  }
+
+  &.#{$label}:hover {
+    background-color: $background-color; //Do something here
+  }
+}
+
+@mixin variantOutlineStyle($primary, $hover-color) {
+  &.outline {
+    color: $primary;
+    background-color: white;
+    border: 1px solid $primary;
+  }
+  &.outline:hover {
+    color: $hover-color;
+    background-color: $primary;
+    border: 1px solid $primary;
+  }
+}
+
+@mixin variantButtonSize($size, $mult) {
+  &.#{$size} {
+    font-size: #{$mult}rem;
+    padding: calc(0.3 * $mult) rem calc(0.75 * $mult);
+  }
+}
+
+.button {
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  transition: all 0.2s ease-in-out;
+  border-radius: $button-border-radius;
+  font-size: 1rem;
+  padding: $button-padding;
+
+  @include variantButtonStyle(primary, white, $button-primary-color);
+  @include variantButtonStyle(secondary, black, $button-secondary-color);
+  @include variantButtonStyle(
+    success,
+    map-get($colors, success),
+    map-get($colors, success)
+  );
+  @include variantButtonStyle(info, black, map-get($colors, info));
+  @include variantButtonStyle(
+    warning,
+    map-get($colors, warning),
+    map-get($colors, warning)
+  );
+  @include variantButtonStyle(
+    danger,
+    map-get($colors, danger),
+    map-get($colors, danger)
+  );
+  @include variantButtonStyle(light, black, map-get($colors, light));
+  @include variantButtonStyle(dark, white, map-get($colors, dark));
+
+  //Size Variants
+  @include variantButtonSize(sm, 0.5);
+  @include variantButtonSize(md, 0.75);
+  @include variantButtonSize(lg, 1.25);
+  @include variantButtonSize(xl, 1.5);
+}
+
+.button:not(:disabled) {
+  cursor: pointer;
+}
+.button:active {
+  transform: scale(0.97);
+}

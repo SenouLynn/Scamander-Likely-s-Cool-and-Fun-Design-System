@@ -1,0 +1,80 @@
+//Flex positioning horizontal vertical
+.display-flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
+}
+@mixin flex($justify, $align) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+.flex-start-start {
+  @include flex(flex-start, flex-start);
+}
+.flex-center-start {
+  @include flex(center, flex-start);
+}
+.flex-end-start {
+  @include flex(flex-end, flex-start);
+}
+.flex-between-start {
+  @include flex(space-between, flex-start);
+}
+
+.flex-start-center {
+  @include flex(flex-start, center);
+}
+.flex-center-center {
+  @include flex(center, center);
+}
+.flex-end-center {
+  @include flex(flex-end, center);
+}
+.flex-between-center {
+  @include flex(space-between, center);
+}
+
+.flex-start-end {
+  @include flex(flex-start, flex-end);
+}
+.flex-center-end {
+  @include flex(center, flex-end);
+}
+.flex-end-end {
+  @include flex(flex-end, flex-end);
+}
+.flex-between-end {
+  @include flex(space-between, flex-end);
+}
+
+.flex-start-between {
+  @include flex(flex-start, space-between);
+}
+.flex-center-between {
+  @include flex(center, space-between);
+}
+.flex-end-between {
+  @include flex(flex-end, space-between);
+}
+.flex-between-between {
+  @include flex(space-between, space-between);
+}
+
+//Flex Columns
+@each $size in $flex-sizes {
+  .flex-grow-#{$size} {
+    flex-grow: #{$size};
+  }
+  .flex-gap-#{$size} {
+    gap: #{$size}rem;
+  }
+  .flex-gap-0#{$size} {
+    gap: calc(#{$size}/ 2) rem;
+  }
+}

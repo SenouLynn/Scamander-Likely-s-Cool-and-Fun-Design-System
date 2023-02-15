@@ -1,0 +1,13 @@
+@mixin colorClasses($var, $color) {
+  .font-color-#{$var} {
+    color: $color;
+  }
+  .bg-color-#{$var} {
+    background-color: $color;
+  }
+}
+
+//Colors
+// @each $variant, $color in $colors {
+//   @include colorClasses($variant, $color);
+// }

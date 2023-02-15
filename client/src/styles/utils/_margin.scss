@@ -1,0 +1,21 @@
+.margin-base {
+  margin: var(--margin-base);
+}
+.margin-xsm {
+  margin: calc(var(--margin-base) * $mult-xsm);
+}
+.margin-sm {
+  margin: calc(var(--margin-base) * $mult-sm);
+}
+.margin-md {
+  margin: calc(var(--margin-base) * $mult-md);
+}
+.margin-lg {
+  margin: calc(var(--margin-base) * $mult-lg);
+}
+.margin-xl {
+  margin: calc(var(--margin-base) * $mult-xl);
+}
+.margin-xxl {
+  margin: calc(var(--margin-base) * $mult-xxl);
+}

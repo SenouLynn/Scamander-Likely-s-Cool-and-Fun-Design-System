@@ -1,0 +1,11 @@
+.border {
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius);
+}
+
+@mixin border {
+  &.border {
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+  }
+}
