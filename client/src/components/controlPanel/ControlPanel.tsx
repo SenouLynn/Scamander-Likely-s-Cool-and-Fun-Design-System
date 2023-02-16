@@ -2,13 +2,9 @@ import React, { useContext } from "react";
 import { Container } from "../Container";
 import { ThemeContext } from "../theme/ThemeContext";
 
-import { controlOptions } from "../theme/utils/fakeDb/controlOptions.manifest";
-
 export default function ControlPanel(props: ComponentPackage) {
-  const { getStyleOptions } = useContext(ThemeContext);
-  const styleOptions = controlOptions; //getStyleOptions(props)
+  const { controlOptions } = useContext(ThemeContext);
   const { onClick = () => null, styles } = props;
-
   const handleClick = ({
     style,
     variant,
@@ -21,9 +17,9 @@ export default function ControlPanel(props: ComponentPackage) {
     onClick(p);
   };
   return (
-    <Container component="container" margin={"sm"} className="w-fit-content">
+    <Container componentId="container" margin={"sm"} className="w-fit-content">
       <div className=" flex-start-start ">
-        {Object.entries(styleOptions).map(([style, variants]) => {
+        {Object.entries(controlOptions).map(([style, variants]) => {
           const variantsObj = variants;
           return (
             <div className="border padding-sm margin-sm flex-column flex-start-center flex-grow-1">

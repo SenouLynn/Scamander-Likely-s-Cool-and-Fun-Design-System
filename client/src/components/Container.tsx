@@ -4,12 +4,12 @@ import ComponentWrapper from "./controlPanel/ComponentWrapper";
 import { ThemeContext } from "./theme/ThemeContext";
 import { getComponentPackage } from "./theme/utils/helpers";
 export const Container = (props: ComponentProps) => {
-  const { component = "" } = props;
-  const componentPackage = getComponentPackage({
+  const { componentPackage } = useContext(ThemeContext);
+
+  const { componentId = "" } = props;
+  const cartridge = componentPackage({
     defaultId: "container",
-    component,
+    componentId,
   });
-  return (
-    <ComponentWrapper {...componentPackage}>{props.children}</ComponentWrapper>
-  );
+  return <ComponentWrapper {...cartridge}>{props.children}</ComponentWrapper>;
 };

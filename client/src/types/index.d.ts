@@ -66,7 +66,7 @@ interface ComponentStyleProps {
 type ComponentPackage = {
   role?: Roles;
   defaultStyleId: string;
-  component: string;
+  componentId: string;
   Component: (props: ComponentProps) => JSX.Element;
   styles: StylePackage & {
     className: string;

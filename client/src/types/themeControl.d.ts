@@ -5,7 +5,7 @@ type ThemeContextProps = {
   children?: React.ReactNode;
   controlOptions: StyleOptions;
   getStyleOptions: (componentPackage: ComponentPackage) => void;
-  getComponentDefaultStyle: (props: ComponentPackage) => void;
+  componentPackage: (props: GetComponentPackage) => any;
   openComponents: string;
   setOpenComponents: (value: string) => any;
 };
@@ -15,4 +15,9 @@ type StyleOptions = {
 };
 interface ComponentManifest {
   [key: string]: AtLeast<ComponentPackage, "component">; //Type these variants
+}
+
+interface GetComponentPackage {
+  defaultId: string;
+  componentId?: string;
 }

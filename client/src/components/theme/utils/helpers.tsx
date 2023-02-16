@@ -1,6 +1,4 @@
 import { Container } from "../../Container";
-import { componentManifest } from "../utils/fakeDb/component.manifest";
-import { customComponents } from "../utils/fakeDb/mockDb.manifest";
 
 export const renderChildren = (props: ComponentProps) => {
   return props.subComponents && props.subComponents.length > 0 ? (
@@ -20,7 +18,7 @@ export const createComponentPackage = ({
     location: "", //tree location
     Component: Container,
     role: "wrapper",
-    component: "", //custom styleId
+    componentId: "", //custom styleId
     defaultStyleId: defaultStyleId,
     styles: {
       className: "",
@@ -30,22 +28,28 @@ export const createComponentPackage = ({
   };
 };
 export const getComponentPackage = ({
+  allStyles,
   defaultId,
-  component,
-}: {defaultId: string, component: string}): ComponentPackage => {
-  const defaultPackage = componentManifest[defaultId]
-    ? componentManifest[defaultId]
+  componentId,
+}: {
+  allStyles: InitData;
+  defaultId: string;
+  componentId?: string;
+}): ComponentPackage => {
+  const defaultPackage = allStyles.defaultStyles[defaultId]
+    ? allStyles.defaultStyles[defaultId]
     : {};
-  const customPackage = customComponents[component]
-    ? customComponents[component]
-    : {};
+  const customPackage =
+    componentId && allStyles.componentList[componentId]
+      ? allStyles.componentList[componentId]
+      : {};
 
   return {
     location: "",
     Component: Container,
     role: "wrapper",
     defaultStyleId: defaultId,
-    component: component,
+    componentId: componentId || "",
     subComponents: [],
     styles: {
       className: "",
