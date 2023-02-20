@@ -15,7 +15,7 @@ $colors: (
 $primary-variants: "primary", "secondary", "success", "info", "warning",
   "danger", "light", "dark", "white", "black", "transparent";
 $generic-sizes: "xsm", "sm", "md", "lg", "xl", "xxl";
-$generic-iterator: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9;
+$generic-iterator: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
 
 $flex-sizes: 1, 2, 3, 4, 5, 6;
 $grid-sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12;
@@ -26,3 +26,6 @@ $mult-md: 0.7;
 $mult-lg: 1.8;
 $mult-xl: 2.3;
 $mult-xxl: 3.8;
+
+$positions: absolute, relative, fixed, sticky, static;
+$locations: top, right, bottom, left;

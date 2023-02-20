@@ -2,13 +2,13 @@ import { createComponentClasses } from "./createComponentClasses";
 import { createItemClasses } from "./createItemClasses";
 import { createWrapperClasses } from "./createWrapperClasses";
 
-//Creates styles from generic style cartridge
-export const createStyles = (stylePackage: ComponentProps): string => {
+//Creates styles from generic style cartridge, NOT ADDDING OR REMOVING, JUST DIGESTING
+export const createStyles = (componentPackage: ComponentProps): string => {
   let payload: string[] = [
-    createComponentClasses(stylePackage),
-    createWrapperClasses(stylePackage),
-    createItemClasses(stylePackage),
-    addClassNames(stylePackage),
+    createComponentClasses(componentPackage.styles),
+    createWrapperClasses(componentPackage.styles),
+    createItemClasses(componentPackage.styles),
+    addClassNames(componentPackage),
   ];
   return payload
     .join(" ")
@@ -17,10 +17,8 @@ export const createStyles = (stylePackage: ComponentProps): string => {
 };
 
 const addClassNames = (stylePackage: ComponentProps) => {
-  const className = stylePackage.className ? stylePackage.className : "";
-  const inherited = stylePackage.styles?.className;
-  return [
-    className ? `${className}` : "",
-    inherited ? `${inherited}` : "",
-  ].join(" ");
+  const className = stylePackage.styles?.className
+    ? stylePackage.styles?.className
+    : "";
+  return [className ? `${className}` : ""].join(" ");
 };

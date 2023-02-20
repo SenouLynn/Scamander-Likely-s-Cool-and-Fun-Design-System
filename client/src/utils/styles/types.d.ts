@@ -4,6 +4,7 @@ import {
   ItemContainerProps,
   WrapperContainerProps,
 } from "../../types";
+
 export type StylePackage = Partial<ComponentStyleProps> &
   Partial<WrapperContainerProps> &
   Partial<ItemContainerProps> & {

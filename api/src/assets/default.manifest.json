@@ -1,0 +1,31 @@
+{
+  "container": {
+    "defaultStyleId": "container",
+    "label": "Container",
+    "styles": {
+      "display": "flex",
+      "justify": "center",
+      "align": "center",
+      "padding": "sm"
+    }
+  },
+  "row": {
+    "defaultStyleId": "row",
+    "label": "Row",
+    "styles": {
+      "display": "flex",
+      "width": "100%",
+      "padding": "md"
+    }
+  },
+  "col": {
+    "defaultStyleId": "item",
+    "label": "Column",
+    "styles": {
+      "display": "flex",
+      "size": 1,
+      "padding": "md",
+      "border": true
+    }
+  }
+}

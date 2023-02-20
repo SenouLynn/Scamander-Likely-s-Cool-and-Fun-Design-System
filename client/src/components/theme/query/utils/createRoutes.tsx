@@ -1,4 +1,4 @@
-import { routes } from "./routes";
+import { routes } from "../routes";
 
 export const createRoute = (props: string): string => {
   const config = routes[props];

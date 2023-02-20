@@ -16,6 +16,7 @@ export const createComponentPackage = ({
 }: AtLeast<ComponentPackage, "defaultStyleId">): ComponentPackage => {
   return {
     location: "", //tree location
+    label: "",
     Component: Container,
     role: "wrapper",
     componentId: "", //custom styleId
@@ -27,6 +28,7 @@ export const createComponentPackage = ({
     ...props,
   };
 };
+
 export const getComponentPackage = ({
   allStyles,
   defaultId,
@@ -46,6 +48,7 @@ export const getComponentPackage = ({
 
   return {
     location: "",
+    label: "",
     Component: Container,
     role: "wrapper",
     defaultStyleId: defaultId,
@@ -56,5 +59,22 @@ export const getComponentPackage = ({
     },
     ...defaultPackage,
     ...customPackage,
+  };
+};
+
+export const createComponentProps = ({
+  componentIds,
+  getComponentPackage,
+  props,
+}: BuildComponentIds) => {
+  const cartridge = getComponentPackage({ ...componentIds, ...props });
+  return {
+    ...cartridge,
+    children: props.children,
+    styles: {
+      ...props,
+      ...cartridge.styles,
+      className: [cartridge.styles.className, props.className].join(" "),
+    },
   };
 };

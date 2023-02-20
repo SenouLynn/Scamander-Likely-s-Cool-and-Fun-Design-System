@@ -1,0 +1,41 @@
+@each $position in $positions {
+  .position-#{$position} {
+    position: $position;
+  }
+}
+
+@each $size in $generic-iterator {
+  @each $location in $locations {
+    .#{$location}-#{$size}rem {
+      #{$location}: #{$size}rem;
+    }
+  }
+  @each $location in $locations {
+    .#{$location}-#{$size}vh {
+      #{$location}: #{$size}vh;
+    }
+  }
+}
+.place-full {
+  z-index: 9;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.place-top-left {
+  top: 0;
+  left: 0;
+}
+.place-top-right {
+  top: 0;
+  right: 0;
+}
+.place-bottom-left {
+  bottom: 0;
+  left: 0;
+}
+.place-bottom-right {
+  bottom: 0;
+  right: 0;
+}

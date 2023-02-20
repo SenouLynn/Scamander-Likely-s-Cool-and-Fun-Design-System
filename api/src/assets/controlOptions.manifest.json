@@ -1,0 +1,38 @@
+{
+  "wrapper": {
+    "label": "Wrapper",
+    "options": {
+      "flex": {
+        "label": "Flex",
+        "value": "flex"
+      },
+      "grid": {
+        "label": "Grid",
+        "value": "grid"
+      }
+    }
+  },
+  "item": {},
+  "generic": {
+    "padding": {
+      "label": "Padding",
+      "options": "genericLevels"
+    },
+    "margin": {
+      "label": "Margin",
+      "options": "genericLevels"
+    },
+    "height": {
+      "label": "Height",
+      "options": "genericSizes"
+    },
+    "width": {
+      "label": "Width",
+      "options": "genericLevels"
+    },
+    "border": {
+      "label": "Border",
+      "options": "boolean"
+    }
+  }
+}

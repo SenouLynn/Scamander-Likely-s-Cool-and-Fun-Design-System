@@ -2,7 +2,7 @@ import { CreateStyleClass, StylePackage } from "./types";
 
 export const createComponentClasses = (stylePackage: StylePackage): string => {
   let payload = [
-    stylePackage.border && "border",
+     stylePackage.border  && stylePackage.border !== "false" && "border",
     createStyleClassBySize({
       stylePackage,
       key: "padding",

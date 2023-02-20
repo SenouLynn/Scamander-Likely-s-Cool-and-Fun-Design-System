@@ -1,11 +1,11 @@
 import { createContext, useState } from "react";
+import ThemeOrbitals from "./ThemeOrbitals";
 import { useInitFunctions } from "./utils/hooks";
 import { useGetters } from "./utils/hooks";
-const getters = {
-  getComponentDefaultStyle: (props: ComponentPackage) => null, // getDefaultStyles for type of component (row/container/nav etc...)
-};
+import "../../styles/global.css";
+import { updateStyles } from "./utils/updaters";
+
 const updaters = {
-  updateComponentStyle: (props: ComponentPackage) => null, //tack on new styles + overwrite default
   updateComponentChildren: (props: ComponentPackage) => null, //tack on new subComponents
 };
 
@@ -14,19 +14,27 @@ export default function ThemeWrapper(props: any) {
   const data = useInitFunctions();
   const getters = useGetters(data);
 
-  const [openComponents, setOpenComponents] = useState<string>("");
+  const [openComponents, setOpenComponents] = useState<any>({});
+
+  const updateComponentStyle = (
+    updater: Omit<UpdateStyleProps, "allStyles">
+  ) => {
+    data.setData(updateStyles({ ...updater, allStyles: data }));
+    return;
+  };
+
   const value = {
     mode,
     openComponents,
     setOpenComponents,
     ...data,
     ...getters,
-    ...updaters,
-    getStyleOptions: (props: ComponentPackage) => null, // getControlOptions
+    // ...updaters,
+    updateComponentStyle,
   };
   return (
     <ThemeContext.Provider value={value}>
-      {props.children}
+      <ThemeOrbitals>{props.children}</ThemeOrbitals>
     </ThemeContext.Provider>
   );
 }
@@ -34,9 +42,10 @@ export default function ThemeWrapper(props: any) {
 export const ThemeContext = createContext<ThemeContextProps>({
   mode: "test",
   controlOptions: {},
-  getStyleOptions: () => {},
   componentList: {},
+  defaultStyles: {},
   componentPackage: () => null,
-  openComponents: "",
-  setOpenComponents: (value: string) => null,
+  openComponents: {},
+  setOpenComponents: (value: any) => null,
+  updateComponentStyle: (updater: Omit<UpdateStyleProps, "allStyles">) => null,
 });

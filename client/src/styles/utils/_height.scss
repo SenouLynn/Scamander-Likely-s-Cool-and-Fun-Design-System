@@ -1,10 +1,57 @@
 @each $baseSize in $generic-iterator {
+  //Rem
   .h-#{$baseSize}rem {
     height: #{$baseSize}rem;
   }
   @each $addonSize in $generic-iterator {
     .h-#{$baseSize}#{$addonSize}rem {
       height: #{$baseSize}#{$addonSize}rem;
+    }
+  }
+  //Min Height
+  .h-min-#{$baseSize}rem {
+    min-height: #{$baseSize}rem;
+  }
+  @each $addonSize in $generic-iterator {
+    .h-min-#{$baseSize}#{$addonSize}rem {
+      min-height: #{$baseSize}#{$addonSize}rem;
+    }
+  }
+  //Max Height
+  .h-max-#{$baseSize}rem {
+    max-height: #{$baseSize}rem;
+  }
+  @each $addonSize in $generic-iterator {
+    .h-max-#{$baseSize}#{$addonSize}rem {
+      max-height: #{$baseSize}#{$addonSize}rem;
+    }
+  }
+
+  //View Height
+  .h-#{$baseSize}vh {
+    height: #{$baseSize}vh;
+  }
+  @each $addonSize in $generic-iterator {
+    .h-#{$baseSize}#{$addonSize}vh {
+      height: #{$baseSize}#{$addonSize}vh;
+    }
+  }
+  //Min Height
+  .h-min-#{$baseSize}vh {
+    min-height: #{$baseSize}vh;
+  }
+  @each $addonSize in $generic-iterator {
+    .h-min-#{$baseSize}#{$addonSize}vh {
+      min-height: #{$baseSize}#{$addonSize}vh;
+    }
+  }
+  //Max Height
+  .h-max-#{$baseSize}vh {
+    max-height: #{$baseSize}vh;
+  }
+  @each $addonSize in $generic-iterator {
+    .h-max-#{$baseSize}#{$addonSize}vh {
+      max-height: #{$baseSize}#{$addonSize}vh;
     }
   }
 }

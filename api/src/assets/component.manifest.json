@@ -1,0 +1,24 @@
+{
+  "nav_wrapper": {
+    "defaultStyleId": "container",
+    "componentId": "nav_wrapper",
+    "label": "Navbar",
+    "styles": {
+      "display": "flex",
+      "justify": "center",
+      "align": "start"
+    }
+  },
+  "nav_item": {
+    "defaultStyleId": "container",
+    "componentId": "nav_item",
+    "label": "Nav Item",
+    "styles": {
+      "display": "flex",
+      "min-width": "3rem",
+      "justify": "center",
+      "align": "center",
+      "padding": "md"
+    }
+  }
+}

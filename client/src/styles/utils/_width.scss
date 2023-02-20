@@ -1,10 +1,57 @@
 @each $baseSize in $generic-iterator {
+  //Rem
   .w-#{$baseSize}rem {
     width: #{$baseSize}rem;
   }
   @each $addonSize in $generic-iterator {
     .w-#{$baseSize}#{$addonSize}rem {
       width: #{$baseSize}#{$addonSize}rem;
+    }
+  }
+  //Min width
+  .w-min-#{$baseSize}rem {
+    min-width: #{$baseSize}rem;
+  }
+  @each $addonSize in $generic-iterator {
+    .w-min-#{$baseSize}#{$addonSize}rem {
+      min-width: #{$baseSize}#{$addonSize}rem;
+    }
+  }
+  //Max width
+  .w-max-#{$baseSize}rem {
+    max-width: #{$baseSize}rem;
+  }
+  @each $addonSize in $generic-iterator {
+    .w-max-#{$baseSize}#{$addonSize}rem {
+      max-width: #{$baseSize}#{$addonSize}rem;
+    }
+  }
+
+  //View width
+  .w-#{$baseSize}vw {
+    width: #{$baseSize}vw;
+  }
+  @each $addonSize in $generic-iterator {
+    .w-#{$baseSize}#{$addonSize}vw {
+      width: #{$baseSize}#{$addonSize}vw;
+    }
+  }
+  //Min width
+  .w-min-#{$baseSize}vw {
+    min-width: #{$baseSize}vw;
+  }
+  @each $addonSize in $generic-iterator {
+    .w-min-#{$baseSize}#{$addonSize}vw {
+      min-width: #{$baseSize}#{$addonSize}vw;
+    }
+  }
+  //Max width
+  .w-max-#{$baseSize}vw {
+    max-width: #{$baseSize}vw;
+  }
+  @each $addonSize in $generic-iterator {
+    .w-max-#{$baseSize}#{$addonSize}vw {
+      max-width: #{$baseSize}#{$addonSize}vw;
     }
   }
 }
