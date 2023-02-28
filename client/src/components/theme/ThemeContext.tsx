@@ -1,26 +1,25 @@
+import "../../styles/global.css";
 import { createContext, useState } from "react";
 import ThemeOrbitals from "./ThemeOrbitals";
 import { useInitFunctions } from "./utils/hooks";
 import { useGetters } from "./utils/hooks";
-import "../../styles/global.css";
 import { updateStyles } from "./utils/updaters";
 
-const updaters = {
-  updateComponentChildren: (props: ComponentPackage) => null, //tack on new subComponents
-};
-
 export default function ThemeWrapper(props: any) {
+  const [openComponents, setOpenComponents] = useState<any>({});
   const { mode = "test" } = props;
+
+  //get data
   const data = useInitFunctions();
+
+  //get styles from context
   const getters = useGetters(data);
 
-  const [openComponents, setOpenComponents] = useState<any>({});
-
+  //update styles from control
   const updateComponentStyle = (
     updater: Omit<UpdateStyleProps, "allStyles">
   ) => {
     data.setData(updateStyles({ ...updater, allStyles: data }));
-    return;
   };
 
   const value = {
@@ -29,7 +28,6 @@ export default function ThemeWrapper(props: any) {
     setOpenComponents,
     ...data,
     ...getters,
-    // ...updaters,
     updateComponentStyle,
   };
   return (
@@ -44,6 +42,7 @@ export const ThemeContext = createContext<ThemeContextProps>({
   controlOptions: {},
   componentList: {},
   defaultStyles: {},
+  setData: (value: any) => null,
   componentPackage: () => null,
   openComponents: {},
   setOpenComponents: (value: any) => null,

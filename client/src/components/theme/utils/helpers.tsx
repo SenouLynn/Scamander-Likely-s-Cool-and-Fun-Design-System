@@ -1,4 +1,19 @@
-import { Container } from "../../Container";
+import { useContext } from "react";
+import Components from "../../components.manifest";
+import ComponentWrapper from "../ComponentWrapper";
+import { ThemeContext } from "../ThemeContext";
+
+export const DefaultComponent = (
+  props: ComponentProps,
+  componentIds: ComponentIds
+) => {
+  const { componentPackage } = useContext(ThemeContext);
+  const p = createComponentPackage({
+    props,
+    pack: componentPackage(componentIds),
+  });
+  return <>{p.render({ props, pack: p })}</>;
+};
 
 export const renderChildren = (props: ComponentProps) => {
   return props.subComponents && props.subComponents.length > 0 ? (
@@ -11,35 +26,46 @@ export const renderChildren = (props: ComponentProps) => {
 };
 
 export const createComponentPackage = ({
-  defaultStyleId = "container",
-  ...props
-}: AtLeast<ComponentPackage, "defaultStyleId">): ComponentPackage => {
-  return {
-    location: "", //tree location
+  props,
+  pack,
+}: {
+  props: ComponentProps;
+  pack: Partial<ComponentPackage>;
+}): ComponentPackage => {
+  let component = {
+    location: "",
     label: "",
-    Component: Container,
-    role: "wrapper",
-    componentId: "", //custom styleId
-    defaultStyleId: defaultStyleId,
+    Component: Components.Container,
+    componentId: "",
+    defaultStyleId: "",
     styles: {
       className: "",
     },
     subComponents: [],
-    ...props,
+    render: (props: ComponentWrapperProps) => {
+      return (
+        <ComponentWrapper {...props}>
+          {renderChildren(props.props)}
+        </ComponentWrapper>
+      );
+    },
+    ...pack,
   };
+
+  return component;
 };
 
 export const getComponentPackage = ({
   allStyles,
-  defaultId,
+  defaultStyleId,
   componentId,
 }: {
   allStyles: InitData;
-  defaultId: string;
+  defaultStyleId: string;
   componentId?: string;
 }): ComponentPackage => {
-  const defaultPackage = allStyles.defaultStyles[defaultId]
-    ? allStyles.defaultStyles[defaultId]
+  const defaultPackage = allStyles.defaultStyles[defaultStyleId]
+    ? allStyles.defaultStyles[defaultStyleId]
     : {};
   const customPackage =
     componentId && allStyles.componentList[componentId]
@@ -49,14 +75,19 @@ export const getComponentPackage = ({
   return {
     location: "",
     label: "",
-    Component: Container,
+    Component: Components.Container,
     role: "wrapper",
-    defaultStyleId: defaultId,
+    defaultStyleId: defaultStyleId,
     componentId: componentId || "",
     subComponents: [],
     styles: {
       className: "",
     },
+    render: (props: ComponentWrapperProps) => (
+      <ComponentWrapper {...props}>
+        {renderChildren(props.props)}
+      </ComponentWrapper>
+    ),
     ...defaultPackage,
     ...customPackage,
   };
@@ -77,4 +108,28 @@ export const createComponentProps = ({
       className: [cartridge.styles.className, props.className].join(" "),
     },
   };
+};
+
+export const addPropsToCartridge = ({
+  props,
+  componentPackage,
+}: {
+  props: ComponentProps;
+  componentPackage: ComponentPackage;
+}) => {
+  const cartridge = {
+    ...componentPackage,
+    styles: {
+      ...props,
+      ...componentPackage.styles,
+      className: `${
+        componentPackage.styles.className
+          ? componentPackage.styles.className
+          : ""
+      } ${props.className ? props.className : ""}`,
+    },
+    children: props.children,
+  };
+
+  return cartridge;
 };

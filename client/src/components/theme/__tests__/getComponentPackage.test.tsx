@@ -30,7 +30,7 @@ export const createAllStyles = (props?: any) => {
   };
 };
 const nav = getComponentPackage({
-  defaultId: "container",
+  defaultStyleId: "container",
   componentId: "nav",
   allStyles: createAllStyles(),
 });

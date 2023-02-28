@@ -22,4 +22,16 @@ describe("resolves path", () => {
     const result = resolvePath(tree, "butt", path);
     expect(result.a.b).toBe("butt");
   });
+  it("updates 3 level deep", () => {
+    const tree = {
+      a: {
+        b: {
+          c: "",
+        },
+      },
+    };
+    const path = "a.b.c";
+    const result = resolvePath(tree, "butt", path);
+    expect(result.a.b).toBe("butt");
+  });
 });

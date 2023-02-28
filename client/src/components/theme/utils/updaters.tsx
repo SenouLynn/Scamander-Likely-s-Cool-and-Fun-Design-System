@@ -2,14 +2,16 @@ import { resolvePath } from "../../../utils/helpers";
 
 export const updateStyles = (props: UpdateStyleProps) => {
   //Overwrite all or mash add on? single field, replace, for classname give chance to show all or remove
-  const defaultOrCustom =
+  const defaultOrCustomList =
     props.type === "default" ? "defaultStyles" : "componentList";
-  const searchPath = [defaultOrCustom, props.id, "styles"].join(".");
-  let field: searchable = props.allStyles[defaultOrCustom];
-  let p = resolvePath(
-    props.allStyles,
-    { ...field[props.id].styles, ...props.styles },
-    searchPath
-  );
-  return p;
+  let component: searchable = props.allStyles[defaultOrCustomList];
+  let p = { ...component, styles: { ...component.styles, ...props.styles } };
+  
+  return {
+    ...props.allStyles,
+    [defaultOrCustomList]: {
+      ...props.allStyles[defaultOrCustomList],
+      [props.id]: p,
+    },
+  };
 };

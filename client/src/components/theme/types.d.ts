@@ -54,3 +54,30 @@ type DataDisplayValues = {
 type ControlOptionsDisplay = ControlOptions & {
   errors: ErrorMessageObj[];
 };
+
+type SelectOptionsDisplay = {
+  styleId: string;
+  optionsId: string;
+  onClick: (x: any) => void;
+};
+
+type OptionsObject = {
+  optionsId: string;
+  styleId: string;
+  label: string;
+  index: number;
+  render: ({
+    optionsObj,
+    componentPackage,
+  }: {
+    optionsObj: OptionsObject;
+    componentPackage: ComponentPackage;
+  }) => void;
+  checkValid: (componentPackage: ComponentPackage) => boolean;
+  onChange: any;
+};
+
+type ComponentWrapperProps = {
+  props: ComponentProps;
+  pack: ComponentPackage;
+};

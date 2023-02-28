@@ -1,4 +1,22 @@
 export const genericOptions = {
+  displayOptions: {
+    flex: {
+      label: "Flex",
+      value: "flex",
+    },
+    grid: {
+      label: "Grid",
+      value: "grid",
+    },
+    block: {
+      label: "Block",
+      value: "block",
+    },
+    inline: {
+      label: "Inline",
+      value: "inline",
+    },
+  },
   genericLevels: {
     none: {
       label: "None",

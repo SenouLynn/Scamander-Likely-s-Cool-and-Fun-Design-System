@@ -76,6 +76,7 @@ type ComponentPackage = {
   onClick?: (props: any) => void;
   children?: JSX.Element | React.ReactNode;
   location: string;
+  render: (props: ComponentWrapperProps) => JSX.Element | React.ReactNode;
 };
 
 type ComponentProps = {} & StylePackage & Partial<ComponentPackage>;

@@ -31,10 +31,12 @@ app.get("/api/getAll", (req, res) => {
         res.send({ defaultStyles, componentList, controlOptions });
     });
 });
-app.post("/api/updateStyles", (req, res) => {
+app.post("/api/updateStyle", (req, res) => {
+    console.log(req.body);
     let styles = req.body.styles;
     let componentId = req.body.componentId;
-    let defaultId = req.body.defaultId;
+    let defaultStyleId = req.body.defaultStyleId;
+    res.send("Message recieved");
 });
 app.listen(port, () => {
     console.log(`[Server]: I am running at https://localhost:${port}`);

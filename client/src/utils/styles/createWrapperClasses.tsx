@@ -29,19 +29,20 @@ export const createWrapperClasses = (stylePackage: StylePackage): string => {
   if (stylePackage.display === "grid") {
     const columns = stylePackage.columns ? stylePackage.columns : 1;
     const rows = stylePackage.rows ? stylePackage.rows : 1;
-    payload.push(createStyleByGrid({ stylePackage, columns, rows }));
+    const gap = stylePackage.gap ? stylePackage.gap : "none";
+    payload.push(createStyleByGrid({ stylePackage, columns, rows, gap }));
   }
   return payload.join(" ");
 };
 
 export const createStyleByFlex = ({ justify, align, gap }: any): string => {
-  if (!flexPlacements.includes(justify)) {
+  if (justify && !flexPlacements.includes(justify)) {
     console.log(`Justify value, ${justify}, for flex container, is not valid`);
   }
-  if (!flexPlacements.includes(align)) {
+  if (align && !flexPlacements.includes(align)) {
     console.log(`Align value, ${align}, for flex container, is not valid`);
   }
-  if (!genericSizes.includes(gap)) {
+  if (gap && !genericSizes.includes(gap)) {
     console.log(`Gap value, ${align}, for flex container, is not valid`);
   }
   return `flex-${justify}-${align} ${gap !== "none" ? `flex-gap-${gap}` : ""}`;

@@ -4,5 +4,6 @@ export const resolvePath = (obj: any, value: string, propPath: string) => {
   !rest.length
     ? (o[head] = value)
     : resolvePath(o[head], value, rest.join("."));
+
   return o;
 };

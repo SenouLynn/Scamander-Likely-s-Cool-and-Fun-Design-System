@@ -27,5 +27,25 @@
       "padding": "md",
       "border": true
     }
+  },
+  "nav_wrapper": {
+    "defaultStyleId": "nav_wrapper",
+    "label": "Navbar",
+    "styles": {
+      "display": "flex",
+      "justify": "center",
+      "align": "start"
+    }
+  },
+  "nav_item": {
+    "defaultStyleId": "nav_item",
+    "label": "Nav Item",
+    "styles": {
+      "display": "flex",
+      "min-width": "3rem",
+      "justify": "center",
+      "align": "center",
+      "padding": "md"
+    }
   }
 }
