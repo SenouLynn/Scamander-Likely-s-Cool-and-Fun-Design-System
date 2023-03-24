@@ -1,5 +1,5 @@
-import { Render } from "../../../buildComponents/Render";
-import Components from "../../../buildComponents/_components.manifest";
+import { Render } from "../../Render";
+import Components from "../../_localComponents.manifest";
 import ComponentWrapper from "../ComponentWrapper";
 
 export const renderChildren = (props: ComponentProps) => {

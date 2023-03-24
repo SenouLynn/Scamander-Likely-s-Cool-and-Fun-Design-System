@@ -5,6 +5,7 @@ import { useInitFunctions } from "./utils/hooks";
 import { useGetters } from "./utils/hooks";
 import { updateStyles, updateComponentSubComponents } from "./utils/updaters";
 
+//<--- Master Styles Provider: Highly load bearing --->//
 export default function ThemeWrapper(props: ThemeWrapperProps) {
   const [openComponents, setOpenComponents] = useState<any>({});
   const { mode = "test" } = props;

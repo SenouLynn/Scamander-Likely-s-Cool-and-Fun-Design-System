@@ -1,6 +1,7 @@
 import { Render } from "./Render";
 
 export const pages = {
+  //Don't change, this is used by tests
   TestRenderer: (props: ComponentProps) =>
     Render(props, {
       defaultStyleId: "page-home",

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import Components from "../_components.manifest";
+import Components from "../../components/_localComponents.manifest";
 import { ThemeContext } from "../../components/theme/ThemeContext";
 import WrapperOptions from "./components/WrapperOptions";
 

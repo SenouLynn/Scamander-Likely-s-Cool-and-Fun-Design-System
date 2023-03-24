@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import { ThemeContext } from "../components/theme/ThemeContext";
-import { assembleStyles } from "../components/theme/utils/helpers";
+import { ThemeContext } from "./theme/ThemeContext";
+import { assembleStyles } from "./theme/utils/helpers";
 
+//<--- Master Renderer: Highly load bearing --->//
 export const Render = (
   props: ComponentProps,
   pack: Partial<ComponentPackage>

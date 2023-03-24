@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import C from "../../_components.manifest";
+import C from "../../../components/_localComponents.manifest";
 import ControlPanel from "../../controlPanel/ControlPanel";
 import { updateDb } from "../../../components/theme/query/utils/updaters";
 import { ThemeContext } from "../../../components/theme/ThemeContext";
