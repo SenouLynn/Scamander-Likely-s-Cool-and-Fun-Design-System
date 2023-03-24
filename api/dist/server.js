@@ -22,13 +22,17 @@ app.get("/api/getAll", (req, res) => {
         (0, readFiles_1.default)("./src/assets/component.manifest.json"),
         (0, readFiles_1.default)("./src/assets/default.manifest.json"),
         (0, readFiles_1.default)("./src/assets/controlOptions.manifest.json"),
+        (0, readFiles_1.default)("./src/assets/pages.manifest.json"),
+        (0, readFiles_1.default)("./src/assets/routes.manifest.json"),
     ];
     Promise.all(promises).then((result) => {
         console.log(result);
         const componentList = result[0];
         const defaultStyles = result[1];
         const controlOptions = result[2];
-        res.send({ defaultStyles, componentList, controlOptions });
+        const pages = result[3];
+        const routes = result[4];
+        res.send({ defaultStyles, componentList, controlOptions, pages, routes });
     });
 });
 app.post("/api/updateStyle", (req, res) => {

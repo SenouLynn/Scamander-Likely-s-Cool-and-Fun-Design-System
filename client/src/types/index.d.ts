@@ -64,15 +64,16 @@ interface ComponentStyleProps {
 }
 
 type ComponentPackage = {
-  role?: Roles;
+  role?: strin //Elements;
   label: string;
   defaultStyleId: string;
   componentId: string;
   Component: (props: ComponentProps) => JSX.Element;
   styles: StylePackage & {
-    className: string;
+    className?: string;
   };
-  subComponents: ComponentPackage[];
+  subComponents: ComponentIds[];
+  childIds: string[];
   onClick?: (props: any) => void;
   children?: JSX.Element | React.ReactNode;
   location: string;

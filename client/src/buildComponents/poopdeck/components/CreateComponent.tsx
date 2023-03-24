@@ -1,37 +1,52 @@
 import { useContext, useEffect, useState } from "react";
-import C from "../../components.manifest";
-import ControlPanel from "../../theme/controlPanel/ControlPanel";
-import { updateDb } from "../../theme/query/utils/updaters";
-import { ThemeContext } from "../../theme/ThemeContext";
-import { createComponentPackage } from "../../theme/utils/helpers";
+import C from "../../_components.manifest";
+import ControlPanel from "../../controlPanel/ControlPanel";
+import { updateDb } from "../../../components/theme/query/utils/updaters";
+import { ThemeContext } from "../../../components/theme/ThemeContext";
+import { createComponentPackage } from "../../../components/theme/utils/helpers";
+import AddChild from "./AddChild";
 
 export default function CreateComponent() {
-  const { setOpenComponents } = useContext(ThemeContext);
-  const [pack, setPack] = useState({
-    label: "Yo",
-    componentId: "test_component",
-    children: [],
-    styles: {
-      className: "border h-10rem w-10rem",
-    },
-  });
+  const { setOpenComponents, openComponents, componentList } =
+    useContext(ThemeContext);
+
+  const [pack, setPack] = useState(
+    createComponentPackage({
+      props: {},
+      pack: {
+        label: "Yo",
+        componentId: "test_component",
+        children: [],
+        styles: {
+          className: "border h-10rem w-10rem",
+        },
+      },
+    })
+  );
 
   const Pack = (props: ComponentProps) => {
-    const p = createComponentPackage({ props, pack });
+    const p = createComponentPackage({
+      props,
+      pack: { ...pack, ...componentList["test_component"] },
+    });
     return <>{p.render({ props, pack: p })}</>;
   };
 
   const handleClick = () => {
-    updateDb("updateStyle", pack);
+    // updateDb("updateStyle", pack);
   };
 
   useEffect(() => {
     setOpenComponents({
-      [pack.componentId]: createComponentPackage({ props: {}, pack }),
+      [pack.componentId]: createComponentPackage({
+        props: {},
+        pack: { ...pack, ...componentList["test_component"] },
+      }),
     });
   }, []);
+
   return (
-    <C.Container>
+    <C.Container className="flex-column">
       <C.Container>
         <form>
           <input
@@ -59,6 +74,7 @@ export default function CreateComponent() {
           />
         </form>
         <ControlPanel />
+        <AddChild {...pack} />
       </C.Container>
       <Pack>Yo</Pack>
       <button onClick={handleClick}>Save New Component</button>

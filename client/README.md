@@ -6,19 +6,11 @@
 2. Start front-end: cd client/npm start
 
 ## Roadmap
-
+[ ] TDD component deliver mechanism
 [ ] Build out control logic:
     - Wrapper function to handle request => write to file, update db etc
 
-## Notes
+### Tests
 
-### Stories
-
-BUG: Somewhere the id is getting lost in a create function. Where's waldo? Make error more visible.
-
-CreateStyles misses:
-- Flex Gap
-- Displaly grid
-- Grid Gap for display Grid (not shown)
-- Border toggle from true to false
-- Sizing
+[ ] Page Component inside Theme Context
+[ ] Styles passed from stored component list build correctly

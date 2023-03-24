@@ -6823,6 +6823,94 @@
   max-width: 1010vw;
 }
 
+.font-color-primary {
+  color: #3f51b5;
+}
+
+.bg-color-primary {
+  background-color: #3f51b5;
+}
+
+.font-color-secondary {
+  color: #f50057;
+}
+
+.bg-color-secondary {
+  background-color: #f50057;
+}
+
+.font-color-success {
+  color: #4caf50;
+}
+
+.bg-color-success {
+  background-color: #4caf50;
+}
+
+.font-color-info {
+  color: #2196f3;
+}
+
+.bg-color-info {
+  background-color: #2196f3;
+}
+
+.font-color-warning {
+  color: #ff9800;
+}
+
+.bg-color-warning {
+  background-color: #ff9800;
+}
+
+.font-color-danger {
+  color: #f44336;
+}
+
+.bg-color-danger {
+  background-color: #f44336;
+}
+
+.font-color-light {
+  color: #f1f1f1;
+}
+
+.bg-color-light {
+  background-color: #f1f1f1;
+}
+
+.font-color-dark {
+  color: #212121;
+}
+
+.bg-color-dark {
+  background-color: #212121;
+}
+
+.font-color-white {
+  color: #fff;
+}
+
+.bg-color-white {
+  background-color: #fff;
+}
+
+.font-color-black {
+  color: #000;
+}
+
+.bg-color-black {
+  background-color: #000;
+}
+
+.font-color-transparent {
+  color: transparent;
+}
+
+.bg-color-transparent {
+  background-color: transparent;
+}
+
 .position-absolute {
   position: absolute;
 }

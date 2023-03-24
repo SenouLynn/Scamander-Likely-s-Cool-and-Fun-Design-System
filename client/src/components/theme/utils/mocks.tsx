@@ -1,44 +1,4 @@
-export const createMockUpdateStyles = (props: any) => {
-  return {
-    type: "default",
-    id: "container",
-    style: {},
-    allStyles: createMockAllStyles(),
-    ...props,
-  };
-};
-
-export const createMockAllStyles = (props?: any): InitData => {
-  return {
-    defaultStyles: {
-      container: {
-        defaultStyleId: "container",
-        label: "Container",
-        styles: {
-          border: true,
-          display: "flex",
-          gap: 1,
-          padding: "sm",
-          className: "",
-        },
-      },
-    },
-    componentList: {
-      nav_wrapper: {
-        componentId: "nav",
-        label: "Nav",
-        defaultStyleId: "container",
-        styles: {
-          className: "flex-between-center background-secondary",
-          padding: "md",
-        },
-      },
-    },
-    controlOptions: {},
-  };
-};
-
-export const componentList = (componentPackage: Partial<ComponentStyleObj>) => {
+export const componentList = (componentPackage: DbStyleObject) => {
   return {
     container: {
       defaultStyleId: "container",
@@ -49,9 +9,7 @@ export const componentList = (componentPackage: Partial<ComponentStyleObj>) => {
     ...componentPackage,
   };
 };
-export const defaultStyles = (
-  props: Partial<DefaultStyleObj>
-): DefaultStyleObj => {
+export const defaultStyles = (props: DbStyleObject): DefaultStyleObj => {
   return {
     container: {
       defaultStyleId: "container",
@@ -68,5 +26,3 @@ export const controlOptions = (
     ...props,
   };
 };
-
-

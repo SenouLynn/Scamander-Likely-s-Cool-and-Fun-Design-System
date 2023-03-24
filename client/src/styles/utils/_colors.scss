@@ -8,6 +8,6 @@
 }
 
 //Colors
-// @each $variant, $color in $colors {
-//   @include colorClasses($variant, $color);
-// }
+@each $variant, $color in $colors {
+  @include colorClasses($variant, $color);
+}

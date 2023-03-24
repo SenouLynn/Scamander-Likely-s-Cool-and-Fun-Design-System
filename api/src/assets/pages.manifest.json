@@ -1,0 +1,33 @@
+{
+  "home": {
+    "defaultStyleId": "page-home",
+    "componentId": "page-home",
+    "role": "page",
+    "location": "0",
+    "styles": {
+      "className": "h-min-100vh h-min-100vw"
+    },
+    "subComponents": [
+      {
+        "componentId": "nav_wrapper",
+        "defaultStyleId": "nav_wrapper",
+        "role": "section"
+      },
+      {
+        "componentId": "hero",
+        "defaultStyleId": "hero",
+        "role": "section"
+      },
+      {
+        "componentId": "hero",
+        "defaultStyleId": "hero",
+        "role": "section"
+      },
+      {
+        "componentId": "footer",
+        "defaultStyleId": "footer",
+        "role": "section"
+      }
+    ]
+  }
+}

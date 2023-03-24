@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ThemeContext } from "../../ThemeContext";
+import { ThemeContext } from "../../../components/theme/ThemeContext";
 import { styleOptions } from "../utils/styleOptions";
 
 export default function WrapperOptions({
@@ -21,8 +21,9 @@ export default function WrapperOptions({
     let p: any = component.styles;
     p[style] = variant;
     const newComponent = { ...component, styles: p };
-    setComponentPackage(newComponent);
+    // setComponentPackage(newComponent); //Local state
     updateComponentStyle({
+      //Global state
       type: "custom",
       styles: p,
       id: component.componentId,

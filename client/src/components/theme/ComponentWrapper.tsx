@@ -1,30 +1,67 @@
-import { useContext } from "react";
 import { createStyles } from "../../utils/styles/createStyles";
-import { ThemeContext } from "./ThemeContext";
-import { addPropsToCartridge, renderChildren } from "./utils/helpers";
+import { renderChildren } from "./utils/helpers";
+
 export default function ComponentWrapper({
   props,
   pack,
 }: ComponentWrapperProps) {
-  const { setOpenComponents } = useContext(ThemeContext);
+  const role = Object.keys(elementTypes).includes(pack.role)
+    ? pack.role
+    : "wrapper";
+  const Element = elementTypes[role as keyof typeof elementTypes].Element;
 
-  let completePackage = addPropsToCartridge({
-    componentPackage: pack,
-    props,
-  });
-
-  const handleDoubleClick = (e: any) => {
-    e.preventDefault();
-    e.stopPropagation();
-    // setOpenComponents({ [completePackage.defaultStyleId]: completePackage });
-  };
   return (
-    <div
-      id={completePackage.componentId}
-      className={createStyles(completePackage)}
-      onDoubleClick={handleDoubleClick}
+    <Element
+      data-testid={pack.location || "non-location"}
+      id={pack.componentId}
+      className={createStyles(pack)}
     >
-      {renderChildren(completePackage)}
-    </div>
+      {renderChildren(pack)}
+    </Element>
   );
 }
+
+const elementTypes: HtmlElements = {
+  footer: {
+    label: "Footer",
+    Element: (props: any) => {
+      return <footer {...props}>{props.children}</footer>;
+    },
+  },
+  body: {
+    label: "Footer",
+    Element: (props: any) => {
+      return <footer {...props}>{props.children}</footer>;
+    },
+  },
+  section: {
+    label: "Section",
+    Element: (props: any) => {
+      return <section {...props}>{props.children}</section>;
+    },
+  },
+  wrapper: {
+    label: "Wrapper",
+    Element: (props: any) => {
+      return <div {...props}>{props.children}</div>;
+    },
+  },
+  main: {
+    label: "Main",
+    Element: (props: any) => {
+      return <main {...props}>{props.children}</main>;
+    },
+  },
+  header: {
+    label: "Header",
+    Element: (props: any) => {
+      return <header {...props}>{props.children}</header>;
+    },
+  },
+  text: {
+    label: "Text",
+    Element: (props: any) => {
+      return <div {...props}>{props.children}</div>;
+    },
+  },
+};

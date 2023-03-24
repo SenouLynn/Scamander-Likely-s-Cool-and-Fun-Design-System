@@ -1,23 +1,28 @@
+import { useContext } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Components from "../components/components.manifest";
-import PoopDeck from "../components/poopdeck";
-const router = createBrowserRouter([
+import PoopDeck from "../buildComponents/poopdeck";
+import Pages from "../buildComponents/_pages.manifest";
+import { ThemeContext } from "../components/theme/ThemeContext";
+import { createRoutes } from "./utils/helpers";
+
+const testRoutes = [
   {
-    path: "/",
-    element: (
-      <>
-        <Components.Navbar border={true}>
-          <Components.NavItem className="h-3rem">Home</Components.NavItem>
-          <Components.NavItem className="h-3rem">About</Components.NavItem>
-        </Components.Navbar>
-      </>
-    ),
+    path: "/test",
+    element: <Pages.TestRenderer />,
   },
   {
     path: "/poop",
     element: <PoopDeck />,
   },
-]);
+];
 export default function Router() {
-  return <RouterProvider router={router} />;
+  const { routes } = useContext(ThemeContext);
+  const router = createRoutes(routes);
+  return (
+    <>
+      {router.length > 0 && (
+        <RouterProvider router={createBrowserRouter(router)} />
+      )}
+    </>
+  );
 }

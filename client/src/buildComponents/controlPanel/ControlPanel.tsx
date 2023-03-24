@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "../ThemeContext";
+import { ThemeContext } from "../../components/theme/ThemeContext";
 import ComponentControls from "./ComponentControls";
+import AddChild from "../poopdeck/components/AddChild";
 
 export default function ControlPanel() {
   const { openComponents } = useContext(ThemeContext);
   const components = Object.keys(openComponents);
-
   return (
     <div className="w-20rem flex-start-start flex-column">
       <div>ControlPanel</div>

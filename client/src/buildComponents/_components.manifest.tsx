@@ -1,24 +1,27 @@
-import { useContext } from "react";
-import { ThemeContext } from "./theme/ThemeContext";
-import {
-  createComponentPackage as pack,
-  DefaultComponent,
-} from "./theme/utils/helpers";
+import { Render } from "./Render";
+
+//Component Package Components
+
 const Components = {
   NavItem: (props: ComponentProps) =>
-    DefaultComponent(props, {
+    Render(props, {
       defaultStyleId: "nav_item",
       componentId: "",
     }),
   Container: (props: ComponentProps) =>
-    DefaultComponent(props, {
+    Render(props, {
       defaultStyleId: "container",
       componentId: "",
     }),
   Navbar: (props: ComponentProps) =>
-    DefaultComponent(props, {
+    Render(props, {
       defaultStyleId: "nav_wrapper",
       componentId: "",
+    }),
+  BlackBox: (props: ComponentProps) =>
+    Render(props, {
+      defaultStyleId: "black_box",
+      componentId: "black_box",
     }),
 };
 

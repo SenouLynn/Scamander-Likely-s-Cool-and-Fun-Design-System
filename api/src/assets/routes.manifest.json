@@ -1,0 +1,20 @@
+{
+  "home": {
+    "id": "home",
+    "label": "Home",
+    "route": "/",
+    "componentIds": {
+      "componentId": "home",
+      "defaultStyleId": null
+    }
+  },
+  "events": {
+    "id": "events",
+    "label": "Events",
+    "route": "/events",
+    "componentIds": {
+      "componentId": "events",
+      "defaultStyleId": null
+    }
+  }
+}

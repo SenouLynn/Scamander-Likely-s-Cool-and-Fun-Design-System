@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
-import Components from "../../components.manifest";
-import { ThemeContext } from "../ThemeContext";
+import Components from "../_components.manifest";
+import { ThemeContext } from "../../components/theme/ThemeContext";
 import WrapperOptions from "./components/WrapperOptions";
 
 export default function ComponentControls(props: ComponentPackage) {
-  const { setOpenComponents, openComponents } = useContext(ThemeContext);
+  const { setOpenComponents } = useContext(ThemeContext);
   const [componentPackage, setComponentPackage] = useState(props);
+
   return (
     <div onDoubleClick={() => setOpenComponents({})}>
       <Components.Container

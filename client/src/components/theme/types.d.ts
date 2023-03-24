@@ -1,12 +1,30 @@
+type ThemeWrapperProps = Partial<InitData> & {
+  children?: React.ReactNode;
+  mode?: "test";
+};
+
 type InitData = {
   controlOptions: ControlOptions;
-  defaultStyles: DefaultStyleObj;
-  componentList: ComponentStyleObj;
+  defaultStyles: DbStyleObject;
+  componentList: DbStyleObject;
+  pagesList: DbStyleObject;
+  routes: DbRoutes;
 };
+
+type DbStyleObject = {
+  [key: string]: Partial<ComponentPackage>;
+};
+
 type UpdateStyleProps = {
   type: "default" | "custom";
   id: string;
   styles: StylePackage;
+  allStyles: any;
+};
+type UpdateSubComponentProps = {
+  type: "default" | "custom";
+  id: string;
+  subComponents: ComponentPackage[];
   allStyles: any;
 };
 
@@ -80,4 +98,37 @@ type OptionsObject = {
 type ComponentWrapperProps = {
   props: ComponentProps;
   pack: ComponentPackage;
+};
+
+type CreateChildProps = {
+  id: string;
+  label: string;
+  options: CreateChildProps[];
+};
+
+type TestStyleObj = {
+  style: string;
+  styleOption: GenericSizes;
+  renderedStyleName: string;
+};
+
+//Elements
+
+type ElementsObj = {
+  label: string;
+  Element: (props?: any) => JSX.Element;
+};
+
+type Elements = [
+  "header",
+  "footer",
+  "body",
+  "section",
+  "main",
+  "text",
+  "wrapper"
+];
+// type Elements = "header" | "footer" | "body" | "section" | "main" | "text";
+type HtmlElements = {
+  [key in Elements[number]]: ElementsObj;
 };

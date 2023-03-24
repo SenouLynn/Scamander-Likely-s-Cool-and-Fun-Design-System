@@ -3,14 +3,14 @@ import { createContext, useState } from "react";
 import ThemeOrbitals from "./ThemeOrbitals";
 import { useInitFunctions } from "./utils/hooks";
 import { useGetters } from "./utils/hooks";
-import { updateStyles } from "./utils/updaters";
+import { updateStyles, updateComponentSubComponents } from "./utils/updaters";
 
-export default function ThemeWrapper(props: any) {
+export default function ThemeWrapper(props: ThemeWrapperProps) {
   const [openComponents, setOpenComponents] = useState<any>({});
   const { mode = "test" } = props;
 
   //get data
-  const data = useInitFunctions();
+  const data = useInitFunctions(props);
 
   //get styles from context
   const getters = useGetters(data);
@@ -22,6 +22,12 @@ export default function ThemeWrapper(props: any) {
     data.setData(updateStyles({ ...updater, allStyles: data }));
   };
 
+  const updateSubComponents = (
+    updater: Omit<UpdateSubComponentProps, "allStyles">
+  ) => {
+    data.setData(updateComponentSubComponents({ ...updater, allStyles: data }));
+  };
+
   const value = {
     mode,
     openComponents,
@@ -29,6 +35,7 @@ export default function ThemeWrapper(props: any) {
     ...data,
     ...getters,
     updateComponentStyle,
+    updateSubComponents,
   };
   return (
     <ThemeContext.Provider value={value}>
@@ -44,7 +51,12 @@ export const ThemeContext = createContext<ThemeContextProps>({
   defaultStyles: {},
   setData: (value: any) => null,
   componentPackage: () => null,
+  pages: () => null,
   openComponents: {},
+  pagesList: {},
+  routes: {},
   setOpenComponents: (value: any) => null,
+  updateSubComponents: (updater: Omit<UpdateSubComponentProps, "allStyles">) =>
+    null,
   updateComponentStyle: (updater: Omit<UpdateStyleProps, "allStyles">) => null,
 });

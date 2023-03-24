@@ -24,13 +24,17 @@ app.get("/api/getAll", (req, res) => {
     readFromFile("./src/assets/component.manifest.json"),
     readFromFile("./src/assets/default.manifest.json"),
     readFromFile("./src/assets/controlOptions.manifest.json"),
+    readFromFile("./src/assets/pages.manifest.json"),
+    readFromFile("./src/assets/routes.manifest.json"),
   ];
   Promise.all(promises).then((result) => {
     console.log(result);
     const componentList = result[0];
     const defaultStyles = result[1];
     const controlOptions = result[2];
-    res.send({ defaultStyles, componentList, controlOptions });
+    const pages = result[3];
+    const routes = result[4];
+    res.send({ defaultStyles, componentList, controlOptions, pages, routes });
   });
 });
 
