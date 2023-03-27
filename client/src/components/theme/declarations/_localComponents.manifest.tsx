@@ -1,4 +1,4 @@
-import { Render } from "./Render";
+import { Render } from "../../Render";
 
 //Component Package Components
 

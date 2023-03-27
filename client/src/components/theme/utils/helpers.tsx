@@ -1,5 +1,5 @@
 import { Render } from "../../Render";
-import Components from "../../_localComponents.manifest";
+import Components from "../declarations/_localComponents.manifest";
 import ComponentWrapper from "../ComponentWrapper";
 
 export const renderChildren = (props: ComponentProps) => {
@@ -51,21 +51,21 @@ export const createComponentPackage = ({
 };
 
 export const getComponentPackage = ({
-  allStyles,
+  initData,
   defaultStyleId,
   componentId,
 }: {
-  allStyles: InitData;
+  initData: InitData;
   defaultStyleId: string;
   componentId?: string;
 }): ComponentPackage => {
-  const defaultPackage = allStyles.defaultStyles[defaultStyleId]
-    ? allStyles.defaultStyles[defaultStyleId]
+  const defaultPackage = initData.defaultStyles[defaultStyleId]
+    ? initData.defaultStyles[defaultStyleId]
     : {};
 
   const customPackage =
-    componentId && allStyles.componentList[componentId]
-      ? allStyles.componentList[componentId]
+    componentId && initData.componentList[componentId]
+      ? initData.componentList[componentId]
       : {};
 
   return {
@@ -91,20 +91,19 @@ export const getComponentPackage = ({
 };
 
 export const getPagePackage = ({
-  allStyles,
+  initData,
   defaultStyleId,
   componentId,
 }: {
-  allStyles: InitData;
+  initData: InitData;
   defaultStyleId: string;
   componentId?: string;
 }): ComponentPackage => {
   const page =
-    componentId && allStyles.pagesList[componentId]
-      ? allStyles.pagesList[componentId]
+    componentId && initData.pagesList[componentId]
+      ? initData.pagesList[componentId]
       : {};
 
-  console.log(page);
   return {
     location: "",
     label: "",
@@ -143,10 +142,114 @@ export const assembleStyles = ({
       styles: {
         ...componentPackage?.styles,
         ...props,
-        className: [componentPackage?.styles?.className, props?.className].join(
-          " "
-        ),
+        className: [componentPackage?.styles?.className, props?.className]
+          .join(" ")
+          .trim(),
       },
     },
   });
+};
+
+export const buildComponentPackage = (
+  props: ComponentProps,
+  pack: Partial<ComponentPackage>,
+  initData: InitData
+) => {
+  const c = getComponentPackage({
+    initData,
+    defaultStyleId: pack.defaultStyleId || "container",
+    componentId: pack.componentId || "container",
+  });
+  //2.Build styles for
+  const page = assembleStyles({ props, componentPackage: c });
+  //If package is passed through props, override default package from teheme
+  const packOverride = { ...c, ...pack };
+
+  //Add built styles to built package
+  return { ...packOverride, styles: page.styles };
+};
+
+export const createInitData = (data?: Partial<InitData>) => {
+  return {
+    componentList: {},
+    defaultStyles: {},
+    controlOptions: {},
+    pagesList: {},
+    routes: {},
+    setData: () => null,
+    asteroidBelt: {},
+    ...data,
+  };
+};
+export const createAsteroidBelt = (props: {
+  initData: InitData;
+  page: ComponentPackage;
+}) => {
+  const pagePackage = buildFieldFromPage({}, props.page, props.initData);
+
+  const firstChildren = (pack: ComponentPackage) =>
+    pack.subComponents.map((c, i) => {
+      const childPackage = buildComponentPackage({}, c, props.initData);
+
+      return { ...childPackage, location: `${pack.location}.${i}` };
+    });
+
+  //Extremely Load Bearing => This loads the entire flat structure of page components
+  const unrollChildren = (pack: ComponentPackage) => {
+    const children = firstChildren(pack);
+    let childs = {};
+    if (children.length > 0) {
+      childs = children.reduce((acc, c: ComponentPackage) => {
+        let p: searchable = acc;
+        p = { ...p, [c.location]: c };
+        if (c.subComponents) {
+          p = { ...p, ...unrollChildren(c) };
+        }
+        return p;
+      }, {});
+    }
+
+    return childs;
+  };
+  const p: searchable = {
+    [pagePackage.location]: pagePackage,
+    ...unrollChildren(pagePackage),
+  };
+
+  return p;
+};
+
+export const buildFieldFromPage = (
+  props: ComponentProps,
+  pack: Partial<ComponentPackage>,
+  initData: InitData
+) => {
+  const p = getPagePackage({
+    initData,
+    componentId: pack.componentId || "container",
+    defaultStyleId: pack.defaultStyleId || "container",
+  });
+
+  const page = assembleStyles({ props, componentPackage: p });
+  const subComponents = () => {
+    let payload: any[] = [];
+    if (p.subComponents) {
+      payload = [...payload, ...p.subComponents];
+    }
+    if (pack.subComponents) {
+      payload = [...payload, ...pack.subComponents];
+    }
+    if (props.subComponents) {
+      payload = [...payload, ...props.subComponents];
+    }
+
+    return payload;
+  };
+
+  const packOverride = { ...p, ...pack };
+  return {
+    ...packOverride,
+    styles: page.styles,
+    subComponents: subComponents(),
+  };
 };

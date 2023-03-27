@@ -1,18 +1,3 @@
-import { runGenericStyleTests } from "../../../utils/tests/styles";
+import { tests } from "../../declarations/_styleOptions.manifest";
 
-const test_styles = [
-  {
-    style: "margin",
-    options: ["xsm", "sm", "md", "lg", "xl", "xxl"],
-    testSuite: (styles: { style: string; options: string[] }) =>
-      runGenericStyleTests(styles),
-  },
-  {
-    style: "padding",
-    options: ["xsm", "sm", "md", "lg", "xl", "xxl"],
-    testSuite: (styles: { style: string; options: string[] }) =>
-      runGenericStyleTests(styles),
-  },
-];
-
-test_styles.forEach((x) => x.testSuite(x));
+Object.values(test).forEach((x) => x.testSuite(x));

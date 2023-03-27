@@ -19,7 +19,7 @@
         "role": "section"
       },
       {
-        "componentId": "hero",
+        "componentId": "events",
         "defaultStyleId": "hero",
         "role": "section"
       },

@@ -3,13 +3,13 @@
     "defaultStyleId": "container",
     "componentId": "nav_wrapper",
     "label": "Navbar",
-    "children": ["test"],
+    "children": ["navbar"],
     "styles": {
       "display": "flex",
       "justify": "center",
-      "border": true,
+      "border": false,
       "align": "start",
-      "className": "h-4rem"
+      "className": "h-4rem bg-color-warning"
     }
   },
   "nav_item": {
@@ -46,6 +46,46 @@
       "align": "center",
       "padding": "md",
       "className": "bg-color-danger w-10rem h-10rem"
+    }
+  },
+  "hero": {
+    "defaultStyleId": "hero",
+    "componentId": "hero",
+    "label": "Hero",
+    "children": ["hero"],
+    "styles": {
+      "display": "flex",
+      "justify": "center",
+      "align": "center",
+      "padding": "md",
+      "className": "bg-color-info w-100 h-15rem"
+    }
+  },
+  "events": {
+    "defaultStyleId": "events",
+    "componentId": "events",
+    "label": "Events",
+    "children": ["Events"],
+    "styles": {
+      "display": "flex",
+      "justify": "center",
+      "align": "center",
+      "margin": "xsm",
+      "padding": "md",
+      "className": "bg-color-danger w-100 h-15rem"
+    }
+  },
+  "footer": {
+    "defaultStyleId": "container",
+    "componentId": "footer",
+    "label": "Footer",
+    "children": ["foot"],
+    "styles": {
+      "display": "flex",
+      "justify": "center",
+      "border": false,
+      "align": "start",
+      "className": "h-4rem bg-color-warning"
     }
   }
 }

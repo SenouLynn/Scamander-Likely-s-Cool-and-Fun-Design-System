@@ -1,4 +1,4 @@
-import { Render } from "./Render";
+import { Render } from "../../Render";
 
 export const pages = {
   //Don't change, this is used by tests

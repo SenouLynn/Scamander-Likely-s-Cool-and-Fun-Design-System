@@ -1,1 +1,5 @@
-export const localRoutes: ReactRoute[] = [];
+import { PoopDeck } from "../buildComponents/poopdeck";
+
+export const localRoutes: ReactRoute[] = [
+  { path: "/poopdeck", element: <PoopDeck /> },
+];

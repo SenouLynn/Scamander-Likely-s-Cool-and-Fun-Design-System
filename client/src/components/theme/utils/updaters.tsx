@@ -4,7 +4,7 @@ export const updateComponentSubComponents = (
   props: UpdateSubComponentProps
 ) => {
   const toggler = props.type === "default" ? "defaultStyles" : "componentList";
-  let componentList: searchable = props.allStyles[toggler];
+  let componentList: searchable = props.initData[toggler];
   const builtComponent = componentList[props.id]
     ? {
         ...componentList[props.id],
@@ -19,13 +19,12 @@ export const updateComponentSubComponents = (
         },
       });
 
-
   componentList[builtComponent.componentId] = builtComponent;
-  return { ...props.allStyles, [toggler]: componentList };
+  return { ...props.initData, [toggler]: componentList };
 };
 export const updateStyles = (props: UpdateStyleProps) => {
   const toggler = props.type === "default" ? "defaultStyles" : "componentList";
-  let componentList: searchable = props.allStyles[toggler];
+  let componentList: searchable = props.initData[toggler];
   const builtComponent = componentList[props.id]
     ? { ...componentList[props.id], styles: { ...props.styles } }
     : createComponentPackage({
@@ -38,5 +37,5 @@ export const updateStyles = (props: UpdateStyleProps) => {
       });
 
   componentList[builtComponent.componentId] = builtComponent;
-  return { ...props.allStyles, [toggler]: componentList };
+  return { ...props.initData, [toggler]: componentList };
 };

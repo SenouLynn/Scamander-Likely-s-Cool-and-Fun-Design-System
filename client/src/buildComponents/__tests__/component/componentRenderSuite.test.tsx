@@ -1,14 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import ThemeWrapper from "../../../components/theme/ThemeContext";
-import { Page } from "../../../components/Render";
-import { pages } from "../../../components/_localPages.manifest";
+import { Render } from "../../../components/Render";
+import { pages } from "../../../components/theme/declarations/_localPages.manifest";
 //Assumptions
 // 1. The component is wrapped in a ThemeWrapper.
 // 2. The component is exported as a named export.
 // 3. The component has access to the ThemeContext.
 
 export const TestComponent = (props: ComponentProps) => {
-  return Page(props, {
+  return Render(props, {
     defaultStyleId: "test_component",
     componentId: "test_component",
   });

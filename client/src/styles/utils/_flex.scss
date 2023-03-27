@@ -66,6 +66,38 @@
   @include flex(space-between, space-between);
 }
 
+.flex-between-start {
+  @include flex(space-between, flex-start);
+}
+.flex-between-center {
+  @include flex(space-between, center);
+}
+.flex-between-end {
+  @include flex(space-between, flex-end);
+}
+
+.flex-start-around {
+  @include flex(flex-start, space-around);
+}
+.flex-center-around {
+  @include flex(center, space-around);
+}
+.flex-end-around {
+  @include flex(flex-end, space-around);
+}
+.flex-around-around {
+  @include flex(space-around, space-around);
+}
+
+.flex-around-start {
+  @include flex(space-around, flex-start);
+}
+.flex-around-center {
+  @include flex(space-around, center);
+}
+.flex-around-end {
+  @include flex(space-around, flex-end);
+}
 //Flex Columns
 @each $size in $flex-sizes {
   .flex-grow-#{$size} {

@@ -9,6 +9,10 @@ type InitData = {
   componentList: DbStyleObject;
   pagesList: DbStyleObject;
   routes: DbRoutes;
+  setData: any;
+  asteroidBelt: {
+    [key: string]: ComponentPackage;
+  };
 };
 
 type DbStyleObject = {
@@ -19,13 +23,13 @@ type UpdateStyleProps = {
   type: "default" | "custom";
   id: string;
   styles: StylePackage;
-  allStyles: any;
+  initData: any;
 };
 type UpdateSubComponentProps = {
   type: "default" | "custom";
   id: string;
   subComponents: ComponentPackage[];
-  allStyles: any;
+  initData: any;
 };
 
 type DefaultStyleObj = {
@@ -117,6 +121,7 @@ type TestStyleObj = {
 type ElementsObj = {
   label: string;
   Element: (props?: any) => JSX.Element;
+  id: string;
 };
 
 type Elements = [
@@ -126,7 +131,8 @@ type Elements = [
   "section",
   "main",
   "text",
-  "wrapper"
+  "wrapper",
+  "button"
 ];
 // type Elements = "header" | "footer" | "body" | "section" | "main" | "text";
 type HtmlElements = {

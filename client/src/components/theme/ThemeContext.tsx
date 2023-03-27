@@ -2,32 +2,20 @@ import "../../styles/global.css";
 import { createContext, useState } from "react";
 import ThemeOrbitals from "./ThemeOrbitals";
 import { useInitFunctions } from "./utils/hooks";
-import { useGetters } from "./utils/hooks";
+import { useGetters, useUpdaters, useSetters } from "./utils/hooks";
 import { updateStyles, updateComponentSubComponents } from "./utils/updaters";
+import { createAsteroidBelt } from "./utils/helpers";
 
 //<--- Master Styles Provider: Highly load bearing --->//
 export default function ThemeWrapper(props: ThemeWrapperProps) {
   const [openComponents, setOpenComponents] = useState<any>({});
   const { mode = "test" } = props;
 
-  //get data
   const data = useInitFunctions(props);
 
-  //get styles from context
   const getters = useGetters(data);
-
-  //update styles from control
-  const updateComponentStyle = (
-    updater: Omit<UpdateStyleProps, "allStyles">
-  ) => {
-    data.setData(updateStyles({ ...updater, allStyles: data }));
-  };
-
-  const updateSubComponents = (
-    updater: Omit<UpdateSubComponentProps, "allStyles">
-  ) => {
-    data.setData(updateComponentSubComponents({ ...updater, allStyles: data }));
-  };
+  const updaters = useUpdaters(data);
+  const setters = useSetters(data);
 
   const value = {
     mode,
@@ -35,8 +23,8 @@ export default function ThemeWrapper(props: ThemeWrapperProps) {
     setOpenComponents,
     ...data,
     ...getters,
-    updateComponentStyle,
-    updateSubComponents,
+    ...updaters,
+    ...setters,
   };
   return (
     <ThemeContext.Provider value={value}>
@@ -53,11 +41,13 @@ export const ThemeContext = createContext<ThemeContextProps>({
   setData: (value: any) => null,
   componentPackage: () => null,
   pages: () => null,
+  setComponentList: (value: any) => null,
   openComponents: {},
   pagesList: {},
   routes: {},
+  asteroidBelt: {},
   setOpenComponents: (value: any) => null,
-  updateSubComponents: (updater: Omit<UpdateSubComponentProps, "allStyles">) =>
+  updateSubComponents: (updater: Omit<UpdateSubComponentProps, "initData">) =>
     null,
-  updateComponentStyle: (updater: Omit<UpdateStyleProps, "allStyles">) => null,
+  updateComponentStyle: (updater: Omit<UpdateStyleProps, "initData">) => null,
 });

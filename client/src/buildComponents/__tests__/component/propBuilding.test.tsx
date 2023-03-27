@@ -26,7 +26,7 @@ describe("building styles", () => {
   const result = assembleStyles({ props: propStyles, componentPackage });
 
   it("adds className from props to pack", () => {
-    expect(result.styles.className).toBe(" test");
+    expect(result.styles.className).toBe("test");
   });
   it("adds generic styles from props to pack", () => {
     expect(result.styles.display).toBe("flex");

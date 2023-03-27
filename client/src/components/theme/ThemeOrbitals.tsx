@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import ControlPanel from "../../buildComponents/controlPanel/ControlPanel";
 import { ThemeContext } from "./ThemeContext";
 
 export default function ThemeOrbitals(props: any) {

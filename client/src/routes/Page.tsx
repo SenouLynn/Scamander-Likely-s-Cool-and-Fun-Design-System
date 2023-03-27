@@ -21,6 +21,6 @@ export const Page = (
 
   //Add built styles to built package
   const finalPackage = { ...packOverride, styles: page.styles };
-  
+
   return <>{finalPackage.render({ props, pack: finalPackage })}</>;
 };

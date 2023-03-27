@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { route } from "../query/utils/createRoutes";
-import { getComponentPackage, getPagePackage } from "./helpers";
+
+import { createInitData, getComponentPackage, getPagePackage } from "./helpers";
 import { componentList, controlOptions, defaultStyles } from "./mocks";
+import { updateComponentSubComponents, updateStyles } from "./updaters";
 
 export const useInitFunctions = (
   props: Partial<ThemeWrapperProps>
-): InitData & { setData: any } => {
+): InitData => {
   const [data, setData] = useState<InitData | null>(null);
 
   //Get all component styles from db
@@ -15,13 +17,15 @@ export const useInitFunctions = (
         response.json().then((res) => {
           res && setData(res);
           res &&
-            setData({
-              componentList: res.componentList,
-              defaultStyles: res.defaultStyles,
-              controlOptions: res.controlOptions,
-              pagesList: res.pages,
-              routes: res.routes,
-            });
+            setData(
+              createInitData({
+                componentList: res.componentList,
+                defaultStyles: res.defaultStyles,
+                controlOptions: res.controlOptions,
+                pagesList: res.pages,
+                routes: res.routes,
+              })
+            );
         })
       );
     };
@@ -29,17 +33,15 @@ export const useInitFunctions = (
     !data && getAll();
     // Passed Component List
     !data &&
-      setData({
-        componentList: (props.componentList as ComponentStyleObj) || {},
-        defaultStyles: {},
-        controlOptions: {},
-        pagesList: {},
-        routes: {},
-      });
+      setData(
+        createInitData({
+          componentList: (props.componentList as ComponentStyleObj) || {},
+        })
+      );
   }, []);
   //Pass to context
   if (data) {
-    return {
+    return createInitData({
       ...data,
       componentList: componentList(data.componentList),
       defaultStyles: defaultStyles(data.defaultStyles),
@@ -47,28 +49,50 @@ export const useInitFunctions = (
       routes: data.routes,
       // pages:
       setData,
-    };
+    });
   } else {
-    return {
-      componentList: {},
-      defaultStyles: {},
-      controlOptions: {},
-      pagesList: {},
-      routes: {},
-      setData,
-    };
+    return createInitData();
   }
 };
 
 export const useGetters = (data: InitData) => {
   const componentPackage = ({ defaultStyleId, componentId }: ComponentIds) =>
-    getComponentPackage({ allStyles: data, defaultStyleId, componentId });
+    getComponentPackage({ initData: data, defaultStyleId, componentId });
 
   const pages = ({ defaultStyleId, componentId }: ComponentIds) =>
-    getPagePackage({ allStyles: data, defaultStyleId, componentId });
+    getPagePackage({ initData: data, defaultStyleId, componentId });
 
   return {
     componentPackage,
     pages,
+  };
+};
+export const useUpdaters = (data: InitData) => {
+  const updateComponentStyle = (
+    updater: Omit<UpdateStyleProps, "initData">
+  ) => {
+    data.setData(updateStyles({ ...updater, initData: data }));
+  };
+  const updateSubComponents = (
+    updater: Omit<UpdateSubComponentProps, "initData">
+  ) => {
+    data.setData(updateComponentSubComponents({ ...updater, initData: data }));
+  };
+  return {
+    updateComponentStyle,
+    updateSubComponents,
+  };
+};
+
+export const useSetters = (data: InitData) => {
+  return {
+    setComponentList: (component: ComponentPackage) =>
+      data.setData({
+        ...data,
+        componentList: {
+          ...data.componentList,
+          [component.componentId]: component,
+        },
+      }),
   };
 };

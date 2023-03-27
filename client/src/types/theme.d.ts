@@ -3,12 +3,13 @@ type ThemeContextProps = InitData & {
   children?: React.ReactNode;
   componentPackage: (props: ComponentIds) => any;
   pages: (props: ComponentIds) => any;
-  updateComponentStyle: (props: Omit<UpdateStyleProps, "allStyles">) => any;
+  updateComponentStyle: (props: Omit<UpdateStyleProps, "initData">) => any;
   updateSubComponents: (
-    props: Omit<UpdateSubComponentProps, "allStyles">
+    props: Omit<UpdateSubComponentProps, "initData">
   ) => any;
   openComponents: { [key: string]: ComponentPackage };
   setOpenComponents: (value: any) => any;
+  setComponentList: (component: ComponentPackage) => any;
   setData: any;
 };
 
