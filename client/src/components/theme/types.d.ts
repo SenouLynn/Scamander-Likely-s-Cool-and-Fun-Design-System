@@ -112,7 +112,7 @@ type CreateChildProps = {
 
 type TestStyleObj = {
   style: string;
-  styleOption: GenericSizes;
+  styleOption: GenericSizes | BooleanOptions;
   renderedStyleName: string;
 };
 

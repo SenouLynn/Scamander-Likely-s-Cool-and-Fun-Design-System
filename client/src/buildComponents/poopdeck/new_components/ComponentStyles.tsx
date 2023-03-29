@@ -1,44 +1,7 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { PoopDeckContext } from "..";
+import { styleOptions } from "../../../utils/styles/_styleBuilders.manifest";
 
-export const options_expanders: OptionsExpanders = {
-  genericSizes: {
-    id: "genericSizes",
-    label: "Generic Sizes",
-    options: {
-      xsm: {
-        value: "xsm",
-        label: "Extra Small",
-      },
-      sm: {
-        value: "sm",
-        label: "Small",
-      },
-      md: {
-        value: "md",
-        label: "Medium",
-      },
-      lg: {
-        value: "lg",
-        label: "Large",
-      },
-      xl: {
-        value: "xl",
-        label: "Extra Large",
-      },
-    },
-  },
-};
-export const styleOptions = {
-  margin: {
-    style: "margin",
-    options: options_expanders.genericSizes,
-  },
-  padding: {
-    style: "padding",
-    options: options_expanders.genericSizes,
-  },
-};
 export default function ComponentStyles() {
   const { newComponent, updateNewComponent } = useContext(PoopDeckContext);
 
@@ -46,7 +9,7 @@ export default function ComponentStyles() {
     ...Object.values(styleOptions).reduce((acc, { style }) => {
       let p: searchable = acc;
       p[style] =
-        newComponent?.styles[style as keyof typeof newComponent.styles] || "md";
+        newComponent?.styles[style as keyof typeof newComponent.styles] || "";
       return acc;
     }, {}),
   });
@@ -68,11 +31,11 @@ export default function ComponentStyles() {
   return (
     <div>
       <h2>Styles</h2>
-      <div className="margin-md">
-        {Object.values({ ...styleOptions }).map(({ style, options }) => (
+      <div className="margin-md grid-col-2">
+        {Object.values({ ...styleOptions }).map(({ style, options, label }) => (
           <div className="flex-between-center flex-row flex-gap-1" key={style}>
             <span className="flex-grow-1">
-              <label htmlFor={style}>{style}</label>
+              <label htmlFor={style}>{label}</label>
               <select
                 id={style}
                 onChange={(e) => handleChange(style, e.target.value)}

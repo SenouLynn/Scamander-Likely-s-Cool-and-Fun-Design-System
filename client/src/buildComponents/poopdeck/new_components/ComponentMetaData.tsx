@@ -31,7 +31,7 @@ export default function ComponentMetaData() {
   return (
     <div>
       <h2>Component Meta Data</h2>
-      <div className="flex-between-center flex-row flex-gap-1">
+      <div className="grid-col-3 grid-gap-1">
         <span className="flex-grow-1">
           <label htmlFor="label">Label</label>
           <input

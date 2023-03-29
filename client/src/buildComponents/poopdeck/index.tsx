@@ -1,9 +1,6 @@
-import { useState, createContext, useContext } from "react";
-import {
-  createAsteroidBelt,
-  createComponentPackage,
-} from "../../components/theme/utils/helpers";
+import { createContext, useContext, useState } from "react";
 import { ThemeContext } from "../../components/theme/ThemeContext";
+import { createComponentPackage } from "../../components/theme/utils/helpers";
 
 import ComponentMetaData from "./new_components/ComponentMetaData";
 import ComponentShowcase from "./new_components/ComponentShowcase";
@@ -22,12 +19,9 @@ export const PoopDeck = () => {
         props: {},
         pack: {
           label: "Test Component",
-          children: "text",
+          children: "Hello World :)",
           location: "0",
           onClick: () => window.alert("clicked"),
-          styles: {
-            className: "border",
-          },
           ...newComponent,
         },
       })
@@ -58,7 +52,7 @@ export const PoopDeck = () => {
     <PoopDeckContext.Provider value={value}>
       <div className="h-min-100vh h-100 w-min-100vw w-100">
         <div className="display-flex flex-row h-100 flex-gap-1">
-          <div className="flex-grow-1 w-max-40vw">
+          <div className="flex-grow-1 w-max-40vw padding-md">
             <h1>Build components</h1>
             <div className="w-100 border padding-sm">
               <div className="flex-between-center">
@@ -99,10 +93,14 @@ export const PoopDeck = () => {
                   )}
                 </div>
               </div>
-              <ComponentMetaData />
-              <ComponentStyles />
-              <SaveComponent />
             </div>
+            {newComponent && (
+              <div className="border padding-sm">
+                <ComponentMetaData />
+                <ComponentStyles />
+                <SaveComponent />
+              </div>
+            )}
           </div>
           <div className="flex-grow-2">
             <ComponentShowcase />

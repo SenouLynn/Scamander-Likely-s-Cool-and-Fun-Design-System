@@ -1,6 +1,9 @@
 @import "./variables";
 @import "./index";
 
+//Utility
+@import "./mixins";
+
 //Utils
 @import "./utils/flex";
 @import "./utils/grid";

@@ -13,6 +13,7 @@ type searchable = {
 type FlexSizes = 1 | 2 | 3 | 4 | 5 | 6;
 type GridSizes = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 type GridDirection = "col" | "row";
+type BooleanOptions = "true" | "false" | true | false;
 type GenericSizes = "xsm" | "sm" | "md" | "lg" | "xl" | "xxl" | "base" | "none";
 type FlexPlacements = "between" | "start" | "end" | "center" | "around";
 type Roles = "wrapper" | "item";
@@ -64,7 +65,7 @@ interface ComponentStyleProps {
 }
 
 type ComponentPackage = {
-  role?: strin //Elements;
+  role?: strin; //Elements;
   label: string;
   defaultStyleId: string;
   componentId: string;

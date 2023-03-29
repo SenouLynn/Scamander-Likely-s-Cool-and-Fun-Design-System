@@ -19,7 +19,7 @@ $generic-iterator: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
 
 $flex-sizes: 1, 2, 3, 4, 5, 6;
 $grid-sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12;
-
+$mult-none: 0;
 $mult-xsm: 0.2;
 $mult-sm: 0.4;
 $mult-md: 0.7;
@@ -27,5 +27,23 @@ $mult-lg: 1.8;
 $mult-xl: 2.3;
 $mult-xxl: 3.8;
 
+$multipliers: $mult-none, $mult-xsm, $mult-sm, $mult-md, $mult-lg, $mult-xl,
+  $mult-xxl;
 $positions: absolute, relative, fixed, sticky, static;
 $locations: top, right, bottom, left;
+
+$locationMap: (
+  "xsm": $mult-xsm,
+  "sm": $mult-sm,
+  "md": $mult-md,
+  "lg": $mult-lg,
+  "xl": $mult-xl,
+  "xxl": $mult-xxl,
+);
+
+$locationSwap: (
+  "top": "top",
+  "end": "right",
+  "bottom": "bottom",
+  "start": "left",
+);

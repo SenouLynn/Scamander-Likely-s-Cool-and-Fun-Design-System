@@ -5,10 +5,9 @@ export default function ComponentShowcase() {
   const { newComponent } = useContext(PoopDeckContext);
   //TODO Mock Props
   return (
-    <div className="h-100 w-100">
-      <div>
+    <div className="h-100 w-100 padding-md">
+      <div className="">
         <h1>{newComponent?.label || "New Component"}</h1>
-        <div>toolbar area?</div>
       </div>
       <div className="w-100 h-100 border padding-md flex-center-center">
         {newComponent && (
