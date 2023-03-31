@@ -1,1 +1,6 @@
+@include buildBaseSizeClasses(margin, margin);
 @include buildUnidirectionalClasses(margin, margin);
+
+.margin-auto {
+  margin: auto;
+}

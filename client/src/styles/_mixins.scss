@@ -1,4 +1,23 @@
-@mixin addSizeClass($prefix, $property) {
+@mixin addSizeClass($prefix, $secondary, $property) {
+  // List of sizes to generate for each
+  $names: "none", "xsm", "sm", "md", "lg", "xl", "xxl";
+  // Spacing to multiply the sizes by
+  $spacing: 1rem;
+
+  // Loop through all of the sizes(we use @for rather than @each, as we want access to the index)
+  @for $i from 1 through length($multipliers) {
+    // Get the size for the current index
+    $size: nth($multipliers, $i);
+    $name: nth($names, $i);
+
+    // Create the rule
+    .#{$prefix}-#{$name} {
+      #{$property}-#{$secondary}: $spacing * $size;
+    }
+  }
+}
+
+@mixin buildBaseSizeClasses($prefix, $property) {
   // List of sizes to generate for each
   $names: "none", "xsm", "sm", "md", "lg", "xl", "xxl";
   // Spacing to multiply the sizes by
@@ -16,7 +35,6 @@
     }
   }
 }
-
 @mixin buildUnidirectionalClasses($prefix, $property) {
   // List of sizes to generate for each
   $locations: top, end, bottom, start;
@@ -32,6 +50,6 @@
     $location: nth($locations, $i);
     $flexName: nth($flex, $i);
 
-    @include addSizeClass(#{$prefix}-#{$location}, $property);
+    @include addSizeClass(#{$prefix}-#{$location}, $flexName, $property);
   }
 }
