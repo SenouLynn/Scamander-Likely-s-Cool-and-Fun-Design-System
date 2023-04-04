@@ -1,6 +1,4 @@
-import ManageComponent from "../buildComponents/poopdeck/builder/PoopDeck";
-import NewPoopDeck from "../buildComponents/poopdeck/builder/newBuilder/NewPoopDeck";
-
+import PoopDeck from "../buildComponents/poopdeck/NewPoopDeck";
 export const localRoutes: ReactRoute[] = [
-  { path: "/poopdeck", element: <NewPoopDeck /> },
+  { path: "/poopdeck", element: <PoopDeck /> },
 ];

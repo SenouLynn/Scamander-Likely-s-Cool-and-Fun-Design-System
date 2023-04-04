@@ -29,7 +29,7 @@ export const createComponentPackage = ({
     location: props?.location || "0",
     label: "",
     Component: Components.Container,
-    componentId: props?.componentId || "test",
+    componentId: props?.componentId || `location-${pack?.location}`,
     defaultStyleId: props?.defaultStyleId || "",
     childIds: [],
     styles: {
@@ -72,11 +72,6 @@ export const getComponentPackage = ({
     pack: {
       Component: Components.Container,
       defaultStyleId: defaultStyleId,
-      render: (props: ComponentWrapperProps) => (
-        <ComponentWrapper {...props}>
-          {renderChildren(props.props)}
-        </ComponentWrapper>
-      ),
       ...defaultPackage,
       ...customPackage,
     },

@@ -1,4 +1,5 @@
-import { createComponentPackage } from "../../../../components/theme/utils/helpers";
+import { createComponentPackage } from "../../../components/theme/utils/helpers";
+
 
 export const createAsteroidBelt = (
   pack: ComponentPackage,
@@ -63,8 +64,7 @@ export const createLocation = (parent: ComponentPackage) => {
 export const seedPack = (pack?: Partial<ComponentPackage>) =>
   createComponentPackage({
     pack: {
-      componentId: "new_component_1",
-      label: "New Component",
+      label: `${pack?.location || ""}${pack?.label || "New Component"}`,
       children: ["Hello World :)"],
       ...pack,
     },

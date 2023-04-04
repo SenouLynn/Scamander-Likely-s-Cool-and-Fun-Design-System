@@ -1,8 +1,10 @@
 import { useContext } from "react";
-import { ThemeContext } from "../../../../components/theme/ThemeContext";
-import { createComponentPackage } from "../../../../components/theme/utils/helpers";
+import { ThemeContext } from "../../../components/theme/ThemeContext";
+import { createComponentPackage } from "../../../components/theme/utils/helpers";
 
-export const SelectComponent = (props: { onChange: (p: ComponentPackage) => void }) => {
+export const SelectComponent = (props: {
+  onChange: (p: ComponentPackage) => void;
+}) => {
   const { componentList } = useContext(ThemeContext);
 
   const handleChange = (pack: ComponentPackage) => {

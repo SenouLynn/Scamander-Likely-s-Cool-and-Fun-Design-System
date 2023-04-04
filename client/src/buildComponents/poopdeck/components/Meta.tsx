@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { PoopDeckContext } from "../NewPoopDeck";
 import { Input } from "./Input";
+import { PoopDeckContext } from "../NewPoopDeck";
 
 export default function Meta({ pack }: { pack: ComponentPackage }) {
   const { updaters } = useContext(PoopDeckContext);
-  
+
   const handleChange = (key: keyof ComponentPackage, value: string) => {
     let newPack = { ...pack };
     newPack[key] = value;
@@ -31,4 +31,3 @@ export default function Meta({ pack }: { pack: ComponentPackage }) {
     </div>
   );
 }
-

@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
+import { createLocation, seedPack } from "../helpers/helpers";
 import { PoopDeckContext } from "../NewPoopDeck";
-import { createLocation, seedPack } from "../../utils/helpers";
 
 export default function Children({ pack }: { pack: ComponentPackage }) {
   const { updaters } = useContext(PoopDeckContext);
 
   const addSubComponent = (newSubComponent: ComponentPackage) => {
-    updaters.field(newSubComponent, pack);
+    const subComponents = [...pack.subComponents, newSubComponent];
+    updaters.field(newSubComponent, { ...pack, subComponents });
   };
 
   return (
@@ -18,7 +19,6 @@ export default function Children({ pack }: { pack: ComponentPackage }) {
       >
         Add New Component
       </button>
-      
     </div>
   );
 }
