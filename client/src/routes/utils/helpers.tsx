@@ -1,4 +1,3 @@
-import { Render } from "../../components/Render";
 import { Page } from "../Page";
 
 export const createRoutes = (routes: DbRoutes): ReactRoute[] => {

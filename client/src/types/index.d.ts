@@ -73,10 +73,10 @@ type ComponentPackage = {
   styles: StylePackage & {
     className?: string;
   };
-  subComponents: ComponentIds[];
+  subComponents: AtLeast<ComponentPackage, "componentId">[];
   childIds: string[];
   onClick?: (props: any) => void;
-  children?: JSX.Element | React.ReactNode;
+  children: string[];
   location: string;
   render: (props: ComponentWrapperProps) => JSX.Element | React.ReactNode;
 };

@@ -6,7 +6,6 @@ export default function ComponentWrapper({
   props,
   pack,
 }: ComponentWrapperProps) {
-  
   //Html element switch
   const role = Object.keys(elements).includes(pack.role)
     ? pack.role

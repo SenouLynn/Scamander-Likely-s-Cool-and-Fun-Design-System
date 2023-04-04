@@ -1,5 +1,5 @@
 type ThemeContextProps = InitData & {
-  mode: "test" | "edit" | "live";
+  mode: "test" | "edit" | "live" | "development" | "production";
   children?: React.ReactNode;
   componentPackage: (props: ComponentIds) => any;
   pages: (props: ComponentIds) => any;

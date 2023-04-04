@@ -1,22 +1,26 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import ComponentMetaData from "./ComponentMetaData";
 import ComponentStyles from "./ComponentStyles";
 import SaveComponent from "./SaveComponent";
 import SubComponents from "./SubComponents";
 
 export default function ComponentBuilder(props: ComponentBuilderProps) {
+  const { updatePack, pack } = props;
+  const { self } = updatePack;
   const [display, setDisplay] = useState<string | null>(null);
 
   const handleChildren = (e: React.ChangeEvent<HTMLInputElement>) => {
-    props.updatePack({
-      ...props.pack,
+    self.updatePack({
+      ...pack,
       children: [e.target.value],
     });
   };
+
+
   return (
     <div className="padding-md border">
       <div className="flex-between-center">
-        <h4>{props.pack.label}</h4>
+        <h4>{pack.label}</h4>
         <span className="flex-end-center">
           <button onClick={() => setDisplay("styles")}>Styles</button>
           <button onClick={() => setDisplay("subComponents")}>
@@ -31,11 +35,11 @@ export default function ComponentBuilder(props: ComponentBuilderProps) {
           <input
             type="text"
             className="w-100"
-            value={props.pack.styles.className}
+            value={pack.styles.className}
             onChange={(e) =>
-              props.updatePack({
-                ...props.pack,
-                styles: { ...props.pack.styles, className: e.target.value },
+              self.updatePack({
+                ...pack,
+                styles: { ...pack.styles, className: e.target.value },
               })
             }
           />
@@ -45,7 +49,7 @@ export default function ComponentBuilder(props: ComponentBuilderProps) {
           <input
             type="text"
             name="className"
-            // value={children[0] || ""}
+            value={pack.children[0] || ""}
             className="w-100"
             onChange={handleChildren}
           />

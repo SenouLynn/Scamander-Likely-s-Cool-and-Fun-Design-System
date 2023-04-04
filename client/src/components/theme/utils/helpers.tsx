@@ -10,7 +10,7 @@ export const renderChildren = (props: ComponentProps) => {
           ? props.location.concat("." + index)
           : "non-location";
         const Component = () => Render(props, { ...x, location });
-        return <Component />;
+        return <Component key={x.componentId} />;
       })}
     </>
   ) : (
@@ -26,7 +26,7 @@ export const createComponentPackage = ({
   pack: Partial<ComponentPackage>;
 }): ComponentPackage => {
   let component = {
-    location: props?.location || "test",
+    location: props?.location || "0",
     label: "",
     Component: Components.Container,
     componentId: props?.componentId || "test",
@@ -38,6 +38,7 @@ export const createComponentPackage = ({
       className: [props?.styles?.className, pack?.styles?.className].join(" "),
     },
     subComponents: props?.subComponents || [],
+    children: [],
     render: (props: ComponentWrapperProps) => {
       return (
         <ComponentWrapper {...props}>
@@ -67,27 +68,20 @@ export const getComponentPackage = ({
     componentId && initData.componentList[componentId]
       ? initData.componentList[componentId]
       : {};
-
-  return {
-    location: "",
-    label: "",
-    Component: Components.Container,
-    role: "wrapper",
-    defaultStyleId: defaultStyleId,
-    componentId: componentId || "",
-    subComponents: [],
-    childIds: [],
-    styles: {
-      className: "",
+  const payload = createComponentPackage({
+    pack: {
+      Component: Components.Container,
+      defaultStyleId: defaultStyleId,
+      render: (props: ComponentWrapperProps) => (
+        <ComponentWrapper {...props}>
+          {renderChildren(props.props)}
+        </ComponentWrapper>
+      ),
+      ...defaultPackage,
+      ...customPackage,
     },
-    render: (props: ComponentWrapperProps) => (
-      <ComponentWrapper {...props}>
-        {renderChildren(props.props)}
-      </ComponentWrapper>
-    ),
-    ...defaultPackage,
-    ...customPackage,
-  };
+  });
+  return payload;
 };
 
 export const getPagePackage = ({
@@ -104,25 +98,15 @@ export const getPagePackage = ({
       ? initData.pagesList[componentId]
       : {};
 
-  return {
-    location: "",
-    label: "",
-    Component: Components.Container,
-    role: "wrapper",
-    defaultStyleId: defaultStyleId,
-    componentId: componentId || "",
-    subComponents: [],
-    childIds: [],
-    styles: {
-      className: "",
+  const payload = createComponentPackage({
+    pack: {
+      defaultStyleId: defaultStyleId,
+      componentId: componentId || "",
+
+      ...page,
     },
-    render: (props: ComponentWrapperProps) => (
-      <ComponentWrapper {...props}>
-        {renderChildren(props.props)}
-      </ComponentWrapper>
-    ),
-    ...page,
-  };
+  });
+  return payload;
 };
 
 export const assembleStyles = ({

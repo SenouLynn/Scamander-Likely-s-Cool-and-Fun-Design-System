@@ -9,10 +9,8 @@ export default function SaveComponent({
   const { setComponentList } = useContext(ThemeContext);
 
   const saveLocal = () => {
-    updatePack(pack);
-    //create new instance of pack with new id + location
-    //update parent pack with new version
-    //save new version to component list to be called on later
+    //Are we trying to change all isntances of this componentId, all siblings?, or all within master Component Tree?
+    //All have different testable logic
   };
 
   //Saves to theme context, will ovewrite everywhere
@@ -21,8 +19,8 @@ export default function SaveComponent({
   };
   return (
     <div className="w-100 flex-end center padding-top-md">
-      <button onClick={saveLocal}>Save as</button>
-      <button onClick={saveMaster}>Save master</button>
+      {/* <button onClick={saveLocal}>Save as</button> */}
+      <button onClick={saveMaster}>Save Global</button>
     </div>
   );
 }

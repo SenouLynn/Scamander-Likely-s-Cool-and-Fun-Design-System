@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createStyles } from "../../../../utils/styles/createStyles";
 
 export default function DisplayComponent({ pack }: ComponentBuilderProps) {

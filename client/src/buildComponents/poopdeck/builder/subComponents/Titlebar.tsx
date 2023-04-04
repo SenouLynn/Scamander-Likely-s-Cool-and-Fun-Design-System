@@ -1,29 +1,21 @@
 import { useContext, useState } from "react";
-import { createComponentPackage } from "../../../../components/theme/utils/helpers";
-import { PoopDeckContext } from "../ManageComponent";
+import { PoopDeckContext } from "../PoopDeck";
+import { seedPack } from "../utils/helpers";
 import { SelectComponent } from "./SelectComponent";
 
-export default function Titlebar() {
-  const { setMasterComponent } = useContext(PoopDeckContext);
+export default function Titlebar(props: ComponentBuilderProps) {
+  const { updatePack } = useContext(PoopDeckContext);
   const [toggleComponentSelect, setToggleComponentSelect] = useState(false);
 
   return (
     <div className="padding-sm">
       <h1>Build Components</h1>
       <div className="flex-end-center">
-        <button
-          onClick={() =>
-            setMasterComponent(
-              createComponentPackage({ pack: { label: "New Component" } })
-            )
-          }
-        >
+        <button onClick={() => updatePack.self.updatePack(seedPack())}>
           Build new Component
         </button>
         {toggleComponentSelect ? (
-          <SelectComponent
-            onChange={(pack: ComponentPackage) => setMasterComponent(pack)}
-          />
+          <SelectComponent onChange={updatePack.self.updatePack} />
         ) : (
           <button
             onClick={() => setToggleComponentSelect(!toggleComponentSelect)}

@@ -4,20 +4,17 @@ import elements from "../../../../components/theme/declarations/_elements.manife
 export default function ComponentMetaData({
   pack,
   updatePack,
-}: {
-  pack: Partial<ComponentPackage>;
-  updatePack: any;
-}) {
-  const { label, componentId, role } = useMemo(() => pack, [pack]);
-
+}: ComponentBuilderProps) {
+  const { label, componentId, role, location } = useMemo(() => pack, [pack]);
+  const { self } = updatePack;
   const updateMetaData = (key: string, value: string) => {
-    updatePack({ ...pack, [key]: value });
+    self.updatePack({ ...pack, [key]: value });
   };
 
   return (
     <div className="">
       <h2>Component Meta Data</h2>
-      <div className="grid-col-3 grid-gap-1 ">
+      <div className="grid-col-4 grid-gap-1 ">
         <span className="flex-grow-1 ">
           <span className="flex-start-start flex-column ">
             <label htmlFor="label" className="w-100">
@@ -45,6 +42,21 @@ export default function ComponentMetaData({
               className="w-100"
               onChange={(e) => {
                 updateMetaData("componentId", e.target.value);
+              }}
+            />
+          </span>
+        </span>
+        <span className="flex-grow-1">
+          <span className="flex-start-start flex-column">
+            <label htmlFor="componentId">Location</label>
+            <input
+              type="text"
+              id="componentId"
+              value={location}
+              className="w-100"
+              disabled
+              onChange={(e) => {
+                updateMetaData("location", e.target.value);
               }}
             />
           </span>
