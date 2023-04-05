@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ThemeContext } from "../components/theme/ThemeContext";
 import { assembleStyles } from "../components/theme/utils/helpers";
-import { PoopDeckContext } from "../buildComponents/poopdeck/NewPoopDeck";
+import { PoopDeckContext } from "../buildComponents/poopdeck/PoopDeck";
 
 export const Page = (
   props: ComponentProps,

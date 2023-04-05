@@ -2,7 +2,7 @@ import { Render } from "../../Render";
 
 //Component Package Components
 
-const Components = {
+export const Components = {
   NavItem: (props: ComponentProps) =>
     Render(props, {
       defaultStyleId: "nav_item",
@@ -29,4 +29,5 @@ export default {
   NavItem: Components.NavItem,
   Container: Components.Container,
   Navbar: Components.Navbar,
+  BlackBox: Components.BlackBox,
 };

@@ -7613,6 +7613,18 @@
   vertical-align: middle;
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
 .display-drag {
   cursor: move;
   z-index: 10;

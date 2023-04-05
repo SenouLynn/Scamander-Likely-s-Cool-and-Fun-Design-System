@@ -1,8 +1,6 @@
-import express from "express";
 import bodyParser from "body-parser";
-import fs from "fs";
-import path from "path";
 import cors from "cors";
+import express from "express";
 import readFromFile from "./src/readFiles";
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -39,12 +37,27 @@ app.get("/api/getAll", (req, res) => {
 });
 
 app.post("/api/updateStyle", (req, res) => {
-  console.log(req.body);
+  console.log("Updater", req.body);
   let styles = req.body.styles;
   let componentId = req.body.componentId;
   let defaultStyleId = req.body.defaultStyleId;
   //Do stuff with styles here
   res.send("Message recieved");
+});
+
+app.post("/api/updateComponentList", (req, res) => {
+  console.log("Updater", req.body);
+  let componentList = req.body;
+
+  readFromFile("./src/assets/component.manifest.json").then((result) =>
+    {
+      //Handle this better, initial peek
+      //Input: whole or partial field, this could be juncture for how/where to organize storage
+      //Output: whole field, passed to dB worker and success/error to FE
+      const newList = { ...result, ...componentList };
+      res.send(newList);
+    }
+  );
 });
 
 app.listen(port, () => {

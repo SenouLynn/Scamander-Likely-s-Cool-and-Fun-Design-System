@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { createAsteroidBelt } from "./helpers";
 import { ThemeContext } from "../../../components/theme/ThemeContext";
+import { createComponentPackage } from "../../../components/theme/utils/helpers";
 
 export const useComponentManager = (seedPack: ComponentPackage) => {
-  let { componentList } = useContext(ThemeContext);
+  let { componentList, setComponentList } = useContext(ThemeContext);
   let [masterPack, setMasterPack] = useState<ComponentPackage>(seedPack);
   let [masterPackField, setMasterPackField] = useState<{
     [key: string]: ComponentPackage;
   }>(createAsteroidBelt(masterPack, componentList));
 
-  
   const updaters = {
     masterPack: (p: ComponentPackage) => {
       setMasterPack(p);
@@ -19,10 +19,13 @@ export const useComponentManager = (seedPack: ComponentPackage) => {
       let field = { ...masterPackField };
       field[p.location] = p;
       if (parent) field[parent.location] = parent; //<-- ;)
-      console.log("pack", p, field);
       setMasterPackField(field);
     },
+    save: () => {
+      setComponentList(masterPack);
+    },
   };
+
 
   useEffect(() => {
     setMasterPack(masterPackField["0"]);

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Input } from "./Input";
-import { PoopDeckContext } from "../NewPoopDeck";
+import { PoopDeckContext } from "../PoopDeck";
 
 export default function Meta({ pack }: { pack: ComponentPackage }) {
   const { updaters } = useContext(PoopDeckContext);

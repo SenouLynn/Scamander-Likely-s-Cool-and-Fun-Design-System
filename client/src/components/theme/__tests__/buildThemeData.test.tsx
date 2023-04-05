@@ -16,9 +16,9 @@ export const buildThemeData = ({
   response: Partial<InitData>;
 }): InitData => {
   return {
-    pages: {
-      ...response.pages,
-      ...props.pages,
+    pagesList: {
+      ...response.pagesList,
+      ...props.pagesList,
     },
     routes: {
       ...response.routes,
@@ -35,6 +35,11 @@ export const buildThemeData = ({
     componentList: {
       ...props.componentList,
       ...response.componentList,
+    },
+    setData: () => {},
+    asteroidBelt: {
+      ...response.asteroidBelt,
+      ...props.asteroidBelt,
     },
   };
 };

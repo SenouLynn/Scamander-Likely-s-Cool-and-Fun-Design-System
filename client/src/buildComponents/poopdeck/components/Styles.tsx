@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { styleOptions } from "../../../utils/styles/_styleBuilders.manifest";
 import { createComponentPackage } from "../../../components/theme/utils/helpers";
-import { PoopDeckContext } from "../NewPoopDeck";
+import { PoopDeckContext } from "../PoopDeck";
 
 //Test This
 const apperate = (obj: any[], searchKey: string | string[]) => {

@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { route } from "../query/utils/createRoutes";
 
-import { createInitData, getComponentPackage, getPagePackage } from "./helpers";
+import {
+  createComponentPackage,
+  createInitData,
+  getComponentPackage,
+  getPagePackage,
+} from "./helpers";
 import { componentList, controlOptions, defaultStyles } from "./mocks";
 import { updateComponentSubComponents, updateStyles } from "./updaters";
 
@@ -39,6 +44,7 @@ export const useInitFunctions = (
         })
       );
   }, []);
+
   //Pass to context
   if (data) {
     return createInitData({
@@ -86,13 +92,25 @@ export const useUpdaters = (data: InitData) => {
 
 export const useSetters = (data: InitData) => {
   return {
-    setComponentList: (component: ComponentPackage) =>
+    setComponentList: (component: ComponentPackage) => {
+      const newComponentList = { ...data.componentList };
+
+      const addComponent = (p: ComponentPackage) => {
+        newComponentList[p.componentId] = p;
+
+        p.subComponents?.forEach((subComponent) => {
+          subComponent &&
+            addComponent(createComponentPackage({ pack: subComponent }));
+        });
+        return newComponentList;
+      };
+      //Run recursive function
+      addComponent(component);
+
       data.setData({
         ...data,
-        componentList: {
-          ...data.componentList,
-          [component.componentId]: component,
-        },
-      }),
+        componentList: newComponentList,
+      });
+    },
   };
 };

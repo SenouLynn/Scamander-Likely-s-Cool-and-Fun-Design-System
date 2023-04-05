@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
+const express_1 = __importDefault(require("express"));
 const readFiles_1 = __importDefault(require("./src/readFiles"));
 const app = (0, express_1.default)();
 app.use(body_parser_1.default.urlencoded({ extended: false }));
@@ -36,11 +36,19 @@ app.get("/api/getAll", (req, res) => {
     });
 });
 app.post("/api/updateStyle", (req, res) => {
-    console.log(req.body);
+    console.log("Updater", req.body);
     let styles = req.body.styles;
     let componentId = req.body.componentId;
     let defaultStyleId = req.body.defaultStyleId;
     res.send("Message recieved");
+});
+app.post("/api/updateComponentList", (req, res) => {
+    console.log("Updater", req.body);
+    let componentList = req.body;
+    (0, readFiles_1.default)("./src/assets/component.manifest.json").then((result) => {
+        const newList = Object.assign(Object.assign({}, result), componentList);
+        res.send(newList);
+    });
 });
 app.listen(port, () => {
     console.log(`[Server]: I am running at https://localhost:${port}`);

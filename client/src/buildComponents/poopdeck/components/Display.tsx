@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { createStyles } from "../../../utils/styles/createStyles";
-import { PoopDeckContext } from "../NewPoopDeck";
+import { PoopDeckContext } from "../PoopDeck";
 import { createComponentPackage } from "../../../components/theme/utils/helpers";
 
 export default function Display() {

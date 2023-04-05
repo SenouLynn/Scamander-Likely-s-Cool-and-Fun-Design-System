@@ -41,7 +41,17 @@
 }
 
 //Align
-
 .vertical-center {
   vertical-align: middle;
+}
+
+//Overflow
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-scroll {
+  overflow: scroll;
+}
+.overflow-auto {
+  overflow: auto;
 }
