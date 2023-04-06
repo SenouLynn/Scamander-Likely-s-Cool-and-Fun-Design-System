@@ -1,6 +1,6 @@
 # Critical Juncture
 
-## Great Success!
+## Great Success
 
 The system works. Poopdeck is the medium and through it, I shall codify the translation between browser and code. I can now CRUD with local state. 
 

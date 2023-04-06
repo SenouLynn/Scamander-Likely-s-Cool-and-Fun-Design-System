@@ -26,6 +26,7 @@ export const createComponentPackage = ({
   pack: Partial<ComponentPackage>;
 }): ComponentPackage => {
   let component = {
+    role: "wrapper",
     location: props?.location || "0",
     label: "",
     Component: Components.Container,

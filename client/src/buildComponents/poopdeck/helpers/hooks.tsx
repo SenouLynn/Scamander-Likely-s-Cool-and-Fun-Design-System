@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { createAsteroidBelt } from "./helpers";
 import { ThemeContext } from "../../../components/theme/ThemeContext";
 import { createComponentPackage } from "../../../components/theme/utils/helpers";
+import { saveComponentToDb } from "./dB";
 
 export const useComponentManager = (seedPack: ComponentPackage) => {
   let { componentList, setComponentList } = useContext(ThemeContext);
@@ -22,10 +23,10 @@ export const useComponentManager = (seedPack: ComponentPackage) => {
       setMasterPackField(field);
     },
     save: () => {
-      setComponentList(masterPack);
+      //Need to set up store/differentiate between fild and components
+      saveComponentToDb({ payload: masterPack });
     },
   };
-
 
   useEffect(() => {
     setMasterPack(masterPackField["0"]);

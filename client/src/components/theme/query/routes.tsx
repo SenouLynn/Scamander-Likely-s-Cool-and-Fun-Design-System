@@ -1,4 +1,3 @@
-
 export const createRouteConfig = (
   props: AtLeast<RouteConfig, "path">
 ): RouteConfig => {
@@ -10,4 +9,5 @@ export const createRouteConfig = (
 };
 export const routes: searchable = {
   getAll: createRouteConfig({ path: "getAll" }),
+  saveComponentList: createRouteConfig({ path: "saveComponentList"}),
 };

@@ -125,6 +125,7 @@ type ElementsObj = {
 };
 
 type Elements = [
+  "page",
   "header",
   "footer",
   "body",
@@ -134,7 +135,9 @@ type Elements = [
   "wrapper",
   "button"
 ];
+
 // type Elements = "header" | "footer" | "body" | "section" | "main" | "text";
+
 type HtmlElements = {
   [key in Elements[number]]: ElementsObj;
 };

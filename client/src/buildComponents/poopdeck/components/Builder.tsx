@@ -16,7 +16,7 @@ export default function ComponentBuilder({ pack }: { pack: ComponentPackage }) {
 
   return (
     <div>
-      <div className="padding-md border w-25rem ">
+      <div className="padding-md border w-30rem ">
         <div className="flex-between-center">
           <h4>{component.label}</h4>
           <span className="flex-end-center">

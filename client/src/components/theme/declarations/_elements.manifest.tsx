@@ -1,4 +1,15 @@
 const elementTypes: HtmlElements = {
+  page: {
+    label: "Page",
+    id: "page",
+    Element: (props: any) => {
+      return (
+        <div role={"page"} {...props}>
+          {props.children}
+        </div>
+      );
+    },
+  },
   footer: {
     label: "Footer",
     id: "footer",

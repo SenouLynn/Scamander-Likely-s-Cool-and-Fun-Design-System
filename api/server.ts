@@ -1,7 +1,8 @@
 import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
-import readFromFile from "./src/readFiles";
+import readFromFile, { writeToFile } from "./src/readFiles";
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -45,19 +46,11 @@ app.post("/api/updateStyle", (req, res) => {
   res.send("Message recieved");
 });
 
-app.post("/api/updateComponentList", (req, res) => {
-  console.log("Updater", req.body);
+app.post("/api/updateComponent", (req, res) => {
+
   let componentList = req.body;
 
-  readFromFile("./src/assets/component.manifest.json").then((result) =>
-    {
-      //Handle this better, initial peek
-      //Input: whole or partial field, this could be juncture for how/where to organize storage
-      //Output: whole field, passed to dB worker and success/error to FE
-      const newList = { ...result, ...componentList };
-      res.send(newList);
-    }
-  );
+  writeToFile("./src/assets/testFile.json", componentList);
 });
 
 app.listen(port, () => {

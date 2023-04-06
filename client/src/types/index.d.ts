@@ -16,7 +16,7 @@ type GridDirection = "col" | "row";
 type BooleanOptions = "true" | "false" | true | false;
 type GenericSizes = "xsm" | "sm" | "md" | "lg" | "xl" | "xxl" | "base" | "none";
 type FlexPlacements = "between" | "start" | "end" | "center" | "around";
-type Roles = "wrapper" | "item";
+type Roles = "page" | "section" | "component";
 type DisplayOptions = "flex" | "grid";
 
 type AllVariants = FlexSizes &
@@ -65,7 +65,8 @@ interface ComponentStyleProps {
 }
 
 type ComponentPackage = {
-  role?: strin; //Elements;
+  role: string; //Elements;
+  type?: "page" | "section" | "component";
   label: string;
   defaultStyleId: string;
   componentId: string;
