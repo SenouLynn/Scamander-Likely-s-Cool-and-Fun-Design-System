@@ -1,4 +1,3 @@
-
 type PackField = {
   [key: string]: ComponentPackage;
 };
@@ -14,4 +13,10 @@ type ComponentManager = {
   field: {
     [key: string]: ComponentPackage;
   };
+};
+
+type UpdatePackagePayload = {
+  pack: ComponentPackage;
+  field: { [key: string]: ComponentPackage };
+  parent?: ComponentPackage;
 };

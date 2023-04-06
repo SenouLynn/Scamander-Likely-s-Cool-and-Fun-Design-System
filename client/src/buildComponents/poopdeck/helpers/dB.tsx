@@ -4,10 +4,17 @@ import axios from "axios";
 
 //<-- These Should Be Hella Tested --->//
 export const saveComponentToDb = async ({
-  payload,
+  pack,
+  field,
 }: {
-  payload: ComponentPackage;
+  pack: ComponentPackage;
+  field: { [key: string]: ComponentPackage };
 }) => {
+  const payload = {
+    pack,
+    field,
+    parent: {},
+  };
   //What should this do?
   //1. Send new/existing component to db.
   //2. Update componentList in ThemeContext (optimistic loading)
@@ -16,3 +23,4 @@ export const saveComponentToDb = async ({
     .post("http://localHost:8000/api/updateComponent", payload)
     .then((response) => console.log(response.data));
 };
+

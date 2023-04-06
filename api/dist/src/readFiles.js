@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeToFile = void 0;
+exports.buildDbPackage = exports.runPromiseBatch = exports.writeToFile = void 0;
 const fs_1 = __importDefault(require("fs"));
 function readFromFile(file) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -45,4 +45,22 @@ const writeToFile = (path, data) => __awaiter(void 0, void 0, void 0, function* 
     });
 });
 exports.writeToFile = writeToFile;
+const runPromiseBatch = ({ promises = [readFromFile("./src/assets/component.manifest.json")], response, error = (err) => console.log("Error: ", err), }) => {
+    Promise.all(promises).then(response).catch(error);
+};
+exports.runPromiseBatch = runPromiseBatch;
+const buildDbPackage = ({ payload, }) => __awaiter(void 0, void 0, void 0, function* () {
+    yield (0, exports.runPromiseBatch)({
+        promises: [
+            readFromFile("./src/assets/component.manifest.json"),
+            readFromFile("./src/assets/default.manifest.json"),
+        ],
+        response: (result) => {
+            const components = result;
+            const field = result.field;
+            const updatedPayload = {};
+        },
+    });
+});
+exports.buildDbPackage = buildDbPackage;
 //# sourceMappingURL=readFiles.js.map

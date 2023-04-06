@@ -24,7 +24,7 @@ export const useComponentManager = (seedPack: ComponentPackage) => {
     },
     save: () => {
       //Need to set up store/differentiate between fild and components
-      saveComponentToDb({ payload: masterPack });
+      saveComponentToDb({ pack: masterPack, field: masterPackField });
     },
   };
 

@@ -1,7 +1,7 @@
 import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
-import readFromFile, { writeToFile } from "./src/readFiles";
+import readFromFile, { runPromiseBatch, writeToFile } from "./src/readFiles";
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,7 +27,6 @@ app.get("/api/getAll", (req, res) => {
     readFromFile("./src/assets/routes.manifest.json"),
   ];
   Promise.all(promises).then((result) => {
-    console.log(result);
     const componentList = result[0];
     const defaultStyles = result[1];
     const controlOptions = result[2];
@@ -37,20 +36,9 @@ app.get("/api/getAll", (req, res) => {
   });
 });
 
-app.post("/api/updateStyle", (req, res) => {
-  console.log("Updater", req.body);
-  let styles = req.body.styles;
-  let componentId = req.body.componentId;
-  let defaultStyleId = req.body.defaultStyleId;
-  //Do stuff with styles here
-  res.send("Message recieved");
-});
-
 app.post("/api/updateComponent", (req, res) => {
-
-  let componentList = req.body;
-
-  writeToFile("./src/assets/testFile.json", componentList);
+  let componentList: UpdatePackagePayload = req.body;
+  writeToFile("./src/assets/testFile.json", componentList.pack);
 });
 
 app.listen(port, () => {

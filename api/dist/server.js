@@ -49,7 +49,6 @@ app.get("/api/getAll", (req, res) => {
         (0, readFiles_1.default)("./src/assets/routes.manifest.json"),
     ];
     Promise.all(promises).then((result) => {
-        console.log(result);
         const componentList = result[0];
         const defaultStyles = result[1];
         const controlOptions = result[2];
@@ -58,16 +57,9 @@ app.get("/api/getAll", (req, res) => {
         res.send({ defaultStyles, componentList, controlOptions, pages, routes });
     });
 });
-app.post("/api/updateStyle", (req, res) => {
-    console.log("Updater", req.body);
-    let styles = req.body.styles;
-    let componentId = req.body.componentId;
-    let defaultStyleId = req.body.defaultStyleId;
-    res.send("Message recieved");
-});
 app.post("/api/updateComponent", (req, res) => {
     let componentList = req.body;
-    (0, readFiles_1.writeToFile)("./src/assets/testFile.json", componentList);
+    (0, readFiles_1.writeToFile)("./src/assets/testFile.json", componentList.pack);
 });
 app.listen(port, () => {
     console.log(`[Server]: I am running at https://localhost:${port}`);

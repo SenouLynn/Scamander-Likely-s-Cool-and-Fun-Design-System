@@ -33,3 +33,37 @@ export const writeToFile = async (path: string, data: any) => {
     }
   );
 };
+
+export const runPromiseBatch = ({
+  promises = [readFromFile("./src/assets/component.manifest.json")],
+  response,
+  error = (err) => console.log("Error: ", err),
+}: {
+  promises: any[];
+  response: (result: any) => void;
+  error?: (result: any) => void;
+}) => {
+  Promise.all(promises).then(response).catch(error);
+};
+
+export const buildDbPackage = async ({
+  payload,
+}: {
+  payload: UpdatePackagePayload;
+}) => {
+  await runPromiseBatch({
+    promises: [
+      readFromFile("./src/assets/component.manifest.json"),
+      readFromFile("./src/assets/default.manifest.json"),
+    ],
+    response: (result) => {
+      const components = result;
+      const field = result.field;
+      const updatedPayload  = {
+        
+      }
+
+      //trigger work here
+    },
+  });
+};

@@ -1,11 +1,1 @@
-{
-  "role": "wrapper",
-  "location": "0",
-  "label": "Beepboop",
-  "componentId": "new-location",
-  "defaultStyleId": "",
-  "childIds": [],
-  "styles": { "className": " " },
-  "subComponents": [],
-  "children": ["Hello World :)"]
-}
+{"role":"wrapper","location":"0","label":"New Component","componentId":"location-undefined","defaultStyleId":"","childIds":[],"styles":{"className":" "},"subComponents":[],"children":["Hello World :)"]}
