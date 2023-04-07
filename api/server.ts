@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
 import readFromFile, { runPromiseBatch, writeToFile } from "./src/readFiles";
+import { getCollection } from "./src/firebase_interface";
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -39,6 +40,11 @@ app.get("/api/getAll", (req, res) => {
 app.post("/api/updateComponent", (req, res) => {
   let componentList: UpdatePackagePayload = req.body;
   writeToFile("./src/assets/testFile.json", componentList.pack);
+});
+
+app.get("/api/getCollection", async (req, res) => {
+  const collection = await getCollection("");
+  res.send(collection); 
 });
 
 app.listen(port, () => {
