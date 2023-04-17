@@ -3,7 +3,6 @@ import fs from "fs";
 export default async function readFromFile(file: string) {
   return await new Promise((resolve, reject) => {
     fs.readFile(file, function (err, data: any) {
-      // type this
       if (err) {
         console.log(err);
         reject(err);

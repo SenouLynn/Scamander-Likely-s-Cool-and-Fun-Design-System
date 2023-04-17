@@ -82,6 +82,9 @@ type ComponentPackage = {
   render: (props: ComponentWrapperProps) => JSX.Element | React.ReactNode;
 };
 
+type ComponentPackageSet = {
+  [key: string]: ComponentPackage;
+}
 type ComponentProps = {} & StylePackage & Partial<ComponentPackage>;
 
 type StylePackage = Partial<ComponentStyleProps> &

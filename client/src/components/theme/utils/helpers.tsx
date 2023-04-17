@@ -1,14 +1,19 @@
+import { faker } from "@faker-js/faker";
 import { Render } from "../../Render";
-import Components from "../declarations/_localComponents.manifest";
 import ComponentWrapper from "../ComponentWrapper";
+import Components from "../declarations/_localComponents.manifest";
+import {
+  createLocation,
+  uniqueId,
+} from "../../../buildComponents/poopdeck/helpers/helpers";
 
 export const renderChildren = (props: ComponentProps) => {
   return props.subComponents && props.subComponents.length > 0 ? (
     <>
       {props.subComponents.map((x: ComponentProps, index) => {
-        const location = props.location
-          ? props.location.concat("." + index)
-          : "non-location";
+        const location = x.location
+          ? x.location
+          : faker.random.alphaNumeric(10);
         const Component = () => Render(props, { ...x, location });
         return <Component key={x.componentId} />;
       })}
@@ -27,10 +32,10 @@ export const createComponentPackage = ({
 }): ComponentPackage => {
   let component = {
     role: "wrapper",
-    location: props?.location || "0",
+    location: props?.location || uniqueId(),
     label: "",
     Component: Components.Container,
-    componentId: props?.componentId || `location-${pack?.location}`,
+    componentId: props?.componentId || pack?.location || "0",
     defaultStyleId: props?.defaultStyleId || "",
     childIds: [],
     styles: {

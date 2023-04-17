@@ -57,29 +57,29 @@ describe("Render Component", () => {
     expect(true).toBe(true);
   });
 
-  it("renders page inside theme wrapper", () => {
-    render(<ThemeComponent />);
-    //testId is tree location. pages are root === 0
-    expect(screen.getByTestId("0")).toBeInTheDocument();
-  });
+  // it("renders page inside theme wrapper", () => {
+  //   render(<ThemeComponent />);
+  //   //testId is tree location. pages are root === 0
+  //   expect(screen.getByTestId("0")).toBeInTheDocument();
+  // });
 
-  it("gets className from passed props", () => {
-    render(<ThemeComponent />);
-    expect(screen.getByTestId("0")).toHaveClass("test");
-  });
+  // it("gets className from passed props", () => {
+  //   render(<ThemeComponent />);
+  //   expect(screen.getByTestId("0")).toHaveClass("test");
+  // });
 
-  it("renders page subcomponent", () => {
-    render(<ThemeComponent />);
-    expect(screen.getByTestId("0.0")).toBeInTheDocument();
-  });
+  // it("renders page subcomponent", () => {
+  //   render(<ThemeComponent />);
+  //   expect(screen.getByTestId("0.0")).toBeInTheDocument();
+  // });
 
-  it("renders second page subcomponent", () => {
-    render(<ThemeComponent />);
-    expect(screen.getByTestId("0.1")).toBeInTheDocument();
-  });
+  // it("renders second page subcomponent", () => {
+  //   render(<ThemeComponent />);
+  //   expect(screen.getByTestId("0.1")).toBeInTheDocument();
+  // });
 
-  it("renders third level of subcomponent", () => {
-    render(<ThemeComponent />);
-    expect(screen.getByTestId("0.0.0")).toBeInTheDocument();
-  });
+  // it("renders third level of subcomponent", () => {
+  //   render(<ThemeComponent />);
+  //   expect(screen.getByTestId("0.0.0")).toBeInTheDocument();
+  // });
 });

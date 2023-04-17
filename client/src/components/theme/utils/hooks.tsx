@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { route } from "../query/utils/createRoutes";
 
 import {
   createComponentPackage,
@@ -9,6 +8,11 @@ import {
 } from "./helpers";
 import { componentList, controlOptions, defaultStyles } from "./mocks";
 import { updateComponentSubComponents, updateStyles } from "./updaters";
+import { dbGet } from "../../../routes/query/actions";
+
+//Fake Constants => Should get form env
+const project = "freshPressed";
+const themeId = "developement";
 
 export const useInitFunctions = (
   props: Partial<ThemeWrapperProps>
@@ -18,20 +22,22 @@ export const useInitFunctions = (
   //Get all component styles from db
   useEffect(() => {
     const getAll = async () => {
-      await fetch(route("getAll")).then((response) =>
-        response.json().then((res) => {
-          res && setData(res);
-          res &&
-            setData(
-              createInitData({
-                componentList: res.componentList,
-                defaultStyles: res.defaultStyles,
-                controlOptions: res.controlOptions,
-                pagesList: res.pages,
-                routes: res.routes,
-              })
-            );
-        })
+      await fetch(dbGet.getTheme({ project, themeId }).endpoint).then(
+        (response) =>
+          response.json().then((res) => {
+            const data = res.payload;
+            data && setData(data.payload);
+            data &&
+              setData(
+                createInitData({
+                  componentList: data.payload.components,
+                  defaultStyles: data.defaultStyles,
+                  controlOptions: data.controlOptions,
+                  pagesList: data.pages,
+                  routes: data.routes,
+                })
+              );
+          })
       );
     };
     //Fetch from db component List

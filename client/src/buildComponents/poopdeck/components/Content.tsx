@@ -4,7 +4,6 @@ import { PoopDeckContext } from "../PoopDeck";
 
 export default function Content({ pack }: { pack: ComponentPackage }) {
   const { updaters } = useContext(PoopDeckContext);
-
   const handleChildren = (value: string) => {
     let newPack = { ...pack };
     newPack.children = [value];

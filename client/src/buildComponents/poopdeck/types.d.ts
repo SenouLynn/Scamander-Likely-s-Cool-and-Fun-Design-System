@@ -8,7 +8,9 @@ type ComponentManager = {
   updaters: {
     masterPack: (p: ComponentPackage, parent?: ComponentPackage) => void;
     field: (p: ComponentPackage, parent?: ComponentPackage) => void;
-    save: () => void;
+    saveLocal: () => void;
+    saveDb: () => void;
+    updateFocus: (p: ComponentPackage) => void;
   };
   field: {
     [key: string]: ComponentPackage;

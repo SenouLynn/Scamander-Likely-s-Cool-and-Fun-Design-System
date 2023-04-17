@@ -24,6 +24,7 @@ export const Page = (
 
   //4. If is being edited, update the state
   if (field) packOverride = { ...packOverride, ...field[pack.location || "0"] };
+  
   //Add built styles to built package
   const finalPackage = { ...packOverride, styles: page.styles };
 

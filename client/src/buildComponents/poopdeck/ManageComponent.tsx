@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Builder from "./components/Builder";
 import { PoopDeckContext } from "./PoopDeck";
 import { createComponentPackage } from "../../components/theme/utils/helpers";
-import { seedPack } from "./helpers/helpers";
+import { createLocation, seedPack } from "./helpers/helpers";
 import Save from "./components/Save";
 import { SelectPackType } from "./components/SelectComponent";
 
@@ -13,10 +13,15 @@ export default function ManageComponent({ location }: { location: any }) {
 
   return (
     <div className=" flex-start-center flex-row">
-      <div className="position-fixed bottom-0rem  h-20rem">
+      <div className="position-fixed bottom-0rem  h-20rem bg-color-light padding-sm">
         <nav className="w-max-100vw w-100 flex-start-center">
           <button
-            onClick={() => updaters.field(seedPack({ type: "component" }))}
+            onClick={() => {
+              console.log(createLocation({}));
+              updaters.updateFocus(
+                seedPack({ type: "component", location: createLocation({}) })
+              );
+            }}
           >
             New Component
           </button>
@@ -28,11 +33,18 @@ export default function ManageComponent({ location }: { location: any }) {
           </button>
           <SelectPackType
             type="component"
-            onChange={(v) => updaters.masterPack(v)}
+            onChange={(v) => {
+              console.log(v);
+              updaters.updateFocus(v);
+            }}
           />
           <SelectPackType
             type="page"
-            onChange={(v) => updaters.masterPack(v)}
+            onChange={(v) => updaters.updateFocus(v)}
+          />
+          <SelectPackType
+            type="all"
+            onChange={(v) => updaters.updateFocus(v)}
           />
           <Save />
         </nav>
@@ -40,12 +52,20 @@ export default function ManageComponent({ location }: { location: any }) {
           <Builder pack={component} />
         </div>
         <div className="flex-row flex-start-start w-100vw overflow-auto">
-          {subComponents.map((subComponent) => (
-            <Builder
-              key={subComponent.location}
-              pack={createComponentPackage({ pack: subComponent })}
-            />
-          ))}
+          {subComponents.map((subComponent) => {
+            const location = subComponent.location || "none";
+            const component = field[location];
+            if (!component) {
+              console.warn(`Could not find component ${location}`);
+              return null;
+            }
+            return (
+              <Builder
+                key={subComponent.location}
+                pack={createComponentPackage({ pack: subComponent })}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

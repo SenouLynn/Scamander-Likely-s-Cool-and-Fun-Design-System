@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import { route } from "../../../components/theme/query/utils/createRoutes";
 import axios from "axios";
+import { dbPost } from "../../../routes/query/actions";
 
 //<-- These Should Be Hella Tested --->//
 export const saveComponentToDb = async ({
@@ -10,17 +9,17 @@ export const saveComponentToDb = async ({
   pack: ComponentPackage;
   field: { [key: string]: ComponentPackage };
 }) => {
-  const payload = {
-    pack,
-    field,
-    parent: {},
-  };
-  //What should this do?
-  //1. Send new/existing component to db.
-  //2. Update componentList in ThemeContext (optimistic loading)
-  //3. Update dbField and repopulate
+  //Handle for if new component, make root location uniqueId, not 0
+  const project = "freshPressed";
+  const themeId = "developement";
+
+  const route = dbPost.updateComponents({
+    project,
+    themeId,
+    components: field,
+  });
+
   axios
-    .post("http://localHost:8000/api/updateComponent", payload)
+    .post(route.endpoint, route)
     .then((response) => console.log(response.data));
 };
-

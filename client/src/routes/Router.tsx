@@ -6,13 +6,13 @@ import { localRoutes } from "./_localRoutes.manifest";
 
 export default function Router() {
   const { routes } = useContext(ThemeContext);
-  const router = createRoutes(routes);
+  let router = routes ? createRoutes(routes) : [];
+  router = [...router, ...localRoutes];
+
   return (
     <>
       {router.length > 0 && (
-        <RouterProvider
-          router={createBrowserRouter([...router, ...localRoutes])}
-        />
+        <RouterProvider router={createBrowserRouter(router)} />
       )}
     </>
   );

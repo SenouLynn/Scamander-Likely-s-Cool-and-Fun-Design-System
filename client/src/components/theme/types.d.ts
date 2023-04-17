@@ -3,6 +3,11 @@ type ThemeWrapperProps = Partial<InitData> & {
   mode?: "test";
 };
 
+type InitalizerConstants = {
+  project: string;
+  theme: string;
+}
+
 type InitData = {
   controlOptions: ControlOptions;
   defaultStyles: DbStyleObject;

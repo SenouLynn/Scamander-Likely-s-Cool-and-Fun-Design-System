@@ -31,6 +31,7 @@ export const SelectType = (props: {
             </option>
           );
         })}
+        <option value={undefined}>Child</option>
       </select>
     </span>
   );

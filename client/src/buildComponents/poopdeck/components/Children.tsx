@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { createLocation, seedPack } from "../helpers/helpers";
+import { useContext } from "react";
 import { PoopDeckContext } from "../PoopDeck";
+import { createLocation, seedPack } from "../helpers/helpers";
 
 export default function Children({ pack }: { pack: ComponentPackage }) {
   const { updaters } = useContext(PoopDeckContext);

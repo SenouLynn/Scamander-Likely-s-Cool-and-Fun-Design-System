@@ -1,11 +1,12 @@
 import "../../styles/global.css";
 import { createContext, useState } from "react";
 import ThemeOrbitals from "./ThemeOrbitals";
-import { useInitFunctions } from "./utils/hooks";
-import { useGetters, useUpdaters, useSetters } from "./utils/hooks";
-import { updateStyles, updateComponentSubComponents } from "./utils/updaters";
-import { createAsteroidBelt } from "./utils/helpers";
-
+import {
+  useGetters,
+  useInitFunctions,
+  useSetters,
+  useUpdaters,
+} from "./utils/hooks";
 //<--- Master Styles Provider: Highly load bearing --->//
 export default function ThemeWrapper(props: ThemeWrapperProps) {
   const [openComponents, setOpenComponents] = useState<any>({});
@@ -16,7 +17,7 @@ export default function ThemeWrapper(props: ThemeWrapperProps) {
   const getters = useGetters(data);
   const updaters = useUpdaters(data);
   const setters = useSetters(data);
-
+  
   const value = {
     mode,
     openComponents,

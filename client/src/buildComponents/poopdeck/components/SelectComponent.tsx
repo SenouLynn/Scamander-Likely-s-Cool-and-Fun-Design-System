@@ -4,7 +4,7 @@ import { createComponentPackage } from "../../../components/theme/utils/helpers"
 
 export const SelectPackType = (props: {
   onChange: (p: ComponentPackage) => void;
-  type: "page" | "component" | "section";
+  type: "page" | "component" | "section" | "all";
 }) => {
   const { componentList } = useContext(ThemeContext);
 
@@ -13,7 +13,7 @@ export const SelectPackType = (props: {
   };
 
   const elements = Object.values(componentList).filter(
-    (pack) => pack.type === props.type
+    (pack) => pack.type === props.type || props.type === "all"
   );
   return (
     <select
@@ -21,13 +21,16 @@ export const SelectPackType = (props: {
       value=""
       onChange={(e) => {
         const val = e.target.value;
-        if (val !== "choose " && componentList[val]) {
-          handleChange(
-            createComponentPackage({
-              props: {},
-              pack: componentList[e.target.value],
-            })
-          );
+        if (val !== "choose ") {
+          if (componentList[val])
+            handleChange(
+              createComponentPackage({
+                props: {},
+                pack: componentList[e.target.value],
+              })
+            );
+        } else {
+          console.warn(`Could not find component ${val} in componentList`);
         }
       }}
     >

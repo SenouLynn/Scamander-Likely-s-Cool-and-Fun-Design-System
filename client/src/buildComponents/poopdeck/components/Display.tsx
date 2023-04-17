@@ -8,7 +8,6 @@ export default function Display() {
   const r = createComponentPackage({ pack });
   const placementClass =
     pack && createStyles(r).includes("w-100") ? "w-100" : "flex-center-center";
-
   return (
     <div className={`${placementClass} `}>
       {r.render({

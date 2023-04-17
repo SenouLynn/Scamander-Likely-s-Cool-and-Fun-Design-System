@@ -1,10 +1,11 @@
 import { createComponentPackage } from "../../../components/theme/utils/helpers";
-
+import { faker } from "@faker-js/faker";
 
 export const createAsteroidBelt = (
   pack: ComponentPackage,
   componentList: DbStyleObject
 ) => {
+
   let field = pack.subComponents.reduce(
     (
       acc: {
@@ -14,9 +15,11 @@ export const createAsteroidBelt = (
       i: number
     ) => {
       const { componentId = "", location = "0" } = p;
+      
       const existingPack = componentList[componentId]
         ? componentList[componentId]
         : p;
+
       acc[location] = createComponentPackage({
         pack: existingPack,
       });
@@ -32,7 +35,7 @@ export const createAsteroidBelt = (
   });
 
   return {
-    "0": pack,
+    [pack.location]: pack,
     ...field,
   };
 };
@@ -55,16 +58,20 @@ export const addNewSubComponents = (
   return { field, pack: newComponentPack };
 };
 
-export const createLocation = (parent: ComponentPackage) => {
-  const { location = "0", subComponents = [] } = parent;
-  const newLocation = location + "." + subComponents.length;
-  return newLocation;
+export const uniqueId = () => faker.random.alphaNumeric(6);
+
+export const createLocation = (parent: Partial<ComponentPackage>) => {
+  const { location = undefined } = parent;
+  if (!location) return uniqueId();
+  if (location === null) return uniqueId();
+
+  return location + "-" + (parent?.subComponents?.length || 0);
 };
 
 export const seedPack = (pack?: Partial<ComponentPackage>) =>
   createComponentPackage({
     pack: {
-      label: `${pack?.location || ""}${pack?.label || "New Component"}`,
+      label: `${pack?.label || "New Component"}`,
       children: ["Hello World :)"],
       ...pack,
     },
