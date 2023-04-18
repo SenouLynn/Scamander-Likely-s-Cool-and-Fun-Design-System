@@ -6,16 +6,16 @@
   height: 100%;
 }
 
-@each $baseSize in $generic-iterator {
-  //Rem
-  .h-#{$baseSize}rem {
-    height: #{$baseSize}rem;
-  }
-  @each $addonSize in $generic-iterator {
-    .h-#{$baseSize}#{$addonSize}rem {
-      height: #{$baseSize}#{$addonSize}rem;
+  @each $baseSize in $generic-iterator {
+    //Rem
+    .h-#{$baseSize}rem {
+      height: #{$baseSize}rem;
     }
-  }
+    @each $addonSize in $generic-iterator {
+      .h-#{$baseSize}#{$addonSize}rem {
+        height: #{$baseSize}#{$addonSize}rem;
+      }
+    }
   //Min Height
   .h-min-#{$baseSize}rem {
     min-height: #{$baseSize}rem;
@@ -62,4 +62,13 @@
       max-height: #{$baseSize}#{$addonSize}vh;
     }
   }
+}
+
+
+//Special Cases
+.h-200vh {
+  height: 200vh;
+}
+.h-300vh {
+  height: 300vh;
 }

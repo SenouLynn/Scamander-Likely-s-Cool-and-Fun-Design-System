@@ -11,14 +11,21 @@ type ComponentManager = {
     saveLocal: () => void;
     saveDb: () => void;
     updateFocus: (p: ComponentPackage) => void;
+    updateDisplayState: (k: any) => void;
   };
   field: {
     [key: string]: ComponentPackage;
   };
+  displayState: DisplayStateShape;
+  setDisplayState: (state: any) => void;
 };
 
 type UpdatePackagePayload = {
   pack: ComponentPackage;
   field: { [key: string]: ComponentPackage };
   parent?: ComponentPackage;
+};
+
+type DisplayStateShape = {
+  zoomLevel: number;
 };

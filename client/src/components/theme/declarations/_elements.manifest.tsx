@@ -66,6 +66,48 @@ const elementTypes: HtmlElements = {
       return <button {...props}>{props.children}</button>;
     },
   },
+  mainHeader: {
+    label: "Main Header",
+    id: "mainHeader",
+    Element: (props: any) => {
+      return <h1 {...props}>{props.children}</h1>;
+    },
+  },
+  subHeader: {
+    label: "Sub Header",
+    id: "subHeader",
+    Element: (props: any) => {
+      return <h2 {...props}>{props.children}</h2>;
+    },
+  },
+  largeHeader: {
+    label: "Large Header",
+    id: "largeHeader",
+    Element: (props: any) => {
+      return <h3 {...props}>{props.children}</h3>;
+    },
+  },
+  mediumHeader: {
+    label: "Medium Header",
+    id: "mediumHeader",
+    Element: (props: any) => {
+      return <h4 {...props}>{props.children}</h4>;
+    },
+  },
+  smallHeader: {
+    label: "Small Header",
+    id: "smallHeader",
+    Element: (props: any) => {
+      return <h5 {...props}>{props.children}</h5>;
+    },
+  },
+  tinyHeader: {
+    label: "Tiny Header",
+    id: "tinyHeader",
+    Element: (props: any) => {
+      return <h6 {...props}>{props.children}</h6>;
+    },
+  },
 };
 
 export default elementTypes;

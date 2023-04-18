@@ -1,0 +1,50 @@
+//<--- For Development Use: PoopDeck yo ---->//
+
+$yale-blue: rgb(44, 94, 148, 1);
+$beige: rgba(235, 235, 211, 1);
+$cerise: rgba(218, 65, 103, 1);
+$naples-yellow: rgba(244, 211, 94, 1);
+$coral: rgba(247, 135, 100, 1);
+
+:root{
+    --dev-color-primary: #{$yale-blue};
+    --dev-color-secondary: #{$beige};
+    --dev-color-danger: #{$cerise};
+    --dev-color-warning: #{$naples-yellow};
+    --dev-color-quinary: #{$coral};
+}
+
+
+//<--- Fast And Messy, clean up later ---->//
+
+.dev-color-primary{
+    color: var(--dev-color-primary);
+}
+.dev-color-secondary{
+    color: var(--dev-color-secondary);
+}
+.dev-color-danger{
+    color: var(--dev-color-danger);
+}
+.dev-color-warning{
+    color: var(--dev-color-warning);
+}
+.dev-color-quinary{
+    color: var(--dev-color-quinary);
+}
+
+.dev-bg-color-primary{
+    background-color: var(--dev-color-primary);
+}
+.dev-bg-color-secondary{
+    background-color: var(--dev-color-secondary);
+}
+.dev-bg-color-danger{
+    background-color: var(--dev-color-danger);
+}
+.dev-bg-color-warning{
+    background-color: var(--dev-color-warning);
+}
+.dev-bg-color-quinary{
+    background-color: var(--dev-color-quinary);
+}

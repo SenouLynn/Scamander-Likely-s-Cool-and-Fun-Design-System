@@ -1,9 +1,7 @@
 import { useHotkeys } from "react-hotkeys-hook";
 
 export const useHotKey = (keyPattern: string, fn: () => any) =>
-  useHotkeys(keyPattern, () => fn(), {
-    scopes: ["development"],
-  });
+  useHotkeys(keyPattern, fn, {});
 
 // Scopes allow you to group hotkeys together. You can use scopes to prevent hotkeys from colliding with each other.
 

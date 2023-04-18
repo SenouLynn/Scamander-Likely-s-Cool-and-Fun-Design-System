@@ -4,16 +4,19 @@ import { ThemeContext } from "../../../components/theme/ThemeContext";
 import { createComponentPackage } from "../../../components/theme/utils/helpers";
 import { saveComponentToDb } from "./dB";
 
-export const useComponentManager = (seedPack: ComponentPackage) => {
+export const useComponentManager = (
+  seedPack: ComponentPackage
+): ComponentManager => {
   let { componentList, setComponentList } = useContext(ThemeContext);
+  let [displayState, setDisplayState] = useState({ zoomLevel: -2 });
   let [masterPack, setMasterPack] = useState<ComponentPackage>(seedPack);
-
   let [masterPackField, setMasterPackField] = useState<ComponentPackageSet>(
     createAsteroidBelt(masterPack, componentList)
   );
 
   const updaters = {
     masterPack: (p: ComponentPackage) => {
+      console.log(p)
       updaters.field(p);
       setMasterPack(p);
     },
@@ -69,6 +72,10 @@ export const useComponentManager = (seedPack: ComponentPackage) => {
       updaters.masterPack(pack);
       setMasterPackField(createAsteroidBelt(pack, componentList));
     },
+    updateDisplayState: (state: { [key: string]: any }) => {
+      console.log(state);
+      setDisplayState({ ...displayState, ...state });
+    },
   };
 
   useEffect(() => {
@@ -80,5 +87,7 @@ export const useComponentManager = (seedPack: ComponentPackage) => {
     pack: masterPack,
     updaters,
     field: masterPackField,
+    setDisplayState,
+    displayState,
   };
 };

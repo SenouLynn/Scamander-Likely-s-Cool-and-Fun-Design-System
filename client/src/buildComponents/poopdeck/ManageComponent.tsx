@@ -12,61 +12,53 @@ export default function ManageComponent({ location }: { location: any }) {
   const subComponents = component.subComponents || [];
 
   return (
-    <div className=" flex-start-center flex-row">
-      <div className="position-fixed bottom-0rem  h-20rem bg-color-light padding-sm">
-        <nav className="w-max-100vw w-100 flex-start-center">
-          <button
-            onClick={() => {
-              console.log(createLocation({}));
-              updaters.updateFocus(
-                seedPack({ type: "component", location: createLocation({}) })
-              );
-            }}
-          >
-            New Component
-          </button>
-          <button onClick={() => updaters.field(seedPack({ type: "section" }))}>
-            New Section
-          </button>
-          <button onClick={() => updaters.field(seedPack({ type: "page" }))}>
-            New Page
-          </button>
-          <SelectPackType
-            type="component"
-            onChange={(v) => {
-              console.log(v);
-              updaters.updateFocus(v);
-            }}
-          />
-          <SelectPackType
-            type="page"
-            onChange={(v) => updaters.updateFocus(v)}
-          />
-          <SelectPackType
-            type="all"
-            onChange={(v) => updaters.updateFocus(v)}
-          />
-          <Save />
-        </nav>
-        <div className="w-max-25rem">
-          <Builder pack={component} />
-        </div>
-        <div className="flex-row flex-start-start w-100vw overflow-auto">
-          {subComponents.map((subComponent) => {
-            const location = subComponent.location || "none";
-            const component = field[location];
-            if (!component) {
-              console.warn(`Could not find component ${location}`);
-              return null;
-            }
-            return (
-              <Builder
-                key={subComponent.location}
-                pack={createComponentPackage({ pack: subComponent })}
-              />
+    <div className="padding-sm">
+      <nav className="w-max-100vw w-100 flex-start-center">
+        <button
+          onClick={() => {
+            console.log(createLocation({}));
+            updaters.updateFocus(
+              seedPack({ type: "component", location: createLocation({}) })
             );
-          })}
-        </div>
+          }}
+        >
+          New Component
+        </button>
+        <button onClick={() => updaters.field(seedPack({ type: "section" }))}>
+          New Section
+        </button>
+        <button onClick={() => updaters.field(seedPack({ type: "page" }))}>
+          New Page
+        </button>
+        <SelectPackType
+          type="component"
+          onChange={(v) => {
+            console.log(v);
+            updaters.updateFocus(v);
+          }}
+        />
+        <SelectPackType type="page" onChange={(v) => updaters.updateFocus(v)} />
+        <SelectPackType type="all" onChange={(v) => updaters.updateFocus(v)} />
+        <Save />
+      </nav>
+      <div className="w-max-25rem">
+        <Builder pack={component} />
+      </div>
+      <div className="flex-row flex-start-start w-100vw overflow-auto">
+        {subComponents.map((subComponent) => {
+          const location = subComponent.location || "none";
+          const component = field[location];
+          if (!component) {
+            console.warn(`Could not find component ${location}`);
+            return null;
+          }
+          return (
+            <Builder
+              key={subComponent.location}
+              pack={createComponentPackage({ pack: subComponent })}
+            />
+          );
+        })}
       </div>
     </div>
   );

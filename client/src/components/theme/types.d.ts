@@ -6,7 +6,7 @@ type ThemeWrapperProps = Partial<InitData> & {
 type InitalizerConstants = {
   project: string;
   theme: string;
-}
+};
 
 type InitData = {
   controlOptions: ControlOptions;
@@ -138,7 +138,13 @@ type Elements = [
   "main",
   "text",
   "wrapper",
-  "button"
+  "button",
+  "mainHeader",
+  "subHeader",
+  "largeHeader",
+  "mediumHeader",
+  "smallHeader",
+  "tinyHeader"
 ];
 
 // type Elements = "header" | "footer" | "body" | "section" | "main" | "text";

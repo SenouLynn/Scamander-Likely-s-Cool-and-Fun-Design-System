@@ -15,7 +15,14 @@
       #{$location}: #{$size}vh;
     }
   }
+
+  @each $addonSize in $generic-iterator {
+    .z-index-#{$size}#{$addonSize} {
+      z-index: #{$size}#{$addonSize};
+    }
+  }
 }
+
 .place-full {
   z-index: 9;
   top: 0;

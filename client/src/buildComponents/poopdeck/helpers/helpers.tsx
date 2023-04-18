@@ -61,6 +61,7 @@ export const addNewSubComponents = (
 export const uniqueId = () => faker.random.alphaNumeric(6);
 
 export const createLocation = (parent: Partial<ComponentPackage>) => {
+  
   const { location = undefined } = parent;
   if (!location) return uniqueId();
   if (location === null) return uniqueId();

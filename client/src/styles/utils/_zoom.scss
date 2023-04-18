@@ -1,0 +1,34 @@
+$zoom-pairs: (
+  "1": 1,
+  "2": 1.01,
+  "3": 1.05,
+  "4": 1.1,
+  "5": 1.15,
+  "6": 1.2,
+  "7": 1.3,
+  "-1": 0.95,
+  "-2": 0.925,
+  "-3": 0.875,
+  "-4": 0.825,
+  "-5": 0.775,
+  "-6": 0.725,
+  "-7": 0.675,
+);
+
+@mixin zoom($zoom_level) {
+  transform: scale($zoom_level);
+}
+
+@each $name, $val in $zoom-pairs {
+  .zoom-#{$name} {
+    @include zoom($val);
+  }
+}
+
+//Co-pilot magic but intriguing...
+
+// @mixin zoom-hover($zoom_level) {
+//   &:hover {
+//     @include zoom($zoom_level);
+//   }
+// }
