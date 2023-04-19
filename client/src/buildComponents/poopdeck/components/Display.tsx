@@ -1,18 +1,31 @@
 import React, { useContext } from "react";
 import { createStyles } from "../../../utils/styles/createStyles";
-import { PoopDeckContext } from "../PoopDeck";
+import { PoopDeckContext } from "../context";
 import { createComponentPackage } from "../../../components/theme/utils/helpers";
 
+const createCanvasClass = (canvas: string) => {
+  //Pass through to createStyles whenever you get to it
+  if (canvas === "viewport") return "h-100vh w-100vw";
+  if (canvas === "fit-content")
+    return "w-fit-content h-fit-content  w-max-100vw h-max-100vh";
+  if (canvas === "desktop") return "w-desktop h-desktop";
+  if (canvas === "phone") return "w-phone h-phone";
+  if (canvas === "monitor") return "w-monitor h-monitor";
+};
 export default function Display() {
   const { pack, displayState } = useContext(PoopDeckContext);
   const r = createComponentPackage({ pack });
+
   const placementClass =
-    pack && createStyles(r).includes("w-100") ? "w-100" : "flex-center-center";
+    pack && createStyles(r).includes("w-100") ? "w-100" : "";
+
   const zoomClass = "zoom-" + displayState.zoomLevel;
+
+  const canvasClass = createCanvasClass(displayState.canvas);
   return (
     <div
       id="component-builder-display"
-      className={`h-100vh w-100vw bg-color-white ${placementClass} ${zoomClass} border `}
+      className={`bg-color-white ${canvasClass} ${placementClass} ${zoomClass} border `}
     >
       {r.render({
         props: {},

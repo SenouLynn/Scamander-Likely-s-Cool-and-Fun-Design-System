@@ -6,7 +6,7 @@ import {
   getComponentPackage,
   getPagePackage,
 } from "./helpers";
-import { componentList, controlOptions, defaultStyles } from "./mocks";
+import { controlOptions, defaultStyles } from "./mocks";
 import { updateComponentSubComponents, updateStyles } from "./updaters";
 import { dbGet } from "../../../routes/query/actions";
 
@@ -25,28 +25,28 @@ export const useInitFunctions = (
       await fetch(dbGet.getTheme({ project, themeId }).endpoint).then(
         (response) =>
           response.json().then((res) => {
-            const data = res.payload;
-            data && setData(data.payload);
+            const data = res.payload.payload;
+
             data &&
               setData(
                 createInitData({
-                  componentList: data.payload.components,
-                  defaultStyles: data.defaultStyles,
-                  controlOptions: data.controlOptions,
-                  pagesList: data.pages,
-                  routes: data.routes,
+                  componentList: data.components || {},
+                  defaultStyles: data.defaultStyles || {},
+                  pagesList: data.pages || {},
+                  routes: data.routes || {},
                 })
               );
           })
       );
     };
+
     //Fetch from db component List
     !data && getAll();
     // Passed Component List
     !data &&
       setData(
         createInitData({
-          componentList: (props.componentList as ComponentStyleObj) || {},
+          componentList: props.componentList || {},
         })
       );
   }, []);
@@ -55,11 +55,6 @@ export const useInitFunctions = (
   if (data) {
     return createInitData({
       ...data,
-      componentList: componentList(data.componentList),
-      defaultStyles: defaultStyles(data.defaultStyles),
-      controlOptions: controlOptions(data.controlOptions),
-      routes: data.routes,
-      // pages:
       setData,
     });
   } else {

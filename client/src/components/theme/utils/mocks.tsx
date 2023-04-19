@@ -1,21 +1,31 @@
-export const componentList = (componentPackage: DbStyleObject) => {
+import { createComponentPackage } from "./helpers";
+
+// export const componentList = (
+//   componentPackage: ComponentPackageSet
+// ): ComponentPackageSet => {
+//   return {
+//     container: createComponentPackage({
+//       pack: {
+//         defaultStyleId: "container",
+//         label: "Container",
+//         componentId: "container",
+//         styles: {},
+//       },
+//       ...componentPackage,
+//     }),
+//   };
+// };
+export const defaultStyles = (
+  props: ComponentPackageSet
+): ComponentPackageSet => {
   return {
-    container: {
-      defaultStyleId: "container",
-      label: "Container",
-      componentId: "container",
-      styles: {},
-    },
-    ...componentPackage,
-  };
-};
-export const defaultStyles = (props: DbStyleObject): DefaultStyleObj => {
-  return {
-    container: {
-      defaultStyleId: "container",
-      label: "Container",
-      styles: {},
-    },
+    container: createComponentPackage({
+      pack: {
+        defaultStyleId: "container",
+        label: "Container",
+        styles: {},
+      },
+    }),
     ...props,
   };
 };

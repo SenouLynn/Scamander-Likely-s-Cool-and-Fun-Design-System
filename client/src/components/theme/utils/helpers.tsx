@@ -28,7 +28,7 @@ export const createComponentPackage = ({
   pack,
 }: {
   props?: ComponentProps;
-  pack: Partial<ComponentPackage>;
+  pack?: Partial<ComponentPackage>;
 }): ComponentPackage => {
   let component = {
     role: "wrapper",
@@ -155,6 +155,7 @@ export const buildComponentPackage = (
 };
 
 export const createInitData = (data?: Partial<InitData>) => {
+  console.log(data);
   return {
     componentList: {},
     defaultStyles: {},

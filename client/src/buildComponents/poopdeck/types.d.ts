@@ -3,8 +3,8 @@ type PackField = {
 };
 
 type ComponentManager = {
-  original: Partial<ComponentPackage>;
-  pack: Partial<ComponentPackage>;
+  original: ComponentPackage
+  pack: ComponentPackage
   updaters: {
     masterPack: (p: ComponentPackage, parent?: ComponentPackage) => void;
     field: (p: ComponentPackage, parent?: ComponentPackage) => void;
@@ -12,12 +12,12 @@ type ComponentManager = {
     saveDb: () => void;
     updateFocus: (p: ComponentPackage) => void;
     updateDisplayState: (k: any) => void;
+    updateFocusedState: (k: any) => void;
   };
-  field: {
-    [key: string]: ComponentPackage;
-  };
+  field: ComponentPackageSet;
   displayState: DisplayStateShape;
   setDisplayState: (state: any) => void;
+  focusedComponent: ComponentPackage;
 };
 
 type UpdatePackagePayload = {
@@ -28,4 +28,5 @@ type UpdatePackagePayload = {
 
 type DisplayStateShape = {
   zoomLevel: number;
+  canvas: string;
 };

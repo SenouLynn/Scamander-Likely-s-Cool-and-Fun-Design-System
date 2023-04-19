@@ -26,3 +26,21 @@ Front-End Design Management Paradigm Inversion leveraging robust css utility lib
 ## Storybook
 
 ** Currently not being used **
+
+## Poopdeck happy fun stuff
+
+### Hotkeys Baby
+
+- n : Create new Component
+
+
+## Itinerary
+
+[ ] Assemble architecture for page
+[ ] Catalague utility classes needed to translate items on page
+[ ] Include class options in Poopdeck UI
+
+### Pickins
+
+- Delete component from dB (and all locations including parent. This is going to be a bitch)
+- Hover state to Builder to indicate that component is being focused

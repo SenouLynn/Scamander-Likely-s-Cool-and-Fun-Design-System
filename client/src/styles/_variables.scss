@@ -47,3 +47,30 @@ $locationSwap: (
   "bottom": "bottom",
   "start": "left",
 );
+
+$screen-size-heights: (
+  "xs": 0,
+  "sm": 480px,
+  "md": 768px,
+  "lg": 1024px,
+  "xl": 1200px,
+  "xxl": 1400px,
+);
+
+$screen-size-widths: (
+  "xs": 0,
+  "sm": 320px,
+  "md": 481px,
+  "lg": 769px,
+  "xl": 1025px,
+  "xxl": 2224px,
+);
+
+$screen-labels: (
+  "none": "xs",
+  "phone": "sm",
+  "tablet": "md",
+  "laptop": "lg",
+  "desktop": "xl",
+  "monitor": "xxl",
+);

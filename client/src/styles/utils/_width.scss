@@ -63,7 +63,22 @@
     }
   }
 }
-
+//Screen sizes
+@each $label, $finder in $screen-labels {
+  @each $size, $value in $screen-size-widths {
+    @if $size == $finder {
+      .w-#{$label} {
+        width: $value;
+      }
+      .w-min-#{$label} {
+        min-width: $value;
+      }
+      .w-max-#{$label} {
+        max-width: $value;
+      }
+    }
+  }
+}
 //Special Cases
 .w-200vw {
   width: 200vw;

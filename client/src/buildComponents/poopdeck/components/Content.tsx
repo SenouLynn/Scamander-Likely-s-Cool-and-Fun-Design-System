@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
+import { PoopDeckContext } from "../context";
 import { Input } from "./Input";
-import { PoopDeckContext } from "../PoopDeck";
 
 export default function Content({ pack }: { pack: ComponentPackage }) {
   const { updaters } = useContext(PoopDeckContext);
@@ -18,12 +18,12 @@ export default function Content({ pack }: { pack: ComponentPackage }) {
 
   return (
     <div className="w-100 flex-start-center">
+      <Input label="Text" value={pack.children[0]} onChange={handleChildren} />
       <Input
         label="Class"
         value={pack.styles.className || ""}
         onChange={handleClassName}
       />
-      <Input label="Text" value={pack.children[0]} onChange={handleChildren} />
     </div>
   );
 }

@@ -7,8 +7,6 @@ type ThemeContextProps = InitData & {
   updateSubComponents: (
     props: Omit<UpdateSubComponentProps, "initData">
   ) => any;
-  openComponents: { [key: string]: ComponentPackage };
-  setOpenComponents: (value: any) => any;
   setComponentList: (component: ComponentPackage) => any;
   setData: any;
 };

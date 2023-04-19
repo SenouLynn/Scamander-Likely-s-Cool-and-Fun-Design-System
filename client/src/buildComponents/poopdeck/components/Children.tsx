@@ -1,7 +1,9 @@
 import { useContext } from "react";
-import { PoopDeckContext } from "../PoopDeck";
+import { PoopDeckContext } from "../context";
 import { createLocation, seedPack } from "../helpers/helpers";
 import { SelectPackType } from "./SelectComponent";
+import { SelectType } from "./SelectType";
+import { SelectElementType } from "./SelectElement";
 
 export default function Children({ pack }: { pack: ComponentPackage }) {
   const { updaters } = useContext(PoopDeckContext);
@@ -12,21 +14,14 @@ export default function Children({ pack }: { pack: ComponentPackage }) {
   };
 
   return (
-    <div className="margin-top-sm">
+    <div>
       <button
         onClick={() =>
           addSubComponent(seedPack({ location: createLocation(pack) }))
         }
       >
-        Add New Component
+        New Component
       </button>
-      <SelectPackType
-        type="component"
-        onChange={(v) => {
-          console.log(v);
-          addSubComponent({ ...v, location: createLocation(pack) });
-        }}
-      />
     </div>
   );
 }

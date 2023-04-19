@@ -5,9 +5,9 @@ type ThemeWrapperProps = Partial<InitData> & {
 
 type InitData = {
   controlOptions: ControlOptions;
-  defaultStyles: DbStyleObject;
-  componentList: DbStyleObject;
-  pagesList: DbStyleObject;
+  defaultStyles: ComponentPackageSet;
+  componentList: ComponentPackageSet;
+  pagesList: ComponentPackageSet;
   routes: DbRoutes;
   setData: any;
   asteroidBelt: {
@@ -15,7 +15,7 @@ type InitData = {
   };
 };
 
-type DbStyleObject = {
+type ComponentPackageSet = {
   [key: string]: Partial<ComponentPackage>;
 };
 
@@ -32,22 +32,7 @@ type UpdateSubComponentProps = {
   initData: any;
 };
 
-type DefaultStyleObj = {
-  [key: string]: {
-    defaultStyleId: string;
-    label: string;
-    styles: StyleOptions;
-  };
-};
 
-type ComponentStyleObj = {
-  [key: string]: {
-    defaultStyleId: string;
-    componentId: string;
-    label: string;
-    styles: StyleOptions;
-  };
-};
 type ControlOptions = Partial<{
   wrapper: DataDisplayKeys;
   item: DataDisplayKeys;
@@ -72,7 +57,6 @@ type DataDisplayValues = {
   label: string;
   value: string | number;
 };
-
 
 type SelectOptionsDisplay = {
   styleId: string;

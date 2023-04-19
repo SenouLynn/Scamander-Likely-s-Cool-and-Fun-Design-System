@@ -1,28 +1,39 @@
 import { useContext, useEffect, useState } from "react";
-import { createAsteroidBelt, createLocation } from "./helpers";
 import { ThemeContext } from "../../../components/theme/ThemeContext";
-import { createComponentPackage } from "../../../components/theme/utils/helpers";
+import { PoopDeckContext } from "../context";
 import { saveComponentToDb } from "./dB";
+import {
+  createAsteroidBelt,
+  createDisplayState,
+  createLocation,
+} from "./helpers";
+
+import { useHotKey } from "../../../utils/hooks/hotkeys";
+import { seedPack } from "./helpers";
+import { updateZoomLevel } from "./displayState";
 
 export const useComponentManager = (
   seedPack: ComponentPackage
 ): ComponentManager => {
   let { componentList, setComponentList } = useContext(ThemeContext);
-  let [displayState, setDisplayState] = useState({ zoomLevel: -2 });
+  let [displayState, setDisplayState] = useState(createDisplayState());
   let [masterPack, setMasterPack] = useState<ComponentPackage>(seedPack);
+  let [focusedComponent, setFocusedComponent] =
+    useState<ComponentPackage>(masterPack);
   let [masterPackField, setMasterPackField] = useState<ComponentPackageSet>(
     createAsteroidBelt(masterPack, componentList)
   );
 
   const updaters = {
     masterPack: (p: ComponentPackage) => {
-      console.log(p)
+      console.log(p);
       updaters.field(p);
       setMasterPack(p);
     },
     field: (p: ComponentPackage, parent?: ComponentPackage) => {
       let field = { ...masterPackField };
       field[p.location] = p;
+      console.log(p);
       if (parent) field[parent.location] = parent; //<-- ;)
       setMasterPackField(field);
     },
@@ -73,8 +84,12 @@ export const useComponentManager = (
       setMasterPackField(createAsteroidBelt(pack, componentList));
     },
     updateDisplayState: (state: { [key: string]: any }) => {
-      console.log(state);
+      console.log("updateDisplayState", state);
+      sessionStorage.setItem("poopdeck-displayState", JSON.stringify(state));
       setDisplayState({ ...displayState, ...state });
+    },
+    updateFocusedState: (pack: ComponentPackage) => {
+      setFocusedComponent(pack);
     },
   };
 
@@ -89,5 +104,29 @@ export const useComponentManager = (
     field: masterPackField,
     setDisplayState,
     displayState,
+    focusedComponent,
   };
+};
+
+export const usePoopDeckHotKeys = () => {
+  const { updaters, displayState } = useContext(PoopDeckContext);
+  useHotKey("n", () =>
+    updaters.masterPack(seedPack({ location: "0", type: "component" }))
+  );
+  useHotKey("minus", () => {
+    console.log("minus");
+    updaters.updateDisplayState(
+      createDisplayState({
+        zoomLevel: updateZoomLevel("sub", displayState.zoomLevel),
+      })
+    );
+  });
+
+  useHotKey("equal", () => {
+    return updaters.updateDisplayState(
+      createDisplayState({
+        zoomLevel: updateZoomLevel("add", displayState.zoomLevel),
+      })
+    );
+  });
 };

@@ -6,16 +6,16 @@
   height: 100%;
 }
 
-  @each $baseSize in $generic-iterator {
-    //Rem
-    .h-#{$baseSize}rem {
-      height: #{$baseSize}rem;
+@each $baseSize in $generic-iterator {
+  //Rem
+  .h-#{$baseSize}rem {
+    height: #{$baseSize}rem;
+  }
+  @each $addonSize in $generic-iterator {
+    .h-#{$baseSize}#{$addonSize}rem {
+      height: #{$baseSize}#{$addonSize}rem;
     }
-    @each $addonSize in $generic-iterator {
-      .h-#{$baseSize}#{$addonSize}rem {
-        height: #{$baseSize}#{$addonSize}rem;
-      }
-    }
+  }
   //Min Height
   .h-min-#{$baseSize}rem {
     min-height: #{$baseSize}rem;
@@ -64,7 +64,21 @@
   }
 }
 
-
+@each $label, $finder in $screen-labels {
+  @each $size, $value in $screen-size-heights {
+    @if $size == $finder {
+      .h-#{$label} {
+        height: $value;
+      }
+      .h-min-#{$label} {
+        min-height: $value;
+      }
+      .h-max-#{$label} {
+        max-height: $value;
+      }
+    }
+  }
+}
 //Special Cases
 .h-200vh {
   height: 200vh;

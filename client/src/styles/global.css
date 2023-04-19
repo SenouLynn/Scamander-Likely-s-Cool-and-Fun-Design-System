@@ -1,21 +1,77 @@
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
-html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video {
+html,
+body,
+div,
+span,
+object,
+iframe,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+code,
+em,
+img,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+b,
+u,
+i,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+main,
+canvas,
+embed,
+footer,
+header,
+nav,
+section,
+video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   vertical-align: baseline;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: none;
      -moz-text-size-adjust: none;
           text-size-adjust: none;
+  transition: all 0.2s ease;
 }
 
-footer, header, nav, section, main {
+footer,
+header,
+nav,
+section,
+main {
   display: block;
 }
 
@@ -23,15 +79,20 @@ body {
   line-height: 1;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
 
-blockquote:before, blockquote:after, q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
   content: "";
   content: none;
 }
@@ -3987,6 +4048,78 @@ table {
   max-height: 1010vh;
 }
 
+.h-none {
+  height: 0;
+}
+
+.h-min-none {
+  min-height: 0;
+}
+
+.h-max-none {
+  max-height: 0;
+}
+
+.h-phone {
+  height: 480px;
+}
+
+.h-min-phone {
+  min-height: 480px;
+}
+
+.h-max-phone {
+  max-height: 480px;
+}
+
+.h-tablet {
+  height: 768px;
+}
+
+.h-min-tablet {
+  min-height: 768px;
+}
+
+.h-max-tablet {
+  max-height: 768px;
+}
+
+.h-laptop {
+  height: 1024px;
+}
+
+.h-min-laptop {
+  min-height: 1024px;
+}
+
+.h-max-laptop {
+  max-height: 1024px;
+}
+
+.h-desktop {
+  height: 1200px;
+}
+
+.h-min-desktop {
+  min-height: 1200px;
+}
+
+.h-max-desktop {
+  max-height: 1200px;
+}
+
+.h-monitor {
+  height: 1400px;
+}
+
+.h-min-monitor {
+  min-height: 1400px;
+}
+
+.h-max-monitor {
+  max-height: 1400px;
+}
+
 .h-200vh {
   height: 200vh;
 }
@@ -7172,6 +7305,78 @@ table {
   max-width: 1010vw;
 }
 
+.w-none {
+  width: 0;
+}
+
+.w-min-none {
+  min-width: 0;
+}
+
+.w-max-none {
+  max-width: 0;
+}
+
+.w-phone {
+  width: 320px;
+}
+
+.w-min-phone {
+  min-width: 320px;
+}
+
+.w-max-phone {
+  max-width: 320px;
+}
+
+.w-tablet {
+  width: 481px;
+}
+
+.w-min-tablet {
+  min-width: 481px;
+}
+
+.w-max-tablet {
+  max-width: 481px;
+}
+
+.w-laptop {
+  width: 769px;
+}
+
+.w-min-laptop {
+  min-width: 769px;
+}
+
+.w-max-laptop {
+  max-width: 769px;
+}
+
+.w-desktop {
+  width: 1025px;
+}
+
+.w-min-desktop {
+  min-width: 1025px;
+}
+
+.w-max-desktop {
+  max-width: 1025px;
+}
+
+.w-monitor {
+  width: 2224px;
+}
+
+.w-min-monitor {
+  min-width: 2224px;
+}
+
+.w-max-monitor {
+  max-width: 2224px;
+}
+
 .w-200vw {
   width: 200vw;
 }
@@ -8513,4 +8718,9 @@ table {
 .manage-component-wrapper {
   position: fixed;
   bottom: 0;
+}
+
+.manage-component-nav {
+  position: fixed;
+  top: 0;
 }/*# sourceMappingURL=global.css.map */
