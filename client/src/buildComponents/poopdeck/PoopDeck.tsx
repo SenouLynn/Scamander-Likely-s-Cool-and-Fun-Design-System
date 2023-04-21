@@ -1,21 +1,36 @@
 import { createComponentPackage } from "../../components/theme/utils/helpers";
 import { seedPack } from "./helpers/helpers";
-import { useComponentManager } from "./helpers/hooks";
-
-import Display from "./components/Display";
-import ManageComponent from "./components/ManageComponent";
-import ManageDisplayState from "./components/ManageDisplayState";
-import ZoomWrapper from "./components/ZoomWrapper";
-import { usePoopDeckHotKeys } from "./helpers/hooks";
 import { PoopDeckContext } from "./context";
+import { ThemeContext } from "../../components/theme/ThemeContext";
+import ManageComponent from "./components/ManageComponent";
+import ZoomWrapper from "./components/ZoomWrapper";
 import TopNav from "./components/TopNav";
+import Display from "./components/Display";
+
+import { useSessionStorage } from "../../utils/hooks/sessionStorage";
+import { useComponentManager } from "./helpers/hooks";
+import { usePoopDeckHotKeys } from "./helpers/hooks";
+import { useContext, useEffect } from "react";
+
 export default function PoopDeck() {
+  const { componentList } = useContext(ThemeContext);
+  const { lastKnownPack } = useSessionStorage();
   //Global State
   const state = useComponentManager(
     createComponentPackage({
-      pack: seedPack({ location: "0", type: "component" }),
+      pack: seedPack(
+        componentList[lastKnownPack?.componentId] || {
+          location: "0",
+          type: "component",
+        }
+      ),
     })
   );
+
+  //Save to browser storage, defends reset on page reload
+  useEffect(() => {
+    sessionStorage.setItem("lastKnownPack", JSON.stringify(state.pack));
+  }, [state]);
 
   return (
     <PoopDeckContext.Provider value={state}>
@@ -40,8 +55,6 @@ const MGMTElectricFeel = (props: any) => {
   usePoopDeckHotKeys();
   return (
     <>
-      {" "}
-      x
       <div className=" flex-start-center flex-row">
         <div className="manage-component-wrapper bg-color-light">
           {props.children}

@@ -2,8 +2,7 @@ import { useContext } from "react";
 import { PoopDeckContext } from "../context";
 import { createLocation, seedPack } from "../helpers/helpers";
 import { SelectPackType } from "./SelectComponent";
-import { SelectType } from "./SelectType";
-import { SelectElementType } from "./SelectElement";
+import { Icon } from "../../../components/icons/_icon.manifest";
 
 export default function Children({ pack }: { pack: ComponentPackage }) {
   const { updaters } = useContext(PoopDeckContext);
@@ -14,14 +13,23 @@ export default function Children({ pack }: { pack: ComponentPackage }) {
   };
 
   return (
-    <div>
-      <button
+    <div className="flex-end-center">
+      <SelectPackType
+        type="component"
+        label={`Add Subcomponent`}
+        onChange={(v) => {
+          console.log(v);
+          addSubComponent(v);
+        }}
+      />
+      <div
+        className="flex-center-center"
         onClick={() =>
           addSubComponent(seedPack({ location: createLocation(pack) }))
         }
       >
-        New Component
-      </button>
+        <Icon icon={"ListPlus"} />
+      </div>
     </div>
   );
 }

@@ -32,7 +32,6 @@ type UpdateSubComponentProps = {
   initData: any;
 };
 
-
 type ControlOptions = Partial<{
   wrapper: DataDisplayKeys;
   item: DataDisplayKeys;
@@ -114,7 +113,8 @@ type Elements = [
   "main",
   "text",
   "wrapper",
-  "button"
+  "button",
+  "image",
 ];
 
 // type Elements = "header" | "footer" | "body" | "section" | "main" | "text";

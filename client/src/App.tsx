@@ -4,9 +4,9 @@ import Router from "./routes/Router";
 function App() {
   return (
     <div className="App">
-      <ThemeWrapper>
-        <Router />
-      </ThemeWrapper>
+        <ThemeWrapper>
+          <Router />
+        </ThemeWrapper>
     </div>
   );
 }

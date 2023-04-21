@@ -108,6 +108,22 @@ const elementTypes: HtmlElements = {
       return <h6 {...props}>{props.children}</h6>;
     },
   },
+  image: {
+    label: "Image",
+    id: "image",
+    Element: (props: any, ) => {
+      const src = props.styles?.imgUrl || props.pack?.styles?.imgUrl;
+      console.log(src, props);
+      return (
+        <img
+          {...props}
+          src={
+            src //|| "https://images.unsplash.com/photo-1486591978090-58e619d37fe7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3000&q=80"
+          }
+        />
+      );
+    },
+  },
 };
 
 export default elementTypes;

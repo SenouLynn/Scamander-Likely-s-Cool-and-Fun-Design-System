@@ -1,11 +1,10 @@
 import { faker } from "@faker-js/faker";
+import {
+  uniqueId
+} from "../../../buildComponents/poopdeck/helpers/helpers";
 import { Render } from "../../Render";
 import ComponentWrapper from "../ComponentWrapper";
 import Components from "../declarations/_localComponents.manifest";
-import {
-  createLocation,
-  uniqueId,
-} from "../../../buildComponents/poopdeck/helpers/helpers";
 
 export const renderChildren = (props: ComponentProps) => {
   return props.subComponents && props.subComponents.length > 0 ? (
@@ -127,6 +126,7 @@ export const assembleStyles = ({
       styles: {
         ...componentPackage?.styles,
         ...props,
+        
         className: [componentPackage?.styles?.className, props?.className]
           .join(" ")
           .trim(),
@@ -155,7 +155,6 @@ export const buildComponentPackage = (
 };
 
 export const createInitData = (data?: Partial<InitData>) => {
-  console.log(data);
   return {
     componentList: {},
     defaultStyles: {},

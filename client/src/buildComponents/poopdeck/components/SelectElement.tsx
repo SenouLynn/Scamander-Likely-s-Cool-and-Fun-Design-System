@@ -1,6 +1,6 @@
 import elementTypes from "../../../components/theme/declarations/_elements.manifest";
 
-export const SelectElementType = (props: { onChange: (p: string) => void }) => {
+export const SelectElementType = (props: { onChange: (p: string) => void , value: string}) => {
   const handleChange = (pack: string) => {
     props.onChange(pack);
   };
@@ -12,7 +12,7 @@ export const SelectElementType = (props: { onChange: (p: string) => void }) => {
       <label htmlFor="selectElement">Element Type:</label>
       <select
         id="selectElement"
-        value=""
+        value={props.value}
         onChange={(e) => {
           const val = e.target.value;
           if (val !== "choose ") {

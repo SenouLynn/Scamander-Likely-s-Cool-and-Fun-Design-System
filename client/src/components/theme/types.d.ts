@@ -19,8 +19,6 @@ type InitData = {
   };
 };
 
-
-
 type UpdateStyleProps = {
   type: "default" | "custom";
   id: string;
@@ -125,7 +123,8 @@ type Elements = [
   "largeHeader",
   "mediumHeader",
   "smallHeader",
-  "tinyHeader"
+  "tinyHeader",
+  "image"
 ];
 
 // type Elements = "header" | "footer" | "body" | "section" | "main" | "text";

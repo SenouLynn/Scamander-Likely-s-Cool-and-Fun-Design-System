@@ -32,6 +32,8 @@ Front-End Design Management Paradigm Inversion leveraging robust css utility lib
 ### Hotkeys Baby
 
 - n : Create new Component
+- minus: Zoom -
+- =+: Zoom +
 
 
 ## Itinerary
@@ -42,5 +44,13 @@ Front-End Design Management Paradigm Inversion leveraging robust css utility lib
 
 ### Pickins
 
+- SCSS import a ton of different fonts
+- Icon library, element type, and picker
 - Delete component from dB (and all locations including parent. This is going to be a bitch)
 - Hover state to Builder to indicate that component is being focused
+- Autosave timer, toggler
+- Theme: 
+     - Fonts
+     - Base sizes (do last)
+
+- Desirable css utilities

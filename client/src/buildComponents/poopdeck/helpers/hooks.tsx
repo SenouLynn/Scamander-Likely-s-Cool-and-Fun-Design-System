@@ -12,9 +12,11 @@ import { useHotKey } from "../../../utils/hooks/hotkeys";
 import { seedPack } from "./helpers";
 import { updateZoomLevel } from "./displayState";
 
+
 export const useComponentManager = (
   seedPack: ComponentPackage
 ): ComponentManager => {
+
   let { componentList, setComponentList } = useContext(ThemeContext);
   let [displayState, setDisplayState] = useState(createDisplayState());
   let [masterPack, setMasterPack] = useState<ComponentPackage>(seedPack);
@@ -23,17 +25,17 @@ export const useComponentManager = (
   let [masterPackField, setMasterPackField] = useState<ComponentPackageSet>(
     createAsteroidBelt(masterPack, componentList)
   );
-
+console.log(componentList)
+  //Methods
   const updaters = {
     masterPack: (p: ComponentPackage) => {
-      console.log(p);
+      setFocusedComponent(p);
       updaters.field(p);
       setMasterPack(p);
     },
     field: (p: ComponentPackage, parent?: ComponentPackage) => {
       let field = { ...masterPackField };
       field[p.location] = p;
-      console.log(p);
       if (parent) field[parent.location] = parent; //<-- ;)
       setMasterPackField(field);
     },
@@ -129,4 +131,9 @@ export const usePoopDeckHotKeys = () => {
       })
     );
   });
+
+  useHotKey("cmd + s", () => {
+    return updaters.saveLocal();
+  });
 };
+

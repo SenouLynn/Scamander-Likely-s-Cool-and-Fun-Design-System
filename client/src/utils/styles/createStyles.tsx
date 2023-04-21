@@ -6,7 +6,7 @@ export const createStyles = (pack: ComponentPackage) => {
   const { styles } = pack;
   const builders: searchable = styleOptions;
   let className = [styles.className] || [""];
-
+  console.log("pack", pack);
   //Iterate over style keys, match to class builder
   Object.entries(styles).forEach(([key, value]) => {
     if (value && key !== "className") {

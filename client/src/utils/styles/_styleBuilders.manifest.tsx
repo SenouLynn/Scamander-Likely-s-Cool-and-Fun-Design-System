@@ -42,9 +42,27 @@ export const booleanStyles = {
     },
   },
 };
+export const string = {
+  id: "string",
+  label: "String",
+  builder: ({ style, value }: OptionsExpanderElement) =>
+    typeof value === "string" ? value : "nope",
+  options: {
+    true: {
+      value: true,
+      label: "True",
+    },
+  },
+};
 
 //Load Bearing
 export const styleOptions = {
+  imgUrl: {
+    style: "imgUrl",
+    label: "Margin",
+    options: string,
+    labels: ["imgUrl", "master"],
+  },
   margin: {
     style: "margin",
     label: "Margin",

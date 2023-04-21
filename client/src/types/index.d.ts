@@ -73,6 +73,7 @@ type ComponentPackage = {
   Component: (props: ComponentProps) => JSX.Element;
   styles: StylePackage & {
     className?: string;
+    imgUrl?: string;
   };
   subComponents: AtLeast<ComponentPackage, "componentId">[];
   childIds: string[];
@@ -84,7 +85,7 @@ type ComponentPackage = {
 
 type ComponentPackageSet = {
   [key: string]: ComponentPackage;
-}
+};
 type ComponentProps = {} & StylePackage & Partial<ComponentPackage>;
 
 type StylePackage = Partial<ComponentStyleProps> &

@@ -1,6 +1,7 @@
 import { useContext, useMemo } from "react";
 import { createComponentPackage } from "../../../components/theme/utils/helpers";
 import { PoopDeckContext } from "../context";
+import StylesDisplay from "../styles/StylesDisplay";
 import Builder from "./Builder";
 
 export default function ManageComponent({ location }: { location: any }) {
@@ -19,6 +20,7 @@ export default function ManageComponent({ location }: { location: any }) {
         </div>
         <div className="w-100 padding-sm border flex-grow-1">
           <h4>Styles</h4>
+          <StylesDisplay {...component} />
         </div>
       </div>
 
