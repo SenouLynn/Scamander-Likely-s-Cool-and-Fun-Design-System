@@ -8386,6 +8386,22 @@ img {
   transform: translate(-50%, -50%);
 }
 
+.parallax-container {
+  height: 100%;
+}
+
+.parallax-img {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax-item {
+  position: relative;
+}
+
 .display-drag {
   cursor: move;
   z-index: 10;
@@ -8461,6 +8477,10 @@ img {
   background: transparent; /* make scrollbar transparent */
   display: none; /* Safari and Chrome */
   scrollbar-width: none; /* Firefox */
+}
+
+.darken-background {
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .container {

@@ -3,8 +3,8 @@ type PackField = {
 };
 
 type ComponentManager = {
-  original: ComponentPackage
-  pack: ComponentPackage
+  original: ComponentPackage;
+  pack: ComponentPackage;
   updaters: {
     masterPack: (p: ComponentPackage, parent?: ComponentPackage) => void;
     field: (p: ComponentPackage, parent?: ComponentPackage) => void;
@@ -13,6 +13,7 @@ type ComponentManager = {
     updateFocus: (p: ComponentPackage) => void;
     updateDisplayState: (k: any) => void;
     updateFocusedState: (k: any) => void;
+    deleteComponent: (p: ComponentPackage) => void;
   };
   field: ComponentPackageSet;
   displayState: DisplayStateShape;

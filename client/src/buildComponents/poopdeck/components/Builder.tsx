@@ -2,9 +2,9 @@ import { useContext, useState, useMemo } from "react";
 import { PoopDeckContext } from "../context";
 import Children from "./Children";
 import Content from "./Content";
-import Meta from "./Meta";
+import Meta from "../../poopdeck_2.0/components/atomic/Meta";
 import Styles from "./Styles";
-import { Icon } from "../../../components/icons/_icon.manifest";
+import { Icon } from "../../../_components/icons/_icon.manifest";
 export default function ComponentBuilder({
   pack,
   isRoot,
@@ -38,6 +38,12 @@ export default function ComponentBuilder({
             onClick={() => updaters.updateFocusedState(component)}
           >
             <Icon icon={"CurrentLocation"} />
+          </div>
+          <div
+            className="flex-center-center w-fit-content"
+            onClick={() => updaters.deleteComponent(component)}
+          >
+            <Icon icon={"Trash"} />
           </div>
         </span>
       </div>

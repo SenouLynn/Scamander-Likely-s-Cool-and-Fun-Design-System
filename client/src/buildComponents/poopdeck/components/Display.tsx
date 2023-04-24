@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { createStyles } from "../../../utils/styles/createStyles";
 import { PoopDeckContext } from "../context";
-import { createComponentPackage } from "../../../components/theme/utils/helpers";
+import { createComponentPackage } from "../../../_components/_theme/utils/helpers";
 
 const createCanvasClass = (canvas: string) => {
   //Pass through to createStyles whenever you get to it

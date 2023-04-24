@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react";
-import { createComponentPackage } from "../../../components/theme/utils/helpers";
+import { createComponentPackage } from "../../../_components/_theme/utils/helpers";
 import { PoopDeckContext } from "../context";
 import StylesDisplay from "../styles/StylesDisplay";
 import Builder from "./Builder";

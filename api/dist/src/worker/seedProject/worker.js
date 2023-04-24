@@ -30,7 +30,7 @@ const createProject = (app) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.createProject = createProject;
 const createTheme = (theme) => {
-    return Object.assign({ id: "development", label: "Development", defaultStyles: {}, pages: {}, components: {}, routes: {}, field: {} }, theme);
+    return Object.assign({ id: "development", label: "Development", field: {}, routes: {} }, theme);
 };
 exports.createTheme = createTheme;
 //# sourceMappingURL=worker.js.map

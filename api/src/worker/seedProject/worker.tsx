@@ -2,13 +2,6 @@ import { writeToDb } from "../../firebase_interface";
 import { checkAndUpdateDoc } from "../../utils/firestore/checkers";
 import { writeBatchDocs } from "../../utils/firestore/setters";
 
-//Structure
-//Collection: Projects
-//Document: ProjectId ("theme")
-//Document: Meta // Collection: Themes
-//Document: ThemeId ("development")
-//Document: {pages, components, routes, defaultStyles}
-
 export const createProject = async (
   app?: Partial<Project>
 ): Promise<ResponseMessage> => {
@@ -38,11 +31,9 @@ export const createTheme = (theme?: Partial<ThemePackage>): ThemePackage => {
   return {
     id: "development",
     label: "Development",
-    defaultStyles: {},
-    pages: {},
-    components: {},
-    routes: {},
     field: {},
+    routes: {},
+
     ...theme,
   };
 };

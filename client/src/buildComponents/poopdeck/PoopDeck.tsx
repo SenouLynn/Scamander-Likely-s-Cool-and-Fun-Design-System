@@ -1,25 +1,25 @@
-import { createComponentPackage } from "../../components/theme/utils/helpers";
-import { seedPack } from "./helpers/helpers";
+import { createComponentPackage } from "../../_components/_theme/utils/helpers";
+import { seedPack } from "./utils/helpers";
 import { PoopDeckContext } from "./context";
-import { ThemeContext } from "../../components/theme/ThemeContext";
 import ManageComponent from "./components/ManageComponent";
-import ZoomWrapper from "./components/ZoomWrapper";
-import TopNav from "./components/TopNav";
+import ZoomWrapper from "../poopdeck_2.0/components/ZoomWrapper";
+import TopNav from "../poopdeck_2.0/components/TopNav";
 import Display from "./components/Display";
 
 import { useSessionStorage } from "../../utils/hooks/sessionStorage";
-import { useComponentManager } from "./helpers/hooks";
-import { usePoopDeckHotKeys } from "./helpers/hooks";
+import { useComponentManager } from "./utils/hooks";
+import { usePoopDeckHotKeys } from "./utils/hooks";
 import { useContext, useEffect } from "react";
+import { ThemeContext } from "../../_components/theme_2.0/ThemeProvider";
 
 export default function PoopDeck() {
-  const { componentList } = useContext(ThemeContext);
+  const { themeField } = useContext(ThemeContext);
   const { lastKnownPack } = useSessionStorage();
   //Global State
   const state = useComponentManager(
     createComponentPackage({
       pack: seedPack(
-        componentList[lastKnownPack?.componentId] || {
+        themeField[lastKnownPack?.componentId] || {
           location: "0",
           type: "component",
         }
@@ -41,7 +41,7 @@ export default function PoopDeck() {
         <TopNav />
         <div>
           <MGMTElectricFeel>
-            <ManageComponent location={state.pack.location} />
+            {/* <ManageComponent location={state.pack.location} /> */}
           </MGMTElectricFeel>
         </div>
       </ZoomWrapper>

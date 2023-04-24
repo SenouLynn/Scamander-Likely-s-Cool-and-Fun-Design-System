@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { createComponentPackage } from "../../components/theme/utils/helpers";
+import { createComponentPackage } from "../../_components/_theme/utils/helpers";
 
 export const PoopDeckContext = createContext<ComponentManager>({
   original: {} as ComponentPackage,
@@ -12,6 +12,7 @@ export const PoopDeckContext = createContext<ComponentManager>({
     updateFocus: () => {},
     updateDisplayState: () => {},
     updateFocusedState: () => {},
+    deleteComponent: () => {},
   },
   field: {},
   setDisplayState: () => {},

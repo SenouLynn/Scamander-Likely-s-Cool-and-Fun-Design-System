@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { renderHook, act } from "@testing-library/react";
-import { createComponentPackage } from "../../../components/theme/utils/helpers";
-import { useComponentManager } from "../helpers/hooks";
+import { createComponentPackage } from "../../../_components/_theme/utils/helpers";
+import { useComponentManager } from "../utils/hooks";
 const seedPack = createComponentPackage({ pack: { componentId: "seedPack" } });
 
 const baseResult = renderHook(() => useComponentManager(seedPack)).result
@@ -80,5 +80,4 @@ describe("updates masterPack", () => {
       result.current.field[newPack.location].subComponents[0];
     expect(subComponent).toBe(childPack);
   });
-
 });

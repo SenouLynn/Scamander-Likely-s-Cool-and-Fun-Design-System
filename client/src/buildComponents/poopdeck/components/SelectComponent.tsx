@@ -1,24 +1,24 @@
 import { useContext } from "react";
-import { ThemeContext } from "../../../components/theme/ThemeContext";
-import { createComponentPackage } from "../../../components/theme/utils/helpers";
+import { createComponentPackage } from "../../../_components/_theme/utils/helpers";
+import { ThemeContext } from "../../../_components/theme_2.0/ThemeProvider";
 
 export const SelectPackType = (props: {
   onChange: (p: ComponentPackage) => void;
   type: "page" | "component" | "section" | "all";
   label?: string;
 }) => {
-  const { componentList } = useContext(ThemeContext);
+  const { themeField } = useContext(ThemeContext);
 
   const handleChange = (pack: ComponentPackage) => {
     props.onChange(pack);
   };
   let elements = [];
   if (props.type === "all") {
-    elements = Object.values(componentList).filter(
+    elements = Object.values(themeField).filter(
       (pack) => pack.location.split("-").length === 1
     );
   } else {
-    elements = Object.values(componentList).filter(
+    elements = Object.values(themeField).filter(
       (pack) => pack.type === props.type
     );
   }
@@ -31,15 +31,15 @@ export const SelectPackType = (props: {
       onChange={(e) => {
         const val = e.target.value;
         if (val !== "choose ") {
-          if (componentList[val])
+          if (themeField[val])
             handleChange(
               createComponentPackage({
                 props: {},
-                pack: componentList[e.target.value],
+                pack: themeField[e.target.value],
               })
             );
         } else {
-          console.warn(`Could not find component ${val} in componentList`);
+          console.warn(`Could not find component ${val} in theme`);
         }
       }}
     >

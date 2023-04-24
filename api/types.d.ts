@@ -19,9 +19,6 @@ type Project = {
 type ThemePackage = {
   id: string;
   label: string;
-  pages: {}; //Component Packages with routes
-  field: {}; //All build components flattened
-  components: {}; //Callable components with subcomponents
-  routes: {}; //Available pages
-  defaultStyles: {}; //Idk?
+  field: {};
+  routes: {};
 };

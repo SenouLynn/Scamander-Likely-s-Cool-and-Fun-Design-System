@@ -1,6 +1,9 @@
-import elementTypes from "../../../components/theme/declarations/_elements.manifest";
+import elementTypes from "../../../_components/_theme/declarations/_elements.manifest";
 
-export const SelectElementType = (props: { onChange: (p: string) => void , value: string}) => {
+export const SelectElementType = (props: {
+  onChange: (p: string) => void;
+  value: string;
+}) => {
   const handleChange = (pack: string) => {
     props.onChange(pack);
   };

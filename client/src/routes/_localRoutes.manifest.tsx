@@ -1,12 +1,12 @@
-import PoopDeck from "../buildComponents/poopdeck/PoopDeck";
-import { Render } from "../components/Render";
-
-const FakeElement = (props: ComponentProps) =>
-  Render(props, {
-    componentId: "4uh5ci",
-    location: "4uh5ci",
-  });
+import Poopdeck from "../buildComponents/poopdeck_2.0/Poopdeck";
+import { createPageRoute } from "./utils/createRoute";
 export const localRoutes: ReactRoute[] = [
-  { path: "/poopdeck", element: <PoopDeck /> },
-  { path: "/", element: <FakeElement /> },
+  //All subroutes handled as subpage
+  createPageRoute({
+    path: "/poopdeck",
+    Component: Poopdeck,
+  }),
+  createPageRoute({ path: "/:page" }),
+  //Keep this hardcoded as home
+  createPageRoute(),
 ];

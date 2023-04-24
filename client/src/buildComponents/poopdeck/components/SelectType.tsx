@@ -1,4 +1,4 @@
-import { packClassification } from "../../../components/theme/declarations/_componentClassifications.manifest";
+import { packClassification } from "../../../_components/_theme/declarations/_componentClassifications.manifest";
 
 export const SelectType = (props: {
   onChange: (p: string) => void;

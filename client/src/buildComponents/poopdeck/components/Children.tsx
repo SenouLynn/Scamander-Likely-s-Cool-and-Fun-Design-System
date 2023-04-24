@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { PoopDeckContext } from "../context";
-import { createLocation, seedPack } from "../helpers/helpers";
+import { createLocation, seedPack } from "../utils/helpers";
 import { SelectPackType } from "./SelectComponent";
-import { Icon } from "../../../components/icons/_icon.manifest";
+import { Icon } from "../../../_components/icons/_icon.manifest";
 
 export default function Children({ pack }: { pack: ComponentPackage }) {
   const { updaters } = useContext(PoopDeckContext);

@@ -33,11 +33,11 @@ router.post("/seedProject/:id", (req, res) => __awaiter(void 0, void 0, void 0, 
 router.post("/addComponent/:project/:theme", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const projectId = "freshPressed";
     const theme = "development";
-    const updaterKey = "components";
+    const updaterKey = "field";
     const cleanedPack = (0, createComponentPackage_1.createComponentPackage)({ pack: req.body, props: {} });
-    const componentId = cleanedPack.componentId;
+    const location = cleanedPack.location;
     const updateComponent = yield (0, firebase_interface_1.writeToDb)({
-        query: [projectId, "theme", theme, updaterKey, componentId],
+        query: [projectId, "theme", theme, updaterKey, location],
         payload: cleanedPack,
     });
     res.json(updateComponent);

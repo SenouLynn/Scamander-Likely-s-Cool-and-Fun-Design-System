@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { PoopDeckContext } from "../context";
-import { createDisplayState } from "../helpers/helpers";
-import { updateZoomLevel } from "../helpers/displayState";
+import { createDisplayState } from "../utils/helpers";
+import { updateZoomLevel } from "../utils/displayState";
 
 export default function ManageDisplayState() {
   const { displayState, updaters } = useContext(PoopDeckContext);

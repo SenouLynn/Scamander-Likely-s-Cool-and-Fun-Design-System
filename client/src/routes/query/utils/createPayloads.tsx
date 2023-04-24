@@ -4,11 +4,9 @@ export const updateComponentsPayload = (components: {
   const payload: ComponentPayloadShapeSet = {};
   Object.entries(components).forEach(([key, component]) => {
     payload[key] = {
-      key: `components.${key}`,
+      key: `field.${key}`,
       value: component,
     };
-  })
+  });
   return payload;
 };
-
-

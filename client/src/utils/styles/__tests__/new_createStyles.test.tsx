@@ -1,4 +1,4 @@
-import { createComponentPackage } from "../../../components/theme/utils/helpers";
+import { createComponentPackage } from "../../../_components/_theme/utils/helpers";
 import { genericSizes, styleOptions } from "../_styleBuilders.manifest";
 
 export const createStyles = (pack: ComponentPackage) => {

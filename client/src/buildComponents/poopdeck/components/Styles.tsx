@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { styleOptions } from "../../../utils/styles/_styleBuilders.manifest";
-import { createComponentPackage } from "../../../components/theme/utils/helpers";
+import { createComponentPackage } from "../../../_components/_theme/utils/helpers";
 import { PoopDeckContext } from "../context";
 
 //Test This

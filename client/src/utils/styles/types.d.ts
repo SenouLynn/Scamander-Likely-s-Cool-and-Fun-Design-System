@@ -1,4 +1,4 @@
-import { FlexSizes, Roles } from "../../components/containers/types";
+import { FlexSizes, Roles } from "../../_components/containers/types";
 import {
   ComponentStyleProps,
   ItemContainerProps,
@@ -9,7 +9,7 @@ export type StylePackage = Partial<ComponentStyleProps> &
   Partial<WrapperContainerProps> &
   Partial<ItemContainerProps> & {
     component: string;
-    className?: string[]
+    className?: string[];
   };
 
 export type CreateStyleClass = {

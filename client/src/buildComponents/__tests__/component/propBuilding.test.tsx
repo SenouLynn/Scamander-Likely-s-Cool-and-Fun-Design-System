@@ -1,7 +1,7 @@
 import {
   assembleStyles,
   createComponentPackage,
-} from "../../../components/theme/utils/helpers";
+} from "../../../_components/_theme/utils/helpers";
 export const propStyles: StylePackage = {
   className: "test",
   display: "flex",

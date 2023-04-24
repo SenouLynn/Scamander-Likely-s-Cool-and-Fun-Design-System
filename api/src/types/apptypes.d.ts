@@ -114,7 +114,7 @@ type Elements = [
   "text",
   "wrapper",
   "button",
-  "image",
+  "image"
 ];
 
 // type Elements = "header" | "footer" | "body" | "section" | "main" | "text";
@@ -132,7 +132,7 @@ type ComponentPackage = {
   styles: StylePackage & {
     className?: string;
   };
-  subComponents: AtLeast<ComponentPackage, "componentId">[];
+  subComponents: AtLeast<ComponentPackage, "componentId" | "location">[];
   childIds: string[];
   children: string[];
   location: string;

@@ -27,14 +27,14 @@ router.post("/seedProject/:id", async (req: any, res: any) => {
 router.post("/addComponent/:project/:theme", async (req: any, res: any) => {
   const projectId = "freshPressed"; //req.params.id;
   const theme = "development"; //req.params.theme;
-  const updaterKey = "components";
+  const updaterKey = "field";
   //Clean data for payload
   const cleanedPack = createComponentPackage({ pack: req.body, props: {} });
-  const componentId = cleanedPack.componentId;
+  const location = cleanedPack.location;
 
   // const update = await updateComponentInDb({});
   const updateComponent = await writeToDb({
-    query: [projectId, "theme", theme, updaterKey, componentId],
+    query: [projectId, "theme", theme, updaterKey, location],
     payload: cleanedPack,
   });
   res.json(updateComponent);

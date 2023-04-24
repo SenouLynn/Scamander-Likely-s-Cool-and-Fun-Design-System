@@ -20,9 +20,14 @@ export const ImgOptions = () => {
     <div>
       <div>Image Options</div>
       <div>
-        <span>
+        <span className="w-100">
           <label>URL</label>
-          <input type="url" value={local} onChange={handleUpdate} />
+          <input
+            type="url"
+            value={local}
+            className="w-100"
+            onChange={handleUpdate}
+          />
         </span>
         <span>
           <label>Alt</label>
@@ -79,10 +84,9 @@ export default function Display(pack: ComponentPackage) {
 //End
 //Start
 
-
-  // background-size: cover;
-  // background-repeat: no-repeat;
-  // background-position: 50% 50%;
+// background-size: cover;
+// background-repeat: no-repeat;
+// background-position: 50% 50%;
 
 //Opacity
 //Rotation

@@ -75,7 +75,7 @@ type ComponentPackage = {
     className?: string;
     imgUrl?: string;
   };
-  subComponents: AtLeast<ComponentPackage, "componentId">[];
+  subComponents: AtLeast<ComponentPackage, "location">[];
   childIds: string[];
   onClick?: (props: any) => void;
   children: string[];

@@ -1,18 +1,14 @@
-import { useContext } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ThemeContext } from "../components/theme/ThemeContext";
-import { createRoutes } from "./utils/helpers";
 import { localRoutes } from "./_localRoutes.manifest";
+import getTheme from "../_components/theme_2.0/getters/dB/getFieldFromDb";
+import { createRoutes } from "./utils/createRoute";
 
-export default function Router() {
-  const { routes } = useContext(ThemeContext);
-  let router = routes ? createRoutes(routes) : [];
-  router = [...router, ...localRoutes];
-
+export default function Router(theme?: Partial<ThemeProps>) {
+  const routes = createRoutes(localRoutes, theme);
   return (
     <>
-      {router.length > 0 && (
-        <RouterProvider router={createBrowserRouter(router)} />
+      {localRoutes.length > 0 && (
+        <RouterProvider router={createBrowserRouter(routes)} />
       )}
     </>
   );

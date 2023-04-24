@@ -1,18 +1,20 @@
-type DbRoute = {
+type PageRoute = {
   id: string;
-  label: string;
+  label?: string;
   route: string;
-  subComponents: Partial<ComponentIds[]> | null;
-  componentIds: Partial<ComponentIds>;
+  subComponents?: Partial<GetComponentIds[]> | null;
+  componentIds: Partial<GetComponentIds>;
 };
 
-type DbRoutes = {
-  [key: string]: DbRoute;
+type PageRoutes = {
+  [key: string]: PageRoute;
 };
 
 type ReactRoute = {
   path: string;
-  element: JSX.Element;
+  element: any;
+  Component?: React.FC;
+  loader?: () => Promise<any>;
 };
 
 type ComponentPayloadShape = {
@@ -22,4 +24,14 @@ type ComponentPayloadShape = {
 
 type ComponentPayloadShapeSet = {
   [key: string]: ComponentPayloadShape;
+};
+
+//New
+type DbResponse<T = any> = {
+  status: "success" | "error";
+  id: string;
+  payload: {
+    message: string;
+    payload: T;
+  };
 };
