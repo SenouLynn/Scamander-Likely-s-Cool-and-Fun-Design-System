@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import ThemeWrapper from "../../../_components/_theme/ThemeContext";
 import { Render } from "../../../_components/Render";
-import { pages } from "../../../_components/_theme/declarations/_localPages.manifest";
+import { pages } from "../../../_components/theme_2.0/declarations/_localPages.manifest";
 //Assumptions
 // 1. The component is wrapped in a ThemeWrapper.
 // 2. The component is exported as a named export.

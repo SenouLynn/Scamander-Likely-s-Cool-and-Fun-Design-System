@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { styleOptions } from "../../../utils/styles/_styleBuilders.manifest";
-import { createComponentPackage } from "../../../_components/_theme/utils/helpers";
-import { PoopDeckContext } from "../context";
+import { styleOptions } from "utils/styles/_styleBuilders.manifest";
+import { PoopDeckContext } from "pages/poopdeck_2.0/utils/context";
+import { createComponentPackage } from "pages/poopdeck_2.0/utils/create";
 
 //Test This
 const apperate = (obj: any[], searchKey: string | string[]) => {
@@ -17,13 +17,13 @@ const apperate = (obj: any[], searchKey: string | string[]) => {
 };
 
 export default function Styles({ pack }: { pack: ComponentPackage }) {
-  const { updaters, field } = useContext(PoopDeckContext);
+  const { update, field } = useContext(PoopDeckContext);
 
   const margin: any = apperate(Object.values(styleOptions), "margin");
   const padding: any = apperate(Object.values(styleOptions), "padding");
 
   const handleUpdate = (p: ComponentPackage) => {
-    updaters.field(p);
+    update.field(p);
   };
   return (
     <div>

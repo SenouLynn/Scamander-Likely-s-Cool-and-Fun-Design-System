@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { updateZoomLevel } from "../../utils/updaters";
 import { PoopDeckContext } from "../../utils/context";
-import { createDisplayState } from "../../../poopdeck/utils/helpers";
 import { Icon } from "../../../../_components/icons/_icon.manifest";
+import { createDisplayState } from "pages/poopdeck_2.0/utils/create";
 
 export default function ManageDisplayState() {
   const { displayState, update } = useContext(PoopDeckContext);
@@ -16,7 +16,9 @@ export default function ManageDisplayState() {
     <div className=" flex-end-center flex-nowrap">
       <select
         onChange={(e) =>
-          update.displayState(createDisplayState({ canvas: e.target.value }))
+          update.displayState(
+            createDisplayState({ canvas: e.target.value as any })
+          )
         }
       >
         <option>Boundary: </option>

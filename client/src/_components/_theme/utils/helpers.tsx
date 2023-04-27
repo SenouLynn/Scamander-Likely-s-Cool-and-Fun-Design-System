@@ -1,8 +1,8 @@
 import { faker } from "@faker-js/faker";
-import { uniqueId } from "../../../buildComponents/poopdeck/utils/helpers";
 import { Render } from "../../Render";
-import ComponentWrapper from "../ComponentWrapper";
-import Components from "../declarations/_localComponents.manifest";
+import ComponentWrapper from "../../theme_2.0/ComponentWrapper";
+import Components from "../../theme_2.0/declarations/_localComponents.manifest";
+import { uniqueId } from "pages/poopdeck_2.0/utils/create";
 
 export const renderChildren = (props: ComponentProps) => {
   return props.subComponents && props.subComponents.length > 0 ? (

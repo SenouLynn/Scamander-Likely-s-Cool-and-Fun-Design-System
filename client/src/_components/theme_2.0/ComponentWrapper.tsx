@@ -1,5 +1,5 @@
 import { createStyles } from "../../utils/styles/createStyles";
-import { renderChildren } from "./utils/helpers";
+import { renderChildren } from "../_theme/utils/helpers";
 import elements from "./declarations/_elements.manifest";
 
 export default function ComponentWrapper({

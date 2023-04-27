@@ -1,4 +1,4 @@
-import elementTypes from "../../../_components/_theme/declarations/_elements.manifest";
+import elementTypes from "_components/theme_2.0/declarations/_elements.manifest";
 
 export const SelectElementType = (props: {
   onChange: (p: string) => void;

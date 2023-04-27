@@ -1,10 +1,9 @@
 import { createContext } from "react";
-import { createComponentPackage } from "../../../_components/_theme/utils/helpers";
 
 export const PoopDeckContext = createContext<ComponentManager_New>({
-  original: createComponentPackage({}),
-  pack: createComponentPackage({}),
-  focused: createComponentPackage({}),
+  original: {} as ComponentPackage,
+  pack: {} as ComponentPackage,
+  focused: {} as ComponentPackage,
   update: {
     pack: () => {},
     focusedPack: () => {},

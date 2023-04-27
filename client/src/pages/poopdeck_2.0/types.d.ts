@@ -20,3 +20,14 @@ type ComponentSetters = {
   local: () => void;
   db: () => void;
 };
+
+type DisplayStateShape = {
+  zoomLevel: number;
+  canvas:
+    | "fit-content"
+    | "page"
+    | "mobile"
+    | "desktop"
+    | "monitor"
+    | "viewport";
+};

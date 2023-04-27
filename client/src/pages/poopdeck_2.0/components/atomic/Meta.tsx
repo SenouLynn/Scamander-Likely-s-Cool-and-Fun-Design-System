@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { Input } from "../../../poopdeck/components/Input";
-import { SelectType } from "../../../poopdeck/components/SelectType";
-import { SelectElementType } from "../../../poopdeck/components/SelectElement";
 import { PoopDeckContext } from "../../utils/context";
+import { Input } from "./Input";
+import { SelectType } from "./SelectType";
+import { SelectElementType } from "./SelectElement";
 
 export default function Meta(props: { pack: ComponentPackage }) {
   const { update, pack } = useContext(PoopDeckContext);

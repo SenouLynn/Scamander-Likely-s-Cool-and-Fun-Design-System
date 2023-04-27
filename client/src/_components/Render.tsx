@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ThemeContext } from "./_theme/ThemeContext";
 import { assembleStyles } from "./_theme/utils/helpers";
-import { PoopDeckContext } from "../buildComponents/poopdeck/context";
+import { PoopDeckContext } from "pages/poopdeck_2.0/utils/context";
 
 //<--- Master Renderer: Highly load bearing --->//
 export const Render = (

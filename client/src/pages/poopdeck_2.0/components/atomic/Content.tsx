@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { PoopDeckContext } from "../../utils/context";
-import { Input } from "../../../poopdeck/components/Input";
+import { Input } from "./Input";
+
 export default function Content({ pack }: { pack: ComponentPackage }) {
   const { update } = useContext(PoopDeckContext);
+
   const handleChildren = (value: string) => {
     let newPack = { ...pack };
     newPack.children = [value];

@@ -1,11 +1,9 @@
-import React from "react";
 import { PoopDeckContext } from "./utils/context";
-import { usePoopDeck } from "./utils/hooks";
-import { usePoopDeckHotKeys } from "../poopdeck/utils/hooks";
+import { usePoopDeck, usePoopDeckHotKeys } from "./utils/hooks";
 
 import ManageComponent from "./components/ManageComponent";
-import ZoomWrapper from "./components/ZoomWrapper";
 import TopNav from "./components/TopNav";
+import ZoomWrapper from "./components/ZoomWrapper";
 import Display from "./components/atomic/Display";
 import { seedPack } from "./utils/create";
 

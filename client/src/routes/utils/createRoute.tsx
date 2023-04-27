@@ -3,7 +3,6 @@ import { useLoaderData } from "react-router-dom";
 import ThemeProvider from "../../_components/theme_2.0/ThemeProvider";
 import getTheme from "../../_components/theme_2.0/getters/dB/getFieldFromDb";
 import Render from "../Page";
-import PoopDeck from "../../buildComponents/poopdeck/PoopDeck";
 
 export const createThemepage = (route: Partial<PageRoute>): PageRoute => {
   return {

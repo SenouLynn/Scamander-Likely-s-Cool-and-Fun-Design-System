@@ -1,7 +1,43 @@
 import { faker } from "@faker-js/faker";
-import { createComponentPackage } from "../../../_components/_theme/utils/helpers";
+import ComponentWrapper from "../../../_components/theme_2.0/ComponentWrapper";
+import { renderChildren } from "_components/theme_2.0/utils/hooks/helpers";
+import { Components } from "_components/theme_2.0/declarations/_localComponents.manifest";
 
 export const uniqueId = () => faker.random.alphaNumeric(6);
+
+export const createComponentPackage = ({
+  props,
+  pack,
+}: {
+  props?: ComponentProps;
+  pack?: Partial<ComponentPackage>;
+}): ComponentPackage => {
+  let component = {
+    role: "wrapper",
+    location: props?.location || uniqueId(),
+    label: "",
+    Component: Components.BlackBox,
+    componentId: props?.componentId || pack?.location || "0",
+    defaultStyleId: props?.defaultStyleId || "",
+    childIds: [],
+    styles: {
+      ...pack?.styles,
+      ...props?.styles,
+      className: [props?.styles?.className, pack?.styles?.className].join(" "),
+    },
+    subComponents: props?.subComponents || [],
+    children: [],
+    render: (props: ComponentWrapperProps) => {
+      return (
+        <ComponentWrapper {...props}>
+          {renderChildren(props.props)}
+        </ComponentWrapper>
+      );
+    },
+    ...pack,
+  };
+  return component;
+};
 
 export const createLocation = (parent: Partial<ComponentPackage>) => {
   const { location = undefined } = parent;
@@ -20,7 +56,10 @@ export const seedPack = (pack?: Partial<ComponentPackage>) =>
     },
   });
 
-export const updateField = (pack: ComponentPackage, packField: PackField) => {
+export const updateField = (
+  pack: ComponentPackage,
+  packField: ComponentPackageSet
+) => {
   let field = { ...packField };
   field[pack.location] = pack;
   return field;
@@ -40,7 +79,7 @@ export const createDisplayState = (state?: Partial<DisplayStateShape>) => {
 export const createLocalField = (
   pack: ComponentPackage,
   componentList: ComponentPackageSet,
-  field: PackField = {}
+  field: ComponentPackageSet = {}
 ) => {
   const { componentId = "" } = pack;
 
