@@ -1,19 +1,19 @@
 import { useContext } from "react";
-import { ThemeContext } from "./_theme/ThemeContext";
-import { assembleStyles } from "./_theme/utils/helpers";
 import { PoopDeckContext } from "pages/poopdeck_2.0/utils/context";
+import { ThemeContext } from "./theme_2.0/ThemeProvider";
+import { assembleStyles } from "./theme_2.0/utils/hooks/helpers";
 
-//<--- Master Renderer: Highly load bearing --->//
+//<--- Master Renderer: Highly load beaaring --->//
 export const Render = (
   props: ComponentProps,
   pack: Partial<ComponentPackage>
 ) => {
-  const { componentPackage } = useContext(ThemeContext);
+  const { get } = useContext(ThemeContext);
   const { field = null } = useContext(PoopDeckContext);
   //1.Theme styles
-  let themePack = componentPackage({
+  let themePack = get.pack({
     componentId: pack.componentId || props.componentId || "container",
-    defaultStyleId: pack.defaultStyleId || props.defaultStyleId || "container",
+    location: pack.location || props.location || "container",
   });
 
   let { pack: packOverride } = buildRenderPackage({

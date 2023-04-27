@@ -1,5 +1,5 @@
+import { createComponentPackage } from "pages/poopdeck_2.0/utils/create";
 import { mergeFields } from "../../../../pages/poopdeck_2.0/utils/helpers";
-import { createComponentPackage } from "../../../_theme/utils/helpers";
 
 export const setters = (
   theme: AtLeast<ThemeProps, "themeField">,

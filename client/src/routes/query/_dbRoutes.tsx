@@ -15,13 +15,11 @@ export const dbRoutes = {
       payload: {},
     }),
   getTheme: ({ project, themeId }: { project: string; themeId: string }) =>
-    createRouteConfig(
-      createRoute({
-        endpoint: `/getTheme/${project}/${themeId}`,
-        method: "get",
-        payload: {},
-      })
-    ),
+    createRoute({
+      endpoint: `/getTheme/${project}/${themeId}`,
+      method: "get",
+      payload: {},
+    }),
   updateComponents: ({
     components,
     project,

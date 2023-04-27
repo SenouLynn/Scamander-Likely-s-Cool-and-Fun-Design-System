@@ -1,4 +1,4 @@
-import { createComponentPackage } from "./_components/_theme/utils/helpers";
+import { createComponentPackage } from "pages/poopdeck_2.0/utils/create";
 import Router from "./routes/Router";
 import { createThemepage } from "./routes/utils/createRoute";
 

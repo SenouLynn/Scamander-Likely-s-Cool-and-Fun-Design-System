@@ -11,10 +11,8 @@ export const createRouteConfig = (props: EndPointConfig): RouteConfig => {
   };
 };
 
-export const dbGet = {
-  getTheme: (props: { project: string; themeId: string }) =>
-    createRouteConfig(dbRoutes.getTheme(props)),
-};
+//THESE DO NOTHING, JUST ORGANIZING
+
 
 export const dbPost = {
   updateComponents: (props: {

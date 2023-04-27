@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { Render } from "_components/Render";
+import { createComponentPackage } from "pages/poopdeck_2.0/utils/create";
 
 export const renderChildren = (props: ComponentProps) => {
   return props.subComponents && props.subComponents.length > 0 ? (
@@ -15,4 +16,26 @@ export const renderChildren = (props: ComponentProps) => {
   ) : (
     <>{props.children}</>
   );
+};
+
+export const assembleStyles = ({
+  props,
+  componentPackage,
+}: {
+  props?: StylePackage;
+  componentPackage?: Partial<ComponentPackage>;
+}): ComponentPackage => {
+  return createComponentPackage({
+    props,
+    pack: {
+      styles: {
+        ...componentPackage?.styles,
+        ...props,
+        className: [componentPackage?.styles?.className, props?.className]
+          .join(" ")
+          .trim(),
+      },
+      ...componentPackage,
+    },
+  });
 };

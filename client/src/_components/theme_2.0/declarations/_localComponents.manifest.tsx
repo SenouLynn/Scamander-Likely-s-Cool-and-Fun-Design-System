@@ -5,22 +5,22 @@ import { Render } from "../../Render";
 export const Components = {
   NavItem: (props: ComponentProps) =>
     Render(props, {
-      defaultStyleId: "nav_item",
+      location: "nav_item",
       componentId: "",
     }),
   Container: (props: ComponentProps) =>
     Render(props, {
-      defaultStyleId: "container",
+      location: "container",
       componentId: "",
     }),
   Navbar: (props: ComponentProps) =>
     Render(props, {
-      defaultStyleId: "nav_wrapper",
+      location: "nav_wrapper",
       componentId: "",
     }),
   BlackBox: (props: ComponentProps) =>
     Render(props, {
-      defaultStyleId: "black_box",
+      location: "black_box",
       componentId: "black_box",
     }),
 };

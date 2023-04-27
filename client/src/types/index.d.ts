@@ -68,18 +68,15 @@ type ComponentPackage = {
   role: string; //Elements;
   type?: "page" | "section" | "component";
   label: string;
-  defaultStyleId: string;
   componentId: string;
-  Component: (props: ComponentProps) => JSX.Element;
+  location: string;
   styles: StylePackage & {
     className?: string;
     imgUrl?: string;
   };
   subComponents: AtLeast<ComponentPackage, "location">[];
-  childIds: string[];
   onClick?: (props: any) => void;
   children: string[];
-  location: string;
   render: (props: ComponentWrapperProps) => JSX.Element | React.ReactNode;
 };
 

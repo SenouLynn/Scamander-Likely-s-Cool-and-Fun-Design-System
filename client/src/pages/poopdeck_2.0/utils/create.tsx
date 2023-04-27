@@ -12,14 +12,11 @@ export const createComponentPackage = ({
   props?: ComponentProps;
   pack?: Partial<ComponentPackage>;
 }): ComponentPackage => {
-  let component = {
+  return {
     role: "wrapper",
     location: props?.location || uniqueId(),
     label: "",
-    Component: Components.BlackBox,
     componentId: props?.componentId || pack?.location || "0",
-    defaultStyleId: props?.defaultStyleId || "",
-    childIds: [],
     styles: {
       ...pack?.styles,
       ...props?.styles,
@@ -36,7 +33,6 @@ export const createComponentPackage = ({
     },
     ...pack,
   };
-  return component;
 };
 
 export const createLocation = (parent: Partial<ComponentPackage>) => {

@@ -1,8 +1,7 @@
 import { useState, useContext } from "react";
 import { updateZoomLevel, updaters } from "./updaters";
-import { createComponentPackage } from "../../../_components/_theme/utils/helpers";
 import { useSetter as setters } from "./setters";
-import { createDisplayState, createLocalField, seedPack } from "./create";
+import { createComponentPackage, createDisplayState, createLocalField, seedPack } from "./create";
 import { useHotKey } from "../../../utils/hooks/hotkeys";
 import { PoopDeckContext } from "./context";
 import { ThemeContext } from "../../../_components/theme_2.0/ThemeProvider";

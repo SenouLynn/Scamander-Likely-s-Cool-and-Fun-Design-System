@@ -265,3 +265,4 @@ interface ComponentStyleProps {
   backgroundColor?: string;
   // fontSize?: GenericSizes;
 }
+

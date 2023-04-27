@@ -1,7 +1,7 @@
 import { useContext, useMemo } from "react";
-import { createComponentPackage } from "../../../_components/_theme/utils/helpers";
 import Builder from "./Builder";
 import { PoopDeckContext } from "../utils/context";
+import { createComponentPackage } from "../utils/create";
 
 export default function ManageComponent({ location }: { location: any }) {
   const { field, focused } = useContext(PoopDeckContext);

@@ -1,4 +1,5 @@
-import { createComponentPackage } from "../../../_components/_theme/utils/helpers";
+import { createComponentPackage } from "./create";
+
 
 export const addComponentToField = (
   p: ComponentPackage,

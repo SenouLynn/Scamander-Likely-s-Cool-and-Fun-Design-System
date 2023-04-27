@@ -1,4 +1,3 @@
-import { createComponentPackage } from "../../../_components/_theme/utils/helpers";
 import { addComponentToField } from "./helpers";
 
 export const updaters = (

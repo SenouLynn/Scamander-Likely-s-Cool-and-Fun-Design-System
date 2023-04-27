@@ -1,7 +1,7 @@
-import {
-  assembleStyles,
-  createComponentPackage,
-} from "../../../_theme/utils/helpers";
+import { assembleStyles } from "_components/theme_2.0/utils/hooks/helpers";
+import { createComponentPackage } from "pages/poopdeck_2.0/utils/create";
+
+createComponentPackage;
 
 export const propStyles: StylePackage = {
   className: "test",

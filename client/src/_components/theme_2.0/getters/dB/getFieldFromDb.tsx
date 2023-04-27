@@ -1,10 +1,10 @@
-import { dbGet } from "../../../../routes/query/actions";
+import { dbRoutes } from "routes/query/dbRoutes";
 
 const project = "fresh-pressed";
 const themeId = "development";
 
 const getTheme = async () => {
-  const route = dbGet.getTheme({ project, themeId });
+  const route = dbRoutes.getTheme({ project, themeId });
   const res = await fetch(route.endpoint);
   let data = await res.json();
   return data;

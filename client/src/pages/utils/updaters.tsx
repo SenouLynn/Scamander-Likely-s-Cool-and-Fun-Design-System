@@ -14,7 +14,7 @@ export const updateComponentSubComponents = (
         props: {},
         pack: {
           componentId: props.id,
-          defaultStyleId: props.id,
+          location: props.id,
           subComponents: props.subComponents,
         },
       });
@@ -31,7 +31,7 @@ export const updateStyles = (props: UpdateStyleProps) => {
         props: {},
         pack: {
           componentId: props.id,
-          defaultStyleId: props.id,
+          location: props.id,
           styles: { ...props.styles, className: "" },
         },
       });

@@ -21,7 +21,7 @@ export const defaultStyles = (
   return {
     container: createComponentPackage({
       pack: {
-        defaultStyleId: "container",
+        location: "container",
         label: "Container",
         styles: {},
       },

@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
-import { Render } from "../../Render";
-import ComponentWrapper from "../../theme_2.0/ComponentWrapper";
-import Components from "../../theme_2.0/declarations/_localComponents.manifest";
+import { Render } from "_components/Render";
+import ComponentWrapper from "_components/theme_2.0/ComponentWrapper";
+import { assembleStyles } from "_components/theme_2.0/utils/hooks/helpers";
 import { uniqueId } from "pages/poopdeck_2.0/utils/create";
 
 export const renderChildren = (props: ComponentProps) => {
@@ -27,14 +27,11 @@ export const createComponentPackage = ({
   props?: ComponentProps;
   pack?: Partial<ComponentPackage>;
 }): ComponentPackage => {
-  let component = {
+  return {
     role: "wrapper",
     location: props?.location || uniqueId(),
     label: "",
-    Component: Components.Container,
     componentId: props?.componentId || pack?.location || "0",
-    defaultStyleId: props?.defaultStyleId || "",
-    childIds: [],
     styles: {
       ...pack?.styles,
       ...props?.styles,
@@ -51,31 +48,23 @@ export const createComponentPackage = ({
     },
     ...pack,
   };
-  return component;
 };
 
 export const getComponentPackage = ({
   initData,
-  defaultStyleId,
+  location,
   componentId,
 }: {
   initData: InitData;
-  defaultStyleId: string;
+  location: string;
   componentId?: string;
 }): ComponentPackage => {
-  const defaultPackage = initData.defaultStyles[defaultStyleId]
-    ? initData.defaultStyles[defaultStyleId]
-    : {};
-
   const customPackage =
     componentId && initData.componentList[componentId]
       ? initData.componentList[componentId]
       : {};
   const payload = createComponentPackage({
     pack: {
-      Component: Components.Container,
-      defaultStyleId: defaultStyleId,
-      ...defaultPackage,
       ...customPackage,
     },
   });
@@ -84,11 +73,11 @@ export const getComponentPackage = ({
 
 export const getPagePackage = ({
   initData,
-  defaultStyleId,
+  location,
   componentId,
 }: {
   initData: InitData;
-  defaultStyleId: string;
+  location: string;
   componentId?: string;
 }): ComponentPackage => {
   const page =
@@ -98,7 +87,7 @@ export const getPagePackage = ({
 
   const payload = createComponentPackage({
     pack: {
-      defaultStyleId: defaultStyleId,
+      location: location,
       componentId: componentId || "",
 
       ...page,
@@ -107,41 +96,15 @@ export const getPagePackage = ({
   return payload;
 };
 
-export const assembleStyles = ({
-  props,
-  componentPackage,
-}: {
-  props?: StylePackage;
-  componentPackage?: Partial<ComponentPackage>;
-}): ComponentPackage => {
-  return createComponentPackage({
-    props,
-    pack: {
-      defaultStyleId: componentPackage?.defaultStyleId,
-      componentId: componentPackage?.componentId,
-      label: componentPackage?.label,
-      subComponents: componentPackage?.subComponents,
-      styles: {
-        ...componentPackage?.styles,
-        ...props,
-
-        className: [componentPackage?.styles?.className, props?.className]
-          .join(" ")
-          .trim(),
-      },
-    },
-  });
-};
-
 export const buildComponentPackage = (
   props: ComponentProps,
   pack: Partial<ComponentPackage>,
   initData: InitData
 ) => {
   const c = getComponentPackage({
-    initData,
-    defaultStyleId: pack.defaultStyleId || "container",
+    location: pack.location || "container",
     componentId: pack.componentId || "container",
+    initData,
   });
   //2.Build styles for
   const page = assembleStyles({ props, componentPackage: c });
@@ -210,7 +173,7 @@ export const buildFieldFromPage = (
   const p = getPagePackage({
     initData,
     componentId: pack.componentId || "container",
-    defaultStyleId: pack.defaultStyleId || "container",
+    location: pack.location || "container",
   });
 
   const page = assembleStyles({ props, componentPackage: p });

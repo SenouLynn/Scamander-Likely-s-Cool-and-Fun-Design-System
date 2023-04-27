@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { renderHook } from "@testing-library/react";
-import { createComponentPackage } from "../../_theme/utils/helpers";
 import { useTheme } from "../utils/hooks/useTheme";
+import { createComponentPackage } from "pages/poopdeck_2.0/utils/create";
 
 const component = createComponentPackage({});
 
