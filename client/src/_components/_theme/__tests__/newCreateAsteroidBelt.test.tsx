@@ -1,4 +1,4 @@
-import { createAsteroidBelt } from "../../../buildComponents/poopdeck/utils/helpers";
+import { createAsteroidBelt } from "../../../_buildComponents/poopdeck/utils/helpers";
 import { createComponentPackage, createInitData } from "../utils/helpers";
 
 //Packs

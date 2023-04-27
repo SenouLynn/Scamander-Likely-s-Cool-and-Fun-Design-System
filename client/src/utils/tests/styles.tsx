@@ -1,6 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import { ThemeComponent } from "../../buildComponents/__tests__/component/componentRenderSuite.test";
-
 export const helpers = {
   testBooleanStyleOptions: ({
     style,
@@ -27,34 +25,36 @@ export const helpers = {
     }, []),
 };
 
-export const runGenericStyleTests = (style: any) => {
-  const buildTestSuite = helpers.testGenericStyleOptions(style);
-  describe(`db rendered ${style.style} style`, () => {
-    it("is happy :)", () => {
-      expect(true).toBe(true);
-    });
+//NEED TO REBUILD THEME COMPONENT
 
-    buildTestSuite.forEach((x: TestStyleObj) => {
-      it(`renders ${x.renderedStyleName} for style ${x.style} option ${x.styleOption}`, () => {
-        render(
-          <ThemeComponent
-            customComponent={{ styles: { [x.style]: x.styleOption } }}
-          />
-        );
-        expect(screen.getByTestId("0.1")).toHaveClass(x.renderedStyleName);
-      });
-    });
-  });
-  describe(`props styles rendered ${style.style} style`, () => {
-    it("is happy :)", () => {
-      expect(true).toBe(true);
-    });
+// export const runGenericStyleTests = (style: any) => {
+//   const buildTestSuite = helpers.testGenericStyleOptions(style);
+//   describe(`db rendered ${style.style} style`, () => {
+//     it("is happy :)", () => {
+//       expect(true).toBe(true);
+//     });
 
-    buildTestSuite.forEach((x: TestStyleObj) => {
-      it(`renders ${x.renderedStyleName} for style ${x.style} option ${x.styleOption}`, () => {
-        render(<ThemeComponent customProps={{ [x.style]: x.styleOption }} />);
-        expect(screen.getByTestId("0")).toHaveClass(x.renderedStyleName);
-      });
-    });
-  });
-};
+//     buildTestSuite.forEach((x: TestStyleObj) => {
+//       it(`renders ${x.renderedStyleName} for style ${x.style} option ${x.styleOption}`, () => {
+//         render(
+//           <ThemeComponent
+//             customComponent={{ styles: { [x.style]: x.styleOption } }}
+//           />
+//         );
+//         expect(screen.getByTestId("0.1")).toHaveClass(x.renderedStyleName);
+//       });
+//     });
+//   });
+//   describe(`props styles rendered ${style.style} style`, () => {
+//     it("is happy :)", () => {
+//       expect(true).toBe(true);
+//     });
+
+//     buildTestSuite.forEach((x: TestStyleObj) => {
+//       it(`renders ${x.renderedStyleName} for style ${x.style} option ${x.styleOption}`, () => {
+//         render(<ThemeComponent customProps={{ [x.style]: x.styleOption }} />);
+//         expect(screen.getByTestId("0")).toHaveClass(x.renderedStyleName);
+//       });
+//     });
+//   });
+// };

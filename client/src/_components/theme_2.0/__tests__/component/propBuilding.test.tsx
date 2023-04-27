@@ -1,7 +1,8 @@
 import {
   assembleStyles,
   createComponentPackage,
-} from "../../../_components/_theme/utils/helpers";
+} from "../../../_theme/utils/helpers";
+
 export const propStyles: StylePackage = {
   className: "test",
   display: "flex",
@@ -10,7 +11,7 @@ const componentPackage: ComponentPackage = createComponentPackage({
   props: {},
   pack: {
     location: "0",
-    subComponents: [{ componentId: "black_box", defaultStyleId: "black_box" }],
+    subComponents: [{ componentId: "black_box", location: "black_box" }],
     styles: {
       display: "grid",
       margin: "xl",

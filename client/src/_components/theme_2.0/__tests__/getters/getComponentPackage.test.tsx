@@ -1,4 +1,4 @@
-import { createLocation } from "../../../../buildComponents/poopdeck/utils/helpers";
+import { createLocation } from "../../../../_buildComponents/poopdeck/utils/helpers";
 import { createComponentPackage } from "../../../_theme/utils/helpers";
 import { getPackFromField } from "../../getters/getPackFromField";
 const parent = createComponentPackage({
