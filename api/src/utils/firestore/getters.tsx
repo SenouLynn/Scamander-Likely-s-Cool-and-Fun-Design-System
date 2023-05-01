@@ -13,12 +13,14 @@ import { createResponse } from "../builders/createResponseMessage";
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+//Get all docs from a collection
 export const getAllDocs = async (query: string[]) => {
   const ref = () => getDocs(collection(db, "projects", ...query));
   const response = executeCollectionFn({ dbFn: ref, query });
   return response;
 };
 
+//Get a single document from a colle
 export const getDocument = async (query: string[]) => {
   console.log("query", "projects", query);
   const ref = () => getDoc(doc(db, "projects", ...query));
@@ -26,6 +28,8 @@ export const getDocument = async (query: string[]) => {
   return response;
 };
 
+
+//Execute functions
 const executeDocFn = async ({ dbFn }: { dbFn: any }) => {
   try {
     const doc = await dbFn();

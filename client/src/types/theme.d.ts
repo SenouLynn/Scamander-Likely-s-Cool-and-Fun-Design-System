@@ -43,8 +43,9 @@ type ThemeProps = {
     pack: (ids: GetComponentIds) => ComponentPackage | null;
   };
   set: {
-    field: (component: ComponentPackage) => any;
+    field: (pack: ComponentPackage) => any;
     fieldList: (fieldList: ComponentPackageSet) => any;
+    deletePack: (pack: ComponentPackage) => any;
   };
 };
 

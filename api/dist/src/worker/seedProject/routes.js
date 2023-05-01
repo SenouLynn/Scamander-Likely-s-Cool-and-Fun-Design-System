@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const firebase_interface_1 = require("../../firebase_interface");
 const createComponentPackage_1 = require("../../utils/builders/createComponentPackage");
 const createResponseMessage_1 = require("../../utils/builders/createResponseMessage");
+const setters_1 = require("../../utils/firestore/setters");
 const worker_1 = require("./worker");
 const express = require("express");
 const router = express.Router();
@@ -34,9 +34,9 @@ router.post("/addComponent/:project/:theme", (req, res) => __awaiter(void 0, voi
     const projectId = "freshPressed";
     const theme = "development";
     const updaterKey = "field";
-    const cleanedPack = (0, createComponentPackage_1.createComponentPackage)({ pack: req.body, props: {} });
+    const cleanedPack = (0, createComponentPackage_1.buildPack)({ pack: req.body, props: {} });
     const location = cleanedPack.location;
-    const updateComponent = yield (0, firebase_interface_1.writeToDb)({
+    const updateComponent = yield (0, setters_1.writeToDb)({
         query: [projectId, "theme", theme, updaterKey, location],
         payload: cleanedPack,
     });

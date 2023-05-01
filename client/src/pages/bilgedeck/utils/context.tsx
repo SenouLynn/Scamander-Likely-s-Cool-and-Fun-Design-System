@@ -1,16 +1,14 @@
 import { createContext } from "react";
-import { deletePack } from "./db";
 
 export const createBilgeDeckContext = (
   props?: Partial<BilgeDeckContext>
 ): BilgeDeckContext => {
   return {
     update: {
-      deletePack,
+      deletePack: () => {},
       updatePack: () => {},
       addPack: () => {},
     },
-
     ...props,
   };
 };
@@ -22,9 +20,9 @@ export const BilgedeckContext = createContext<BilgeDeckContext>(
 type BilgeDeckContext = {
   field?: ComponentPackageSet;
   update: {
-    deletePack: (ids: ComponentIds) => any; //db response
+    deletePack: (ids: ComponentPackage) => any; //db response
     updatePack: () => void;
-    addPack: () => void;
+    addPack: (pack: ComponentPackage) => any;
   };
   children?: any;
 };

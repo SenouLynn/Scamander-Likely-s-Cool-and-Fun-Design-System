@@ -1,4 +1,4 @@
-export const createComponentPackage = ({
+export const buildPack = ({
   props,
   pack,
 }: {

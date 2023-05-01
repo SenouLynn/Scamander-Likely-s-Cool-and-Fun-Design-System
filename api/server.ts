@@ -1,7 +1,6 @@
 import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
-import getProjectRoutes from "./src/worker/getProject/routes";
 import seedProjectRoutes from "./src/worker/seedProject/routes";
 import getManageProject from "./src/worker/manageTheme/routes.get";
 import postManageProject from "./src/worker/manageTheme/routes.post";
@@ -15,7 +14,6 @@ const port = process.env.PORT || 8000;
 
 //Imported Routes
 app.use("/api", seedProjectRoutes);
-app.use("/api", getProjectRoutes);
 app.use("/api", getManageProject);
 app.use("/api", postManageProject);
 

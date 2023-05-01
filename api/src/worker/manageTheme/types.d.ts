@@ -5,6 +5,11 @@ type UpdateThemePayload = {
     [key: string]: any; //Type this yos
   };
 };
+type DeleteComponentProps = {
+  projectId: string;
+  themeId: string;
+  location: string;
+};
 
 type EndPointConfig = {
   endpoint: string;

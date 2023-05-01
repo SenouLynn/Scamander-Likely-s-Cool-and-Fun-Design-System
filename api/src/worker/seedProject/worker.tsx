@@ -33,7 +33,6 @@ export const createTheme = (theme?: Partial<ThemePackage>): ThemePackage => {
     label: "Development",
     field: {},
     routes: {},
-
     ...theme,
   };
 };

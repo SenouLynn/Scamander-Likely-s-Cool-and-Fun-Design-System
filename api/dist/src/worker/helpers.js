@@ -9,7 +9,6 @@ const createAppObject = (app) => {
                 components: {},
                 field: {},
                 routes: {},
-                defaultStyles: {},
             },
         } }, app);
 };

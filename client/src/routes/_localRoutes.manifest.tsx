@@ -1,5 +1,5 @@
 import { createPageRoute } from "./utils/createRoute";
-import Poopdeck from "pages/poopdeck_2.0/Poopdeck";
+import Poopdeck from "pages/poopdeck/Poopdeck";
 import Bilgedeck from "pages/bilgedeck/Bilgedeck";
 export const localRoutes: ReactRoute[] = [
   //All subroutes handled as subpage

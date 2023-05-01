@@ -6,10 +6,13 @@
 //5: Salvage backend
 //6: Create routes from front to back, threading needle. Should probably test
 
+import { Icon } from "_components/icons/_icon.manifest";
+import { ThemeContext } from "_components/theme/ThemeProvider";
+import { buildPack } from "pages/poopdeck/utils/create";
+import { useContext } from "react";
 import TabularDisplay from "./components/TabularDisplay";
 import { BilgedeckContext } from "./utils/context";
 import { useBilgeDeck } from "./utils/hooks";
-import { Icon } from "_components/icons/_icon.manifest";
 
 export default function Bilgedeck(props?: Partial<ThemeProps>) {
   const value = useBilgeDeck({});
@@ -24,16 +27,12 @@ export default function Bilgedeck(props?: Partial<ThemeProps>) {
             </span>
             <h1>Bilgedeck</h1>
           </span>
-          <button>Add Component</button>
           <button
             onClick={() =>
-              value.update.deletePack({
-                location: "testing",
-                componentId: "testing",
-              })
+              value.update.addPack(buildPack({ pack: { label: "testing" } }))
             }
           >
-            Test Delete
+            Add Component
           </button>
         </div>
         <TabularDisplay />

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeBatchDocs = exports.writeToDb = void 0;
+exports.deleteFieldDoc = exports.writeBatchDocs = exports.updateFieldDoc = exports.writeToDb = void 0;
 const app_1 = require("firebase/app");
 const firestore_1 = require("firebase/firestore");
 const firebaseConfig_1 = __importDefault(require("../../../firebaseConfig"));
@@ -30,6 +30,26 @@ const writeToDb = ({ query, payload, }) => __awaiter(void 0, void 0, void 0, fun
     }
 });
 exports.writeToDb = writeToDb;
+const updateFieldDoc = ({ query, key, value, }) => __awaiter(void 0, void 0, void 0, function* () {
+    const ref = (0, firestore_1.doc)(db, "projects", ...query);
+    try {
+        yield (0, firestore_1.updateDoc)(ref, { [key]: value });
+        return (0, createResponseMessage_1.createResponse)({
+            payload: { message: `Updated ${key} to ${value}`, data: value },
+        });
+    }
+    catch (e) {
+        return (0, createResponseMessage_1.createResponse)({
+            status: "error",
+            payload: {
+                status: "error",
+                message: `Error updating ${key} to ${value}`,
+                data: value,
+            },
+        });
+    }
+});
+exports.updateFieldDoc = updateFieldDoc;
 const writeBatchDocs = ({ query, payloads, }) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const batch = (0, firestore_1.writeBatch)(db);
@@ -45,9 +65,32 @@ const writeBatchDocs = ({ query, payloads, }) => __awaiter(void 0, void 0, void 
     }
     catch (e) {
         return (0, createResponseMessage_1.createResponse)({
+            status: "error",
             payload: { status: "error", message: `Error writing batch to db` },
         });
     }
 });
 exports.writeBatchDocs = writeBatchDocs;
+const deleteFieldDoc = ({ query, key, }) => __awaiter(void 0, void 0, void 0, function* () {
+    const ref = (0, firestore_1.doc)(db, "projects", ...query);
+    yield (0, firestore_1.updateDoc)(ref, {
+        [key]: (0, firestore_1.deleteField)(),
+    });
+    try {
+        const ref = (0, firestore_1.doc)(db, "projects", ...query);
+        yield (0, firestore_1.updateDoc)(ref, {
+            [key]: (0, firestore_1.deleteField)(),
+        });
+        return (0, createResponseMessage_1.createResponse)({
+            payload: { message: `Deleted ${key}` },
+        });
+    }
+    catch (e) {
+        return (0, createResponseMessage_1.createResponse)({
+            status: "error",
+            payload: { message: "Could not delete", payload: e },
+        });
+    }
+});
+exports.deleteFieldDoc = deleteFieldDoc;
 //# sourceMappingURL=setters.js.map

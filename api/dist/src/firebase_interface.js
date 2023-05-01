@@ -12,11 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeToDb = exports.createProjectInDb = exports.getProjectFromDb = exports.getAppFromDb = void 0;
+exports.writeToDb = exports.getProjectFromDb = exports.getAppFromDb = void 0;
 const app_1 = require("firebase/app");
 const firestore_1 = require("firebase/firestore");
 const firebaseConfig_1 = __importDefault(require("../firebaseConfig"));
 const createLog_1 = require("./utils/log/createLog");
+const createResponseMessage_1 = require("./utils/builders/createResponseMessage");
 const app = (0, app_1.initializeApp)(firebaseConfig_1.default);
 const db = (0, firestore_1.getFirestore)(app);
 const getAppFromDb = (app) => __awaiter(void 0, void 0, void 0, function* () {
@@ -55,31 +56,20 @@ const getProjectFromDb = (project) => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.getProjectFromDb = getProjectFromDb;
-const createProjectInDb = ({ project, payload, }) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        yield (0, firestore_1.setDoc)((0, firestore_1.doc)(db, "projects", project), payload);
-        return { status: "success", id: project, payload: payload };
-    }
-    catch (e) {
-        console.error("Error adding document: ", e);
-        return {
-            status: "error",
-            id: project,
-            payload: payload,
-            error: "Error adding document: ",
-            e,
-        };
-    }
-});
-exports.createProjectInDb = createProjectInDb;
 const writeToDb = ({ query, payload, }) => __awaiter(void 0, void 0, void 0, function* () {
     const ref = (0, firestore_1.doc)(db, "projects", ...query);
     try {
         yield (0, firestore_1.setDoc)(ref, payload);
-        return { status: `Wrote to db: ${query}`, id: ref.id };
+        (0, createResponseMessage_1.createResponse)({
+            status: "success",
+            payload: { message: `Wrote to db: ${query}`, payload },
+        });
     }
     catch (e) {
-        return { status: "error", id: "", error: `Error adding document:  + ${e}` };
+        return (0, createResponseMessage_1.createResponse)({
+            status: "error",
+            payload: { message: `Error adding document:  + ${e.message}`, data: e },
+        });
     }
 });
 exports.writeToDb = writeToDb;

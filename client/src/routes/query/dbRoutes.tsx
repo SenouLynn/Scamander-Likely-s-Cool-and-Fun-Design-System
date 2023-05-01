@@ -1,5 +1,5 @@
 import { createRouteConfig } from "./actions";
-import { updateComponentsPayload } from "./utils/createPayloads";
+import { packComponentsForDb } from "./utils/createPayloads";
 import { createRoute } from "./utils/createRoutes";
 
 export const dbRoutes = {
@@ -31,17 +31,27 @@ export const dbRoutes = {
     themeId: String;
     components: { [key: string]: ComponentPackage };
   }) =>
-    createRoute({
-      endpoint: `/updateTheme/${project}/${themeId}`,
-      method: "post",
-      payload: updateComponentsPayload(components),
-    }),
+    createRouteConfig(
+      createRoute({
+        endpoint: `/updateTheme/${project}/${themeId}`,
+        method: "post",
+        payload: packComponentsForDb(components),
+      })
+    ),
 
   //New Routes
-  deletePack: ({ payload, project, themeId }: DbPayload<ComponentIds>) =>
+  deletePack: ({ payload, project, themeId }: DbPayload<ComponentPackage>) =>
     createRouteConfig(
       createRoute({
         endpoint: `/deletePack/${project}/${themeId}`,
+        method: "post",
+        payload,
+      })
+    ),
+  addPack: ({ payload, project, themeId }: DbPayload<ComponentPackage>) =>
+    createRouteConfig(
+      createRoute({
+        endpoint: `/addPack/${project}/${themeId}`,
         method: "post",
         payload,
       })

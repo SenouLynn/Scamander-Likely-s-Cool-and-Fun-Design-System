@@ -1,4 +1,4 @@
-export const updateComponentsPayload = (components: {
+export const packComponentsForDb = (components: {
   [key: string]: ComponentPackage;
 }): ComponentPayloadShapeSet => {
   const payload: ComponentPayloadShapeSet = {};
@@ -8,5 +8,6 @@ export const updateComponentsPayload = (components: {
       value: component,
     };
   });
+
   return payload;
 };

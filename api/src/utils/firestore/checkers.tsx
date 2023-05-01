@@ -7,7 +7,6 @@ import {
 } from "firebase/firestore";
 import firebaseConfig from "../../../firebaseConfig";
 import { createResponse } from "../builders/createResponseMessage";
-import { log } from "../log/createLog";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -46,7 +45,7 @@ export const updateAndAddKeyValues = async ({
 }: {
   query?: string[];
   payload: ComponentPayloadShapeSet;
-}) => {
+}): Promise<ResponseMessage> => {
   try {
     const batch = writeBatch(db);
     const entries = Object.values(payload);
@@ -58,7 +57,7 @@ export const updateAndAddKeyValues = async ({
     });
 
     await batch.commit();
-    
+
     return createResponse({
       payload: { message: `Wrote ${entries.length} docs to db` },
     });

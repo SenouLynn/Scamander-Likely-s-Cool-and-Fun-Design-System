@@ -1,18 +1,17 @@
-import { createComponentPackage } from "pages/poopdeck_2.0/utils/create";
 import Router from "./routes/Router";
 import { createThemepage } from "./routes/utils/createRoute";
+import { baseComponents } from "_components/theme/declarations/_localStyles.manifest";
+
+const localTheme = {
+  routes: {
+    "/": createThemepage({ route: "/", componentIds: { location: "0" } }),
+  },
+  field: {
+    ...baseComponents,
+  },
+};
 
 function App() {
-  const localTheme = {
-    routes: {
-      "/": createThemepage({ route: "/", componentIds: { location: "0" } }),
-    },
-    themeField: {
-      "0": createComponentPackage({
-        pack: { location: "0" },
-      }),
-    },
-  };
   return (
     <div className="App">
       <Router {...localTheme} />

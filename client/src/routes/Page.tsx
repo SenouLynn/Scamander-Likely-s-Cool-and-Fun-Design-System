@@ -1,6 +1,6 @@
 import { useContext, useMemo } from "react";
-import { ThemeContext } from "../_components/theme_2.0/ThemeProvider";
-import { usePage } from "../_components/theme_2.0/utils/hooks/usePage";
+import { ThemeContext } from "../_components/theme/ThemeProvider";
+import { usePage } from "../_components/theme/utils/hooks/usePage";
 import { findPage } from "./utils/helpers";
 
 //This is the top most consumer of the theme

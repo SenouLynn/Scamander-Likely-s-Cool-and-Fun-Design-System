@@ -1,1 +1,1 @@
-export declare const createAppObject: (app?: AppDb) => AppDb;
+export declare const createAppObject: (app: any) => any;

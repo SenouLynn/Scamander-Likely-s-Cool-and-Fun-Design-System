@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { PoopDeckContext } from "pages/poopdeck_2.0/utils/context";
-import { ThemeContext } from "./theme_2.0/ThemeProvider";
-import { assembleStyles } from "./theme_2.0/utils/hooks/helpers";
+import { PoopDeckContext } from "pages/poopdeck/utils/context";
+import { ThemeContext } from "./theme/ThemeProvider";
+import { assembleStyles } from "./theme/utils/hooks/helpers";
 
 //<--- Master Renderer: Highly load beaaring --->//
 export const Render = (
@@ -14,7 +14,7 @@ export const Render = (
   let themePack = get.pack({
     componentId: pack.componentId || props.componentId || "container",
     location: pack.location || props.location || "container",
-  });
+  }) as ComponentPackage;
 
   let { pack: packOverride } = buildRenderPackage({
     pack,

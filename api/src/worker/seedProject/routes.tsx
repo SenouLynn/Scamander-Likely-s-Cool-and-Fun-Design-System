@@ -1,6 +1,6 @@
-import { writeToDb } from "../../firebase_interface";
-import { createComponentPackage } from "../../utils/builders/createComponentPackage";
+import { buildPack } from "../../utils/builders/createComponentPackage";
 import { throwError } from "../../utils/builders/createResponseMessage";
+import { writeToDb } from "../../utils/firestore/setters";
 import { createProject } from "./worker";
 
 const express = require("express");
@@ -29,10 +29,9 @@ router.post("/addComponent/:project/:theme", async (req: any, res: any) => {
   const theme = "development"; //req.params.theme;
   const updaterKey = "field";
   //Clean data for payload
-  const cleanedPack = createComponentPackage({ pack: req.body, props: {} });
+  const cleanedPack = buildPack({ pack: req.body, props: {} });
   const location = cleanedPack.location;
 
-  // const update = await updateComponentInDb({});
   const updateComponent = await writeToDb({
     query: [projectId, "theme", theme, updaterKey, location],
     payload: cleanedPack,

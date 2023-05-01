@@ -1,9 +1,5 @@
-import { getAppFromDb } from "../firebase_interface";
 
 //Read
-export const getApp = async (appId: string) => {
-  return await getAppFromDb("freshPressed");
-};
 const getComponents = () => {};
 const getPages = () => {};
 const getField = () => {};

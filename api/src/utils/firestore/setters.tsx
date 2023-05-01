@@ -1,5 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { doc, getFirestore, setDoc, writeBatch } from "firebase/firestore";
+import {
+  doc,
+  getFirestore,
+  setDoc,
+  writeBatch,
+  updateDoc,
+  deleteField,
+} from "firebase/firestore";
 import firebaseConfig from "../../../firebaseConfig";
 import { createResponse } from "../builders/createResponseMessage";
 const app = initializeApp(firebaseConfig);
@@ -18,6 +25,33 @@ export const writeToDb = async ({
     return { status: `Wrote to db: ${query}`, id: ref.id };
   } catch (e) {
     return { status: "error", id: "", error: `Error adding document:  + ${e}` };
+  }
+};
+
+export const updateFieldDoc = async ({
+  query,
+  key,
+  value,
+}: {
+  query: string[];
+  key: string;
+  value: any;
+}) => {
+  const ref = doc(db, "projects", ...query);
+  try {
+    await updateDoc(ref, { [key]: value });
+    return createResponse({
+      payload: { message: `Updated ${key} to ${value}`, data: value },
+    });
+  } catch (e) {
+    return createResponse({
+      status: "error",
+      payload: {
+        status: "error",
+        message: `Error updating ${key} to ${value}`,
+        data: value,
+      },
+    });
   }
 };
 
@@ -41,7 +75,37 @@ export const writeBatchDocs = async ({
     });
   } catch (e) {
     return createResponse({
+      status: "error",
       payload: { status: "error", message: `Error writing batch to db` },
+    });
+  }
+};
+
+export const deleteFieldDoc = async ({
+  query,
+  key,
+}: {
+  query: string[];
+  key: string;
+}): Promise<ResponseMessage> => {
+  const ref = doc(db, "projects", ...query);
+  await updateDoc(ref, {
+    [key]: deleteField(),
+  });
+
+  try {
+    const ref = doc(db, "projects", ...query);
+    await updateDoc(ref, {
+      [key]: deleteField(),
+    });
+
+    return createResponse({
+      payload: { message: `Deleted ${key}` },
+    });
+  } catch (e) {
+    return createResponse({
+      status: "error",
+      payload: { message: "Could not delete", payload: e },
     });
   }
 };

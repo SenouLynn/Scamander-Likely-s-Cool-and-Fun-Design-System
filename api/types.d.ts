@@ -19,6 +19,6 @@ type Project = {
 type ThemePackage = {
   id: string;
   label: string;
-  field: {};
-  routes: {};
+  field: ComponentPackageSet;
+  routes: ComponentPackageSet;
 };

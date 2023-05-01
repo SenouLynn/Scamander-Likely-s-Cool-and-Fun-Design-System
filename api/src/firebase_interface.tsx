@@ -1,23 +1,29 @@
 import { initializeApp } from "firebase/app";
-import { collection, doc, getDoc, getDocs, getFirestore, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  setDoc,
+} from "firebase/firestore";
 import firebaseConfig from "../firebaseConfig";
 import { log } from "./utils/log/createLog";
+import { createResponse } from "./utils/builders/createResponseMessage";
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
-//Read from db
 export const getAppFromDb = async (app: string) => {
-  //collection
   const querySnapshot = await getDocs(collection(db, app));
+
   let payload: any = {};
-  //Clean data here
+
   querySnapshot.forEach((doc) => {
     console.log(`${doc.id} => ${doc.data()}`);
     payload[doc.id] = doc.data();
   });
+
   return payload;
 };
 
@@ -45,28 +51,6 @@ export const getProjectFromDb = async (project: string) => {
   }
 };
 
-export const createProjectInDb = async ({
-  project,
-  payload,
-}: {
-  project: string;
-  payload: Project;
-}) => {
-  try {
-    await setDoc(doc(db, "projects", project), payload);
-
-    return { status: "success", id: project, payload: payload };
-  } catch (e) {
-    console.error("Error adding document: ", e);
-    return {
-      status: "error",
-      id: project,
-      payload: payload,
-      error: "Error adding document: ",
-      e,
-    };
-  }
-};
 
 // export const getAllDocs = async (query: string[]) => {
 //   const ref = collection(db, "projects", ...query);
@@ -100,10 +84,17 @@ export const writeToDb = async ({
   payload: any;
 }) => {
   const ref = doc(db, "projects", ...query);
+
   try {
     await setDoc(ref, payload);
-    return { status: `Wrote to db: ${query}`, id: ref.id };
+    createResponse({
+      status: "success",
+      payload: { message: `Wrote to db: ${query}`, payload },
+    });
   } catch (e) {
-    return { status: "error", id: "", error: `Error adding document:  + ${e}` };
+    return createResponse({
+      status: "error",
+      payload: { message: `Error adding document:  + ${e.message}`, data: e },
+    });
   }
 };

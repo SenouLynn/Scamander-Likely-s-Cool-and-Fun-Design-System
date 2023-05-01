@@ -1,4 +1,4 @@
-export const createAppObject = (app?: Partial<AppDb>): AppDb => {
+export const createAppObject = (app: any) => {
   return {
     themes: {
       production: {},
@@ -7,7 +7,6 @@ export const createAppObject = (app?: Partial<AppDb>): AppDb => {
         components: {},
         field: {},
         routes: {},
-        defaultStyles: {},
       },
     },
     ...app,

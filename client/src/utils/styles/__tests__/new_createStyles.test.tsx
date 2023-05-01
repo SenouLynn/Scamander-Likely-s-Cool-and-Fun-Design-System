@@ -1,5 +1,5 @@
-import { createComponentPackage } from "../../../_components/_theme/utils/helpers";
-import { genericSizes, styleOptions } from "../_styleBuilders.manifest";
+import { buildPack } from "pages/poopdeck/utils/create";
+import { styleOptions } from "../_styleBuilders.manifest";
 
 export const createStyles = (pack: ComponentPackage) => {
   const { styles } = pack;
@@ -18,7 +18,7 @@ export const createStyles = (pack: ComponentPackage) => {
 };
 
 const component = (style: { [key: string]: any }): ComponentPackage =>
-  createComponentPackage({ pack: { styles: { ...style } } });
+  buildPack({ pack: { styles: { ...style } } });
 
 describe("createStyles builds all styles", () => {
   it("is happy :)", () => {

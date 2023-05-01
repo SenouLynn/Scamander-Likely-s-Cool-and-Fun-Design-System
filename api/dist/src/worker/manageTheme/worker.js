@@ -9,14 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateTheme = exports.getTheme = void 0;
+exports.deletePack = exports.updateTheme = void 0;
 const checkers_1 = require("../../utils/firestore/checkers");
-const getters_1 = require("../../utils/firestore/getters");
-const getTheme = ({ projectId, themeId, }) => __awaiter(void 0, void 0, void 0, function* () {
-    const theme = yield (0, getters_1.getDocument)([projectId, "themes", themeId]);
-    return theme;
-});
-exports.getTheme = getTheme;
+const setters_1 = require("../../utils/firestore/setters");
 const updateTheme = ({ projectId, themeId, payload, }) => __awaiter(void 0, void 0, void 0, function* () {
     const writeTheme = yield (0, checkers_1.updateAndAddKeyValues)({
         query: [projectId, "themes", themeId],
@@ -25,4 +20,12 @@ const updateTheme = ({ projectId, themeId, payload, }) => __awaiter(void 0, void
     return writeTheme;
 });
 exports.updateTheme = updateTheme;
+const deletePack = ({ projectId, themeId, location, }) => __awaiter(void 0, void 0, void 0, function* () {
+    const deletePack = yield (0, setters_1.deleteFieldDoc)({
+        query: [projectId, "themes", themeId],
+        key: "field." + location,
+    });
+    return deletePack;
+});
+exports.deletePack = deletePack;
 //# sourceMappingURL=worker.js.map

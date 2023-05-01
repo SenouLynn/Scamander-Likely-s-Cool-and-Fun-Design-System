@@ -1,1 +1,9 @@
-export declare const getApp: (appId: string) => Promise<any>;
+declare const getComponents: () => void;
+declare const getPages: () => void;
+declare const getField: () => void;
+declare const updateComponent: (component: any) => void;
+declare const updatePage: (page: any) => void;
+declare const updateField: (field: any) => void;
+declare const deleteComponent: (component: any) => void;
+declare const deletePage: (page: any) => void;
+declare const deleteField: (field: any) => void;

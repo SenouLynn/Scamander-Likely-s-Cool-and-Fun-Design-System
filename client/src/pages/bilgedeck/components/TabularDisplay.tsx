@@ -1,5 +1,6 @@
-import { ThemeContext } from "_components/theme_2.0/ThemeProvider";
 import { useContext } from "react";
+import DeleteComponent from "./DeleteComponent";
+import { ThemeContext } from "_components/theme/ThemeProvider";
 
 const keys = ["label", "location", "comonentId", "type", "role"];
 
@@ -10,25 +11,33 @@ export default function TabularDisplay() {
   return (
     <div className="display-grid h-100 w-100">
       <Row cols={keys} />;
-      {rows.map((pack: ComponentPackage) => {
+      {rows.map((pack: ComponentPackage, i) => {
         const cols: string[] = keys.map((string) => {
           return (pack as searchable)[string];
         });
-        return <Row cols={cols} />;
+        return (
+          <Row key={(pack as searchable)[i - 1]} cols={cols} pack={pack} />
+        );
       })}
     </div>
   );
 }
 
-export const Row = ({ cols }: { cols: string[] }) => {
+export const Row = ({
+  cols,
+  pack,
+}: {
+  cols: string[];
+  pack?: ComponentPackage;
+}) => {
   return (
     <div className={`display-grid grid-col-${keys.length + 3}`}>
-      {cols.map((col: string) => {
-        return <Col col={col} />;
+      {cols.map((col: string, i) => {
+        return <Col key={`${col} + ${i}`} col={col} />;
       })}
       <button>See Object</button>
       <button>Edit</button>
-      <button>Delete</button>
+      <DeleteComponent pack={pack} />
     </div>
   );
 };
