@@ -11,7 +11,7 @@ export default function SelectComponent({
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     const pack = group.find((option) => option.location === value);
-    
+
     pack ? onChange(pack) : console.warn("No pack found for value :", value);
     return pack;
   };

@@ -1,14 +1,10 @@
-import * as Icons from "react-icons/bi";
+import * as I from "react-icons/bi";
 
-const shaper = () => {
-  let iconList: searchable = {};
-  const cleanTitle = (title: string) => title.split("Bi")[1];
-  Object.entries(Icons).forEach(
-    ([key, value]) => (iconList[cleanTitle(key)] = value)
-  );
-  return iconList;
-};
-export const IconManifest = shaper();
+let Icons = I as searchable;
+export const IconManifest = Object.keys(Icons).reduce(
+  (a: searchable, b: string) => ((a[b.substring(2)] = Icons[b]), a),
+  {}
+);
 
 export const Icon = (props: IconProps) => {
   const { icon } = props;
@@ -20,6 +16,7 @@ export const Icon = (props: IconProps) => {
   return <Icon size="20" />;
 };
 
+// type Icons = ObjectKeys<typeof Icons, IconType>;
 type IconProps = {
-  icon: string;
+  icon: keyof typeof IconManifest;
 };

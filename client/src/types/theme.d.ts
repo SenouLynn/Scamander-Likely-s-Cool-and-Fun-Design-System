@@ -1,7 +1,7 @@
 type ThemeContextProps = InitData & {
   mode: "test" | "edit" | "live" | "development" | "production";
   children?: React.ReactNode;
-  componentPackage: (props: ComponentIds) => any;
+  ComponentPackage: (props: ComponentIds) => any;
   pages: (props: ComponentIds) => any;
   updateComponentStyle: (props: Omit<UpdateStyleProps, "initData">) => any;
   updateSubComponents: (
@@ -93,7 +93,6 @@ type Elements = [
   "image"
 ];
 
-
 // type Elements = "header" | "footer" | "body" | "section" | "main" | "text";
 
 type HtmlElements = {
@@ -126,8 +125,6 @@ type ControlOptions = Partial<{
     [key: string]: DataDisplayKeys;
   };
 }>;
-
-
 
 type UpdateStyleProps = {
   type: "default" | "custom";
@@ -180,12 +177,12 @@ type OptionsObject = {
   index: number;
   render: ({
     optionsObj,
-    componentPackage,
+    ComponentPackage,
   }: {
     optionsObj: OptionsObject;
-    componentPackage: ComponentPackage;
+    ComponentPackage: ComponentPackage;
   }) => void;
-  checkValid: (componentPackage: ComponentPackage) => boolean;
+  checkValid: (ComponentPackage: ComponentPackage) => boolean;
   onChange: any;
 };
 

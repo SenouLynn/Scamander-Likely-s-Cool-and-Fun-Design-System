@@ -70,12 +70,12 @@ type OptionsObject = {
   index: number;
   render: ({
     optionsObj,
-    componentPackage,
+    ComponentPackage,
   }: {
     optionsObj: OptionsObject;
-    componentPackage: ComponentPackage;
+    ComponentPackage: ComponentPackage;
   }) => void;
-  checkValid: (componentPackage: ComponentPackage) => boolean;
+  checkValid: (ComponentPackage: ComponentPackage) => boolean;
   onChange: any;
 };
 
@@ -168,7 +168,7 @@ type ReactRoute = {
 type ThemeContextProps = InitData & {
   mode: "test" | "edit" | "live" | "development" | "production";
   children?: any;
-  componentPackage: (props: ComponentIds) => any;
+  ComponentPackage: (props: ComponentIds) => any;
   pages: (props: ComponentIds) => any;
   updateComponentStyle: (props: Omit<UpdateStyleProps, "initData">) => any;
   updateSubComponents: (
@@ -201,11 +201,7 @@ type BuildComponentIds = {
   getComponentPackage: any;
 };
 
-type AtLeast<T, K extends keyof T> = Partial<T> & Pick<T, K>;
 
-type searchable<O = any> = {
-  [key: string]: O;
-};
 
 interface Common {
   children?: any;
@@ -265,4 +261,3 @@ interface ComponentStyleProps {
   backgroundColor?: string;
   // fontSize?: GenericSizes;
 }
-

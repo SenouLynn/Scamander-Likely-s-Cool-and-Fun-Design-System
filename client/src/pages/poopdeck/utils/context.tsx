@@ -5,14 +5,29 @@ export const PoopDeckContext = createContext<ComponentManager_New>({
   pack: {} as ComponentPackage,
   focused: {} as ComponentPackage,
   update: {
-    pack: () => {},
-    focusedPack: () => {},
-    field: () => {},
+    pack: () => ({
+      pack: {} as ComponentPackage,
+      field: {} as ComponentPackageSet,
+    }),
+    focusedPack: () => ({
+      pack: {} as ComponentPackage,
+      field: {} as ComponentPackageSet,
+    }),
+    field: () => ({
+      pack: {} as ComponentPackage,
+      field: {} as ComponentPackageSet,
+    }),
     displayState: () => {},
   },
   save: {
-    local: () => {},
-    db: () => {},
+    local: (p: ComponentPackage) => ({
+      pack: {} as ComponentPackage,
+      field: {} as ComponentPackageSet,
+    }),
+    db: (pack: ComponentPackage) => ({
+      pack: {} as ComponentPackage,
+      field: {} as ComponentPackageSet,
+    }),
   },
   field: {},
   displayState: {

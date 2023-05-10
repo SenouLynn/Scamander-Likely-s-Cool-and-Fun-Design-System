@@ -7,7 +7,6 @@ export default function ManageComponent({ location }: { location: any }) {
   const { field, focused } = useContext(PoopDeckContext);
   const component = useMemo(() => field[focused.location], [field, focused]);
   const subComponents = component?.subComponents || [];
-
   return (
     <div className="padding-sm ">
       <div className="flex-between-start">

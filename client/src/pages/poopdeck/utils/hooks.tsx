@@ -14,23 +14,23 @@ import { ThemeContext } from "../../../_components/theme/ThemeProvider";
 export const usePoopDeck = (
   props?: Partial<ComponentManager_New>
 ): ComponentManager_New => {
-  const { themeField } = useContext(ThemeContext);
-  const [pack, setPack] = useState(buildPack({ pack: props?.pack }));
-
-  const [field, setField] = useState(
-    createLocalField(pack, themeField, props?.field)
-  );
-  console.log("field", pack);
-
-  const [displayState, setDisplayState] = useState(createDisplayState());
-  const [focused, setFocused] = useState(pack);
+  const {
+    field,
+    setPack,
+    setDisplayState,
+    setField,
+    setFocused,
+    focused,
+    pack,
+    displayState,
+  } = usePoopdeckState(props);
 
   const update = updaters(
     { field },
     { setPack, setField, setDisplayState, setFocused }
   );
-  const save = setters({ field, pack }, { setPack, setField });
-
+  const save = setters({ field, focused }, update);
+  console.log("field", field);
   return {
     original: {} as ComponentPackage,
     pack,
@@ -42,8 +42,30 @@ export const usePoopDeck = (
   };
 };
 
+export const usePoopdeckState = (props?: Partial<ComponentManager_New>) => {
+  const { themeField } = useContext(ThemeContext);
+  const seed = props?.pack || themeField["seedComponent"] || seedPack();
+  const [pack, setPack] = useState(buildPack({ pack: seed }));
+
+  const [field, setField] = useState(
+    createLocalField(pack, themeField, props?.field)
+  );
+  const [displayState, setDisplayState] = useState(createDisplayState());
+  const [focused, setFocused] = useState(pack);
+  return {
+    focused: field[focused.location],
+    pack: field[pack.location],
+    field,
+    displayState,
+    setPack,
+    setField,
+    setDisplayState,
+    setFocused,
+  };
+};
+
 export const usePoopDeckHotKeys = () => {
-  const { update, save, displayState } = useContext(PoopDeckContext);
+  const { update, save, displayState, pack } = useContext(PoopDeckContext);
   useHotKey("n", () =>
     update.pack(seedPack({ location: "0", type: "component" }))
   );
@@ -65,6 +87,6 @@ export const usePoopDeckHotKeys = () => {
   });
 
   useHotKey("cmd + s", () => {
-    return save.local();
+    return save.local(pack);
   });
 };

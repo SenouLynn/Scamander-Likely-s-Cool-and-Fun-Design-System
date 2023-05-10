@@ -16,9 +16,7 @@ export default function TopNav() {
       <div className=" flex-nowrap w-100 flex-start-center">
         <button
           onClick={() => {
-            update.pack(
-              seedPack({ type: "component", location: createLocation({}) })
-            );
+            update.focusedPack(seedPack({ type: "component" }));
           }}
         >
           New Component

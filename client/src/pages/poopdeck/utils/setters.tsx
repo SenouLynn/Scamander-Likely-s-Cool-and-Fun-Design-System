@@ -2,27 +2,29 @@ import { useContext } from "react";
 import { ThemeContext } from "../../../_components/theme/ThemeProvider";
 import { createLocation } from "./create";
 import { saveComponentToDb } from "./dB";
-import { PoopDeckContext } from "./context";
+import { cleanField, cleanPack } from "./helpers";
 
 export const useSetter = (
-  props: AtLeast<ComponentManager_New, "field" | "pack">,
-  state: { setPack: any; setField: any }
+  props: AtLeast<ComponentManager_New, "field" | "focused">,
+  update: ComponentUpdaters
 ): ComponentSetters => {
   const { set } = useContext(ThemeContext);
-  const { update } = useContext(PoopDeckContext);
   const setter = {
-    local: () => {
-      const { validField, validPack } = cleanItemsForSave(
-        props.pack,
-        props.field
-      );
-      update.focusedPack(validPack);
-      set.fieldList(validField);
-      return { validField, validPack };
+    local: (p: ComponentPackage) => {
+      const field = cleanField(props.field);
+      const pack = cleanPack(p);
+      return { pack, field };
     },
-    db: () => {
-      const { validField, validPack } = setter.local();
-      saveComponentToDb({ field: validField, pack: validPack });
+    db: (p: ComponentPackage) => {
+      setter.local(p);
+      const field = cleanField(props.field);
+      const pack = cleanPack(p);
+      console.log(field, pack);
+      saveComponentToDb({ field, pack });
+      return {
+        pack,
+        field,
+      };
     },
   };
 

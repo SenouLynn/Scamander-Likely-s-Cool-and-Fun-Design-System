@@ -38,7 +38,7 @@ export const buildRenderPackage = ({
   theme: ComponentPackage;
 }) => {
   //2.Build styles for
-  const styledPack = assembleStyles({ props, componentPackage: theme });
+  const styledPack = assembleStyles({ props, ComponentPackage: theme });
 
   //3.If package is passed through props, override default package from teheme
   let packOverride = { ...theme, ...pack };

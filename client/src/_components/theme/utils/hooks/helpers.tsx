@@ -20,22 +20,22 @@ export const renderChildren = (props: ComponentProps) => {
 
 export const assembleStyles = ({
   props,
-  componentPackage,
+  ComponentPackage,
 }: {
   props?: StylePackage;
-  componentPackage?: Partial<ComponentPackage>;
+  ComponentPackage?: Partial<ComponentPackage>;
 }): ComponentPackage => {
   return buildPack({
     props,
     pack: {
       styles: {
-        ...componentPackage?.styles,
+        ...ComponentPackage?.styles,
         ...props,
-        className: [componentPackage?.styles?.className, props?.className]
+        className: [ComponentPackage?.styles?.className, props?.className]
           .join(" ")
           .trim(),
       },
-      ...componentPackage,
+      ...ComponentPackage,
     },
   });
 };

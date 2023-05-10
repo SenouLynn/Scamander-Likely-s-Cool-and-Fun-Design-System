@@ -50,6 +50,7 @@ export const seedPack = (pack?: Partial<ComponentPackage>) =>
   buildPack({
     pack: {
       label: `${pack?.label || "New Component"}`,
+      location: "seedComponent",
       children: ["Hello World :)"],
       ...pack,
     },

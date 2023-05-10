@@ -10,15 +10,19 @@ interface ComponentManager_New {
 }
 
 type ComponentUpdaters = {
-  pack: (p: ComponentPackage, parent?: ComponentPackage) => void;
-  field: (p: ComponentPackage, parent?: ComponentPackage) => void;
-  focusedPack: (p: ComponentPackage) => void;
+  pack: (p: ComponentPackage, parent?: ComponentPackage) => UpdateReturn;
+  field: (p: ComponentPackage, parent?: ComponentPackage) => UpdateReturn;
+  focusedPack: (p: ComponentPackage) => UpdateReturn;
   displayState: (k: any) => void;
 };
 
+type UpdateReturn = {
+  pack: ComponentPackage;
+  field: ComponentPackageSet;
+};
 type ComponentSetters = {
-  local: () => void;
-  db: () => void;
+  local: (p: ComponentPackage) => UpdaterReturn;
+  db: (p: ComponentPackage) => UpdateReturn;
 };
 
 type DisplayStateShape = {

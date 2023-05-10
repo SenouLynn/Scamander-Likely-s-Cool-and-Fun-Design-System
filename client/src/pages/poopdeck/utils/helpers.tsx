@@ -1,4 +1,4 @@
-import { buildPack } from "./create";
+import { buildPack, createLocalField, createLocation } from "./create";
 
 export const addComponentToField = (
   p: ComponentPackage,
@@ -29,4 +29,43 @@ export const mergeFields = (
     newField[key] = val;
   });
   return newField;
+};
+
+export const cleanPack = (pack: ComponentPackage): ComponentPackage => {
+  const isSeed = pack.location === "seedComponent";
+  return isSeed ? cleanLocation(pack) : pack;
+};
+export const cleanLocation = (pack: ComponentPackage): ComponentPackage => {
+  const cleanPack = (p: ComponentPackage) => {
+    let newPack: ComponentPackage = {
+      ...p,
+      subComponents: [],
+      location:
+        p.location === "seedComponent" ? createLocation({}) : p.location,
+    };
+
+    newPack.subComponents = p.subComponents?.map((sub) => {
+      return (
+        sub &&
+        cleanPack(
+          buildPack({ pack: { ...sub, location: createLocation(newPack) } })
+        )
+      );
+    });
+
+    return newPack;
+  };
+
+  return cleanPack(pack);
+};
+
+export const cleanField = (field: ComponentPackageSet): ComponentPackageSet => {
+  const arr = Object.entries(field);
+  return arr.reduce((acc: ComponentPackageSet, [key, value]) => {
+    const p = acc;
+    if (!key.includes("seedComponent")) {
+      p[key] = value;
+    }
+    return p;
+  }, {});
 };

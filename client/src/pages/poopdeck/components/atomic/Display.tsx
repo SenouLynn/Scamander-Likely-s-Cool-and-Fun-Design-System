@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import { buildPack } from "pages/poopdeck/utils/create";
+import { useContext } from "react";
 import { createStyles } from "../../../../utils/styles/createStyles";
 import { PoopDeckContext } from "../../utils/context";
-import { buildPack } from "pages/poopdeck/utils/create";
 
 const createCanvasClass = (canvas: string) => {
   //Pass through to createStyles whenever you get to it
@@ -22,6 +22,8 @@ export default function Display() {
   const zoomClass = "zoom-" + displayState.zoomLevel;
 
   const canvasClass = createCanvasClass(displayState.canvas);
+  console.log("display", pack);
+
   return (
     <div
       id="component-builder-display"

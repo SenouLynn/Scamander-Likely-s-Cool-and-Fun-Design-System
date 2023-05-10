@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
-import { updateZoomLevel } from "../../utils/updaters";
-import { PoopDeckContext } from "../../utils/context";
 import { Icon } from "../../../../_components/icons/_icon.manifest";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
 import { createDisplayState } from "pages/poopdeck/utils/create";
+import { PoopDeckContext } from "../../utils/context";
+import { updateZoomLevel } from "../../utils/updaters";
 
 export default function ManageDisplayState() {
   const { displayState, update } = useContext(PoopDeckContext);
@@ -34,6 +35,11 @@ export default function ManageDisplayState() {
       <span className="padding-xsm" onClick={() => handleZoom("sub")}>
         <Icon icon="ZoomOut" />
       </span>
+      <Link to="/bilgedeck">
+        <span className="padding-xsm">
+          <Icon icon="ListUl" />
+        </span>
+      </Link>
     </div>
   );
 }

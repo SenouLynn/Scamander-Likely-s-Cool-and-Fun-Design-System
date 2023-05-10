@@ -7,7 +7,7 @@ export const propStyles: StylePackage = {
   className: "test",
   display: "flex",
 };
-const componentPackage: ComponentPackage = buildPack({
+const ComponentPackage: ComponentPackage = buildPack({
   props: {},
   pack: {
     location: "0",
@@ -24,7 +24,7 @@ describe("building styles", () => {
     expect(true).toBe(true);
   });
 
-  const result = assembleStyles({ props: propStyles, componentPackage });
+  const result = assembleStyles({ props: propStyles, ComponentPackage });
 
   it("adds className from props to pack", () => {
     expect(result.styles.className).toBe("test");

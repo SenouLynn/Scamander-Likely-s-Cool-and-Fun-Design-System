@@ -1,4 +1,10 @@
-import { addComponentToField } from "./helpers";
+import { createLocation } from "./create";
+import {
+  addComponentToField,
+  cleanField,
+  cleanLocation,
+  cleanPack,
+} from "./helpers";
 
 export const updaters = (
   props: AtLeast<ComponentManager_New, "field">,
@@ -6,17 +12,41 @@ export const updaters = (
 ): ComponentUpdaters => {
   const update = {
     pack: (p: ComponentPackage) => {
-      //update master pack (for display state)
-      state.setPack(p);
-      //update field objects (for storage)
-      update.field(p);
+      let cleaned = cleanPack(p);
+      const { pack, field } = update.field(cleaned);
+      state.setPack(cleaned);
+      return { pack, field };
     },
     focusedPack: (p: ComponentPackage) => {
-      state.setFocused(p);
+      let pack = cleanPack(p);
+      let field = cleanField(props.field);
+
+      update.field(pack);
+      state.setFocused(pack);
+
+      //Trickle down to field
+      //If seed, then pack is focused
+      if (p.location === "seedComponent") {
+        let updated = update.pack(pack);
+        field = updated.field;
+        pack = updated.pack;
+      }
+      return {
+        pack,
+        field,
+      };
     },
     field: (p: ComponentPackage, parent?: ComponentPackage) => {
-      const newField = addComponentToField(p, props.field, parent);
-      state.setField(newField);
+      let pack = p;
+      let field = addComponentToField(pack, props.field, parent);
+      state.setField(field);
+
+      if (p.location === "seedComponent") {
+        let updated = update.focusedPack(pack);
+        field = updated.field;
+        pack = updated.pack;
+      }
+      return { pack, field };
     },
     displayState: (display: Partial<DisplayStateShape>) => {
       state.setDisplayState(display);
