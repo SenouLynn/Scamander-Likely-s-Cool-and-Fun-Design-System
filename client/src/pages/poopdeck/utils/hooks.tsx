@@ -1,15 +1,16 @@
-import { useState, useContext } from "react";
-import { updateZoomLevel, updaters } from "./updaters";
-import { useSetter as setters } from "./setters";
+import { useContext, useState } from "react";
+import { ThemeContext } from "../../../_components/theme/ThemeProvider";
+import { useHotKey } from "../../../utils/hooks/hotkeys";
+import { PoopDeckContext } from "./context";
 import {
   buildPack,
   createDisplayState,
   createLocalField,
   seedPack,
 } from "./create";
-import { useHotKey } from "../../../utils/hooks/hotkeys";
-import { PoopDeckContext } from "./context";
-import { ThemeContext } from "../../../_components/theme/ThemeProvider";
+import { useSetter as setters } from "./setters";
+import { updateZoomLevel, updaters } from "./updaters";
+import { createComponentTree } from "./helpers";
 
 export const usePoopDeck = (
   props?: Partial<ComponentManager_New>
@@ -29,8 +30,9 @@ export const usePoopDeck = (
     { field },
     { setPack, setField, setDisplayState, setFocused }
   );
+
   const save = setters({ field, focused }, update);
-  console.log("field", field);
+
   return {
     original: {} as ComponentPackage,
     pack,
@@ -44,13 +46,22 @@ export const usePoopDeck = (
 
 export const usePoopdeckState = (props?: Partial<ComponentManager_New>) => {
   const { themeField } = useContext(ThemeContext);
-  const seed = props?.pack || themeField["seedComponent"] || seedPack();
-  const [pack, setPack] = useState(buildPack({ pack: seed }));
+
+  const [pack, setPack] = useState(
+    buildPack({
+      pack: createComponentTree(props?.pack, {
+        ...props?.field,
+        ...themeField,
+      }),
+    })
+  );
 
   const [field, setField] = useState(
     createLocalField(pack, themeField, props?.field)
   );
+
   const [displayState, setDisplayState] = useState(createDisplayState());
+
   const [focused, setFocused] = useState(pack);
   return {
     focused: field[focused.location],

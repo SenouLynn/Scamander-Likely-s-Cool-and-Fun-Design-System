@@ -1,4 +1,30 @@
-import { buildPack, createLocalField, createLocation } from "./create";
+import { buildPack, createLocation, seedPack } from "./create";
+
+export const createComponentTree = (
+  pack?: ComponentPackage,
+  field?: ComponentPackageSet
+): ComponentPackage => {
+  if (!field || !pack) return seedPack();
+
+  function updatePackWithFieldData(
+    pack: ComponentPackage,
+    field: ComponentPackageSet
+  ) {
+    if (field.hasOwnProperty(pack.location)) {
+      pack = field[pack.location];
+    }
+
+    if (pack.hasOwnProperty("subComponents")) {
+      pack.subComponents = pack.subComponents.map((subPack) =>
+        updatePackWithFieldData(buildPack({ pack: subPack }), field)
+      );
+    }
+    return pack;
+  }
+  const seed = field[pack.location] || pack || seedPack();
+  console.log("seed", field[pack.location], pack.location, field);
+  return updatePackWithFieldData(seed, field);
+};
 
 export const addComponentToField = (
   p: ComponentPackage,

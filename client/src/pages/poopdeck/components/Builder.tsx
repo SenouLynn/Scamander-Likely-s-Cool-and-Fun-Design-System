@@ -20,6 +20,7 @@ export default function ComponentBuilder({
   const component = field[pack.location];
   return (
     <div
+      role={`build-container-${pack.location}`}
       className="padding-md border w-30rem bg-color-white "
       onMouseEnter={() =>
         update.field({

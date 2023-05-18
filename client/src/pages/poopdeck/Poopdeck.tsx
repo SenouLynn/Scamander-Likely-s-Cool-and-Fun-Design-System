@@ -7,12 +7,9 @@ import ZoomWrapper from "./components/ZoomWrapper";
 import Display from "./components/atomic/Display";
 import { seedPack } from "./utils/create";
 
-export default function Poopdeck() {
+export default function Poopdeck({ pack }: { pack?: ComponentPackage }) {
   const value = usePoopDeck({
-    pack: seedPack({
-      type: "component",
-      label: "Hello World :)",
-    }),
+    pack,
   });
 
   return (
@@ -26,7 +23,7 @@ export default function Poopdeck() {
 
           <div>
             <MGMTElectricFeel>
-              <ManageComponent location={value.pack.location} />
+              <ManageComponent />
             </MGMTElectricFeel>
           </div>
         </ZoomWrapper>

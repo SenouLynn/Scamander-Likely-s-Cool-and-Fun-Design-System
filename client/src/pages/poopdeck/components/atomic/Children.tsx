@@ -13,7 +13,6 @@ export default function Children({ pack }: { pack: ComponentPackage }) {
       pack: { ...newSubComponent, location: createLocation(pack) },
     });
     const subComponents = [...focused.subComponents, child];
-    console.log(pack.location, newSubComponent.location, field);
     update.field(child, { ...focused, subComponents });
   };
 
@@ -22,7 +21,6 @@ export default function Children({ pack }: { pack: ComponentPackage }) {
       <SelectComponent
         label={"Components: "}
         onChange={(v) => {
-          console.log(v);
           addSubComponent(v);
         }}
         getSet={() => Object.values(summonComponents(field))}

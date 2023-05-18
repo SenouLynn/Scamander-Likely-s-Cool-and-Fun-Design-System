@@ -1,15 +1,15 @@
-import { createLocation } from "./create";
 import {
   addComponentToField,
   cleanField,
-  cleanLocation,
   cleanPack,
+  createComponentTree,
 } from "./helpers";
 
 export const updaters = (
   props: AtLeast<ComponentManager_New, "field">,
   state: { setPack: any; setField: any; setDisplayState: any; setFocused: any }
 ): ComponentUpdaters => {
+  
   const update = {
     pack: (p: ComponentPackage) => {
       let cleaned = cleanPack(p);
@@ -22,7 +22,8 @@ export const updaters = (
       let field = cleanField(props.field);
 
       update.field(pack);
-      state.setFocused(pack);
+
+      state.setFocused(createComponentTree(pack, field));
 
       //Trickle down to field
       //If seed, then pack is focused

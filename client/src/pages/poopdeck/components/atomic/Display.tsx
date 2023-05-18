@@ -22,7 +22,6 @@ export default function Display() {
   const zoomClass = "zoom-" + displayState.zoomLevel;
 
   const canvasClass = createCanvasClass(displayState.canvas);
-  console.log("display", pack);
 
   return (
     <div

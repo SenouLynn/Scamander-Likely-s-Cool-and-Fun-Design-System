@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ThemeContext } from "../../../_components/theme/ThemeProvider";
-import { createLocation } from "./create";
+import { buildPack, createLocation } from "./create";
 import { saveComponentToDb } from "./dB";
 import { cleanField, cleanPack } from "./helpers";
 
@@ -17,13 +17,17 @@ export const useSetter = (
     },
     db: (p: ComponentPackage) => {
       setter.local(p);
-      const field = cleanField(props.field);
-      const pack = cleanPack(p);
-      console.log(field, pack);
-      saveComponentToDb({ field, pack });
+      // const field = cleanField(props.field);
+      // const pack = cleanPack(p);
+      console.log(assembleComponentSave(p, props.field));
+
+      saveComponentToDb({
+        field: assembleComponentSave(p, props.field),
+        pack: p,
+      });
       return {
-        pack,
-        field,
+        pack: p,
+        field: props.field,
       };
     },
   };
@@ -31,36 +35,39 @@ export const useSetter = (
   return setter;
 };
 
-export const cleanItemsForSave = (
-  pack: ComponentPackage,
+export const assembleComponentSave = (
+  component: ComponentPackage,
   field: ComponentPackageSet
 ) => {
-  let validPack = pack;
-  let validField = field;
+  const { location } = component;
+  const payload: ComponentPackageSet = {};
+  const parse = (
+    pack: ComponentPackage,
+    field: ComponentPackageSet,
+    index?: number
+  ) => {
+    if (location.includes("seedComponent")) {
+      if (location === "seedComponent") {
+        const newLocation = createLocation({});
+        const p = field["seedComponent"];
+        payload[newLocation] = { ...p, location: newLocation };
+      }
+    } else {
+      const p = field[location];
 
-  //Clean add new unique comonent id if component is fresh
-  if (pack.location === "0") {
-    const location = createLocation({});
-    validPack = { ...pack, location, componentId: location };
-    //Clean valid field values of leading 0 and replace with new location
-    validField = Object.values(validField).reduce(
-      (acc: ComponentPackageSet, pack: ComponentPackage) => {
-        const p = acc;
+      payload[location] = { ...p, location };
 
-        let childLocation = pack.location.split("-");
-        if (childLocation[0] === "0") {
-          childLocation[0] = location;
-          const newLocation = childLocation.join("-");
-          p[newLocation] = { ...pack, location: newLocation };
-          delete p[pack.location];
-        }
-        return p;
-      },
-      validField
-    );
-
-    validField = { ...validField, [location]: validPack };
-  }
-
-  return { validPack, validField };
+      pack.subComponents.forEach((child, i) => {
+        const l: string = child.location.toString();
+        payload[l] = buildPack({
+          pack: {
+            ...field[l],
+            location: `${location}-${i}`,
+          },
+        });
+      });
+    }
+  };
+  parse(component, field);
+  return payload;
 };

@@ -3,12 +3,12 @@ import Builder from "./Builder";
 import { PoopDeckContext } from "../utils/context";
 import { buildPack } from "../utils/create";
 
-export default function ManageComponent({ location }: { location: any }) {
+export default function ManageComponent() {
   const { field, focused } = useContext(PoopDeckContext);
   const component = useMemo(() => field[focused.location], [field, focused]);
   const subComponents = component?.subComponents || [];
   return (
-    <div className="padding-sm ">
+    <div className="padding-sm " role="component-manager">
       <div className="flex-between-start">
         <div>
           <Builder pack={component} isRoot={true} />
@@ -21,7 +21,7 @@ export default function ManageComponent({ location }: { location: any }) {
 
       <div className="flex-row flex-start-start w-100vw overflow-auto">
         {subComponents.map((subComponent) => {
-          const location = subComponent.location || "none";
+          const location = subComponent.location;
           const component = field[location];
           if (!component) {
             console.warn(`Could not find component ${location}`);
@@ -29,8 +29,8 @@ export default function ManageComponent({ location }: { location: any }) {
           }
           return (
             <Builder
-              key={subComponent.location}
-              pack={buildPack({ pack: subComponent })}
+              key={component.location}
+              pack={buildPack({ pack: component })}
             />
           );
         })}
